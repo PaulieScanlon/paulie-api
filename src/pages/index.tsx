@@ -4,10 +4,10 @@ const IndexPage: FunctionComponent = () => {
   const [res, setRes] = useState({ user: null })
 
   useEffect(() => {
-    console.log('process.env.API_URL: ', process.env.API_URL)
-    console.log('process.env.TWITTER_USERNAME: ', process.env.TWITTER_USERNAME)
+    console.log('process.env.GATSBY_API_URL: ', process.env.GATSBY_API_URL)
+    console.log('process.env.GATSBY_TWITTER_USERNAME: ', process.env.GATSBY_TWITTER_USERNAME)
 
-    fetch(`${process.env.API_URL}/twitter-user`, {
+    fetch(`${process.env.GATSBY_API_URL}/twitter-user`, {
       mode: 'no-cors',
       method: 'GET',
     })
