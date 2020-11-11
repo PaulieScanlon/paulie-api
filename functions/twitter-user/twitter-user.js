@@ -1,9 +1,6 @@
 const { client } = require('../client')
 
 exports.handler = async (event, context, callback) => {
-  console.log('process.env.GATSBY_API_URL: ', process.env.GATSBY_API_URL)
-  console.log('process.env.GATSBY_TWITTER_USERNAME: ', process.env.GATSBY_TWITTER_USERNAME)
-
   const { data } = await client.get(`users/by/username/${process.env.GATSBY_TWITTER_USERNAME}`, {
     user: {
       fields:
