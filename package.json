@@ -1,0 +1,44 @@
+{
+  "name": "paulie-api",
+  "version": "1.0.0",
+  "description": "An API for paulie.dev and pauliescanlon.io",
+  "main": "index.js",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "serve": "gatsby serve",
+    "start": "npm run develop",
+    "prettier": "prettier --config ./.prettierrc.js --ignore-path ./.prettierignore --write \"**/*.{json,js,ts,tsx}\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "netlify-lambda install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier",
+      "pre-push": ""
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulieScanlon/paulie-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaulieScanlon/paulie-api/issues"
+  },
+  "homepage": "https://github.com/PaulieScanlon/paulie-api#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "gatsby": "^2.25.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "husky": "^4.3.0",
+    "netlify-lambda": "^1.6.3",
+    "prettier": "^2.1.2"
+  }
+}
