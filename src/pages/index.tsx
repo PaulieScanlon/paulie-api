@@ -19,10 +19,16 @@ const IndexPage: FunctionComponent = () => {
 
   return (
     <main>
-      IndexPage
-      <pre>
-        <code>{JSON.stringify(res.user, null, 2)}</code>
-      </pre>
+      {res.user ? (
+        <>
+          <pre>
+            <code>{JSON.stringify(`${process.env.GATSBY_API_URL}/twitter-user`, null, 2)}</code>
+          </pre>
+          <pre>
+            <code>{JSON.stringify(res.user, null, 2)}</code>
+          </pre>
+        </>
+      ) : null}
     </main>
   )
 }
