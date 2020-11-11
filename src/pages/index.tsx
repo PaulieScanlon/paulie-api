@@ -5,7 +5,7 @@ const IndexPage: FunctionComponent = () => {
 
   useEffect(() => {
     console.log('API_URL: ', process.env.API_URL)
-    fetch(`${process.env.API_URL}/user`, {
+    fetch(`${process.env.API_URL}/twitter-user`, {
       mode: 'no-cors',
       method: 'GET',
     })
