@@ -1,7 +1,5 @@
 const { client } = require('../client')
 
-const origins = ['www.paulie.dev', 'www.pauliescanlon.io']
-
 exports.handler = async (event, context, callback) => {
   const { data } = await client.get(`users/by/username/${process.env.GATSBY_TWITTER_USERNAME}`, {
     user: {
@@ -12,7 +10,7 @@ exports.handler = async (event, context, callback) => {
 
   callback(null, {
     headers: {
-      'Access-Control-Allow-Origin': origins,
+      'Access-Control-Allow-Origin': '*',
     },
     statusCode: 200,
     body: JSON.stringify({ user: data }),
