@@ -5,6 +5,8 @@ exports.handler = async (event, context, callback) => {
     q: 'bums in:name,description',
   })
 
+  console.log(data)
+
   callback(null, {
     headers: {
       'Access-Control-Allow-Origin': '*',

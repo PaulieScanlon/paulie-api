@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState, useEffect } from 'react'
 
 const BumsPage: FunctionComponent = () => {
-  const [octokitResponse, setoctOkitResponse] = useState({ search: null })
+  const [octokitResponse, setOctokitResponse] = useState({ search: null })
 
   useEffect(() => {
     fetch(`${process.env.GATSBY_API_URL}/github-search`, {
@@ -10,7 +10,7 @@ const BumsPage: FunctionComponent = () => {
     })
       .then((res) => res.text())
       .then((res) => {
-        setoctOkitResponse(JSON.parse(res))
+        setOctokitResponse(JSON.parse(res))
       })
       .catch((err) => {
         console.error({ err })
