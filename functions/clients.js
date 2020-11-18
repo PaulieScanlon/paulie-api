@@ -9,7 +9,7 @@ module.exports = {
     access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
   }),
   octokit: new Octokit({
-    auth: 'fc1a60706c3d8556d421d08a899225bdfdcedac0',
-    userAgent: 'Awesome-Octocat-App',
+    auth: process.env.OCTOKIT_PERSONAL_ACCESS_TOKEN,
+    userAgent: 'Paulie API',
   }),
 }
