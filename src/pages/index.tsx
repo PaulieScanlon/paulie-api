@@ -8,9 +8,9 @@ const IndexPage: FunctionComponent = () => {
       mode: 'no-cors',
       method: 'GET',
     })
-      .then((res) => res.text())
+      .then((res) => res.json())
       .then((res) => {
-        setTwitterResponse(JSON.parse(res))
+        setTwitterResponse({ user: res.user })
       })
       .catch((err) => {
         console.error({ err })
