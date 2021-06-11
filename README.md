@@ -1,6 +1,6 @@
 # paulie-api
 
-An API for paulie.dev and pauliescanlon.io
+An API for https://paulie.dev/ and https://www.pauliescanlon.io/
 
 ## Env vars
 
