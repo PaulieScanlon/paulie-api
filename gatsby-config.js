@@ -4,6 +4,6 @@ require('dotenv').config({
 
 module.exports = {
   flags: {
-    FUNCTONS: true,
+    FUNCTIONS: true,
   },
 }
