@@ -8,5 +8,5 @@ see `.env.example` for the required environment variables
 
 ## End Points
 
-- api/twitter-user
-- api/github-user
+- https://paulieapi.gatsbyjs.io/api/twitter-user
+- https://paulieapi.gatsbyjs.io/api/github-user
