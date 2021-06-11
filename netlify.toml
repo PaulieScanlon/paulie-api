@@ -1,4 +1,0 @@
-[build]
-  command = "yarn build && cd functions && yarn"
-  functions = "functions"
-  publish = "public/"
