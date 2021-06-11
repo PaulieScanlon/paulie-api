@@ -8,4 +8,5 @@ see `.env.example` for the required environment variables
 
 ## End Points
 
-/twitter-user
+- api/twitter-user
+- api/github-user
