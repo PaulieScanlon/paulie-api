@@ -23,6 +23,7 @@ const StripePaymentPage: FunctionComponent = () => {
     setIsLoading(true)
     try {
       const response = await axios.post('/api/make-stripe-payment', {
+        product: 'prod_K6dGWR54oYDK1q',
         amount: inputValue,
         success_url: 'http://localhost:8000/stripe-payment',
         cancel_url: 'http://localhost:8000/stripe-payment',

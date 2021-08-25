@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     res.status(400).json({ message: 'req.method should be POST' })
   }
 
-  const { amount, success_url, cancel_url } = req.body
+  const { amount, success_url, cancel_url, product } = req.body
 
   if (!amount) {
     res.status(400).json({ message: 'No amount', error: 'amount not found on body' })
@@ -19,6 +19,10 @@ export default async function handler(req, res) {
     res.status(400).json({ message: 'No cancel_url', error: 'cancel_url not found on body' })
   }
 
+  if (!product) {
+    res.status(400).json({ message: 'No product', error: 'product not found on body' })
+  }
+
   try {
     const session = await stripe.checkout.sessions.create({
       success_url: success_url,
@@ -30,7 +34,7 @@ export default async function handler(req, res) {
           price_data: {
             unit_amount: amount * 100,
             currency: 'usd',
-            product: 'prod_K6dGWR54oYDK1q',
+            product: product,
           },
         },
       ],
