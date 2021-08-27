@@ -1,7 +1,10 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 import Cors from 'cors'
 
-const cors = Cors()
+const cors = Cors({
+  origin: '*',
+  optionsSuccessStatus: 200,
+})
 
 const runCorsMiddleware = async (req, res) => {
   await new Promise((resolve, reject) => {
