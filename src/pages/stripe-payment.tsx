@@ -21,23 +21,23 @@ const StripePaymentPage: FunctionComponent = () => {
 
   const makeStripePayment = async () => {
     setIsLoading(true)
-    try {
-      const response = await axios.post('/api/make-stripe-payment', {
-        product: 'prod_K6dGWR54oYDK1q',
-        amount: inputValue,
-        success_url: 'http://localhost:8000/stripe-payment',
-        cancel_url: 'http://localhost:8000/stripe-payment',
-      })
-      setIsLoading(false)
-      setCta({
-        type: 'link',
-        message: 'Proceed to checkout',
-        url: response.data.url,
-      })
-    } catch (error) {
-      setIsLoading(false)
-      console.warn(JSON.stringify(error, null, 2))
-    }
+    // try {
+    //   const response = await axios.post('/api/make-stripe-payment', {
+    //     product: 'prod_K6dGWR54oYDK1q',
+    //     amount: inputValue,
+    //     success_url: 'http://localhost:8000/stripe-payment',
+    //     cancel_url: 'http://localhost:8000/stripe-payment',
+    //   })
+    //   setIsLoading(false)
+    //   setCta({
+    //     type: 'link',
+    //     message: 'Proceed to checkout',
+    //     url: response.data.url,
+    //   })
+    // } catch (error) {
+    //   setIsLoading(false)
+    //   console.warn(JSON.stringify(error, null, 2))
+    // }
   }
 
   return (
