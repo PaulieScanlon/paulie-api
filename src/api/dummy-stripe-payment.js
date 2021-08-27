@@ -2,7 +2,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 import Cors from 'cors'
 
 const cors = Cors({
-  origin: false,
+  origin: 'http://localhost:6006',
   preflightContinue: true,
   optionsSuccessStatus: 200,
 })
