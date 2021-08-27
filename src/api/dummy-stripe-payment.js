@@ -3,10 +3,9 @@ import Cors from 'cors'
 
 const cors = Cors({
   origin: '*',
-  preflightContinue: true,
-  optionsSuccessStatus: 200,
-  methods: ['POST'],
-  allowedHeaders: ['Access-Control-Allow-Origin'],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
 })
 
 const runCorsMiddleware = async (req, res) => {
