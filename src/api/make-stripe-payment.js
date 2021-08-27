@@ -1,4 +1,18 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+import Cors from 'cors'
+
+const cors = Cors()
+
+const runCorsMiddleware = async (req, res) => {
+  await new Promise((resolve, reject) => {
+    cors(req, res, (result) => {
+      if (result instanceof Error) {
+        reject(result)
+      }
+      resolve(result)
+    })
+  })
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -23,6 +37,12 @@ export default async function handler(req, res) {
 
   if (!product) {
     res.status(400).json({ message: 'No product', error: 'product not found on body' })
+  }
+
+  try {
+    await runCorsMiddleware(req, res)
+  } catch (error) {
+    res.status(500).json({ message: 'Coors Error', error: error })
   }
 
   try {
