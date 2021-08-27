@@ -3,6 +3,7 @@ import Cors from 'cors'
 
 const cors = Cors({
   origin: '*',
+  preflightContinue: true,
   optionsSuccessStatus: 200,
 })
 
