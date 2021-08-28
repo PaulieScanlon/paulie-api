@@ -44,13 +44,14 @@ export default async function handler(req, res) {
     res.status(400).json({ message: 'No product', error: 'product not found on body' })
   }
 
-  try {
-    await runCorsMiddleware(req, res)
-  } catch (error) {
-    res.status(500).json({ message: 'Coors Error', error: error })
-  }
+  // try {
+  // } catch (error) {
+  //   res.status(500).json({ message: 'Coors Error', error: error })
+  // }
 
   try {
+    await runCorsMiddleware(req, res)
+
     const session = await stripe.checkout.sessions.create({
       success_url: success_url,
       cancel_url: cancel_url,
