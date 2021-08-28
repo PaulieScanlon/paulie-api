@@ -24,6 +24,9 @@ export default async function handler(req, res) {
     res.status(400).json({ message: 'req.method should be POST' })
   }
 
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,*')
+  res.setHeader('Access-Control-Allow-Credentials', true)
   res.setHeader('Access-Control-Allow-Origin', '*')
 
   const { amount, success_url, cancel_url, product } = req.body
