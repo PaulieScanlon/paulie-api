@@ -9,7 +9,24 @@ const runCorsMiddleware = async (req, res) => {
       if (result instanceof Error) {
         reject(result)
       }
-      resolve(result)
+      resolve(
+        stripe.checkout.sessions.create({
+          success_url: success_url,
+          cancel_url: cancel_url,
+          payment_method_types: ['card'],
+          line_items: [
+            {
+              quantity: 1,
+              price_data: {
+                unit_amount: amount * 100,
+                currency: 'usd',
+                product: product,
+              },
+            },
+          ],
+          mode: 'payment',
+        }),
+      )
     })
   })
 }
@@ -18,22 +35,22 @@ export default async function handler(req, res) {
   try {
     await runCorsMiddleware(req, res)
 
-    const session = await stripe.checkout.sessions.create({
-      success_url: success_url,
-      cancel_url: cancel_url,
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          quantity: 1,
-          price_data: {
-            unit_amount: amount * 100,
-            currency: 'usd',
-            product: product,
-          },
-        },
-      ],
-      mode: 'payment',
-    })
+    // const session = await stripe.checkout.sessions.create({
+    //   success_url: success_url,
+    //   cancel_url: cancel_url,
+    //   payment_method_types: ['card'],
+    //   line_items: [
+    //     {
+    //       quantity: 1,
+    //       price_data: {
+    //         unit_amount: amount * 100,
+    //         currency: 'usd',
+    //         product: product,
+    //       },
+    //     },
+    //   ],
+    //   mode: 'payment',
+    // })
 
     res.status(200).json({ message: 'A ok!', url: session.url })
   } catch (error) {
