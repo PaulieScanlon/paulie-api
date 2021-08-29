@@ -5,6 +5,7 @@ const cors = Cors({
   origin: true,
   credentials: true,
   methods: ['POST'],
+  allowedHeaders: ['append', 'delete', 'entries', 'foreach', 'get', 'has', 'keys', 'set', 'values', 'Authorization'],
   preflightContinue: true,
 })
 
