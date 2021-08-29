@@ -3,6 +3,7 @@ import Cors from 'cors'
 
 const cors = Cors({
   methods: ['POST'],
+  preflightContinue: true,
 })
 
 const runCorsMiddleware = async (req, res) => {
