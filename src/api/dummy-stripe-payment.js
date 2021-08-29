@@ -2,7 +2,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 import Cors from 'cors'
 
 const cors = Cors({
-  origin: true,
+  origin: '*',
   credentials: true,
   methods: ['POST'],
   allowedHeaders: ['Origin', 'Content-Type', 'X-Auth-Token', 'Authorization'],
