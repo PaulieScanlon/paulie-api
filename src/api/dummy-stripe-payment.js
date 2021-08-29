@@ -1,14 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 import Cors from 'cors'
 
-const cors = Cors({
-  options: {
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: true,
-    optionsSuccessStatus: 204,
-  },
-})
+const cors = Cors()
 
 const runCorsMiddleware = async (req, res) => {
   await new Promise((resolve, reject) => {
@@ -22,38 +15,6 @@ const runCorsMiddleware = async (req, res) => {
 }
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    res.status(400).json({ message: 'req.method should be POST' })
-  }
-
-  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,*')
-  res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
-
-  const { amount, success_url, cancel_url, product } = req.body
-
-  if (!amount) {
-    res.status(400).json({ message: 'No amount', error: 'amount not found on body' })
-  }
-
-  if (!success_url) {
-    res.status(400).json({ message: 'No success_url', error: 'success_url not found on body' })
-  }
-
-  if (!cancel_url) {
-    res.status(400).json({ message: 'No cancel_url', error: 'cancel_url not found on body' })
-  }
-
-  if (!product) {
-    res.status(400).json({ message: 'No product', error: 'product not found on body' })
-  }
-
-  // try {
-  // } catch (error) {
-  //   res.status(500).json({ message: 'Coors Error', error: error })
-  // }
-
   try {
     await runCorsMiddleware(req, res)
 
