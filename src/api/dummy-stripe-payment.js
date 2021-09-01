@@ -20,6 +20,8 @@ const runCorsMiddleware = async (req, res, fn) => {
 }
 
 export default async function handler(req, res) {
+  const { success_url, cancel_url, amount, product } = req.body
+
   try {
     await runCorsMiddleware(req, res, cors)
 
