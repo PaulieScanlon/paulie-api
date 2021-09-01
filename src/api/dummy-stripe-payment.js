@@ -8,9 +8,9 @@ const cors = Cors({
   credentials: true,
 })
 
-const runCorsMiddleware = async (req, res) => {
+const runCorsMiddleware = async (req, res, fn) => {
   await new Promise((resolve, reject) => {
-    cors(req, res, (result) => {
+    fn(req, res, (result) => {
       if (result instanceof Error) {
         reject(result)
       }
@@ -20,10 +20,8 @@ const runCorsMiddleware = async (req, res) => {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://www.mdx-embed.com')
-
   try {
-    await runCorsMiddleware(req, res)
+    await runCorsMiddleware(req, res, cors)
 
     const session = await stripe.checkout.sessions.create({
       success_url: success_url,
