@@ -2,7 +2,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 import Cors from 'cors'
 
 const cors = Cors({
-  origin: 'https://www.mdx-embed',
+  origin: 'https://www.mdx-embed.com',
   methods: ['POST'],
   allowedHeaders: ['Content-Type'],
   credentials: true,
