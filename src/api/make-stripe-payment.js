@@ -1,20 +1,25 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 import Cors from 'cors'
 
+const allowedOrigins = ['https://www.mdx-embed.com']
+
 const cors = Cors({
-  origin: 'https://www.mdx-embed.com',
-  methods: ['POST'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true,
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error())
+    }
+  },
 })
 
-const runCorsMiddleware = async (req, res, fn) => {
-  await new Promise((resolve, reject) => {
-    fn(req, res, (result) => {
+const runCorsMiddleware = (req, res) => {
+  return new Promise((resolve, reject) => {
+    cors(req, res, (result) => {
       if (result instanceof Error) {
-        reject(result)
+        return reject(result)
       }
-      resolve(result)
+      return resolve(result)
     })
   })
 }
@@ -23,7 +28,7 @@ export default async function handler(req, res) {
   const { success_url, cancel_url, amount, product } = req.body
 
   try {
-    await runCorsMiddleware(req, res, cors)
+    await runCorsMiddleware(req, res)
 
     const session = await stripe.checkout.sessions.create({
       success_url: success_url,
