@@ -1,7 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 import Cors from 'cors'
 
-const allowedOrigins = ['http://localhost:6006', 'https://www.mdx-embed.com']
+const allowedOrigins = ['https://www.mdx-embed.com']
 
 const cors = Cors({
   origin: (origin, callback) => {
@@ -49,6 +49,6 @@ export default async function handler(req, res) {
 
     res.status(200).json({ message: '🕺 Stripe checkout created ok', url: session.url })
   } catch (error) {
-    res.status(500).json({ message: '🚫 Request blocked by CORS', error: error })
+    res.status(500).json({ message: '🚫 Request blocked by CORS' })
   }
 }
