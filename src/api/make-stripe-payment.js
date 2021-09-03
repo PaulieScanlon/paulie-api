@@ -27,28 +27,32 @@ const runCorsMiddleware = (req, res) => {
 export default async function handler(req, res) {
   const { success_url, cancel_url, amount, product } = req.body
 
-  try {
-    await runCorsMiddleware(req, res)
+  if (!success_url || !cancel_url || !amount || !product) {
+    res.status(400).json({ message: '⚠️ Missing required body params' })
+  } else {
+    try {
+      await runCorsMiddleware(req, res)
 
-    const session = await stripe.checkout.sessions.create({
-      success_url: success_url,
-      cancel_url: cancel_url,
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          quantity: 1,
-          price_data: {
-            unit_amount: amount * 100,
-            currency: 'usd',
-            product: product,
+      const session = await stripe.checkout.sessions.create({
+        success_url: success_url,
+        cancel_url: cancel_url,
+        payment_method_types: ['card'],
+        line_items: [
+          {
+            quantity: 1,
+            price_data: {
+              unit_amount: amount * 100,
+              currency: 'usd',
+              product: product,
+            },
           },
-        },
-      ],
-      mode: 'payment',
-    })
+        ],
+        mode: 'payment',
+      })
 
-    res.status(200).json({ message: '🕺 Stripe checkout created ok', url: session.url })
-  } catch (error) {
-    res.status(500).json({ message: '🚫 Request blocked by CORS' })
+      res.status(200).json({ message: '🕺 Stripe checkout created ok', url: session.url })
+    } catch (error) {
+      res.status(500).json({ message: '🚫 Request blocked by CORS' })
+    }
   }
 }
