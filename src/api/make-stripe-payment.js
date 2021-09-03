@@ -29,7 +29,11 @@ export default async function handler(req, res) {
 
   try {
     await runCorsMiddleware(req, res)
+  } catch (error) {
+    res.status(500).json({ message: '🚫 Request blocked by CORS' })
+  }
 
+  try {
     if (!success_url || !cancel_url || !amount || !product) {
       res.status(400).json({ message: '⚠️ Missing required body params' })
     }
@@ -53,6 +57,6 @@ export default async function handler(req, res) {
 
     res.status(200).json({ message: '🕺 Stripe checkout created ok', url: session.url })
   } catch (error) {
-    res.status(500).json({ message: '🚫 Request blocked by CORS' })
+    res.status(500).json({ message: '🚫 Stripe checkout error' })
   }
 }
