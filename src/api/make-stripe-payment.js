@@ -1,7 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 import Cors from 'cors'
 
-const allowedOrigins = ['https://www.mdx-embed.com']
+const allowedOrigins = ['http://localhost:6006', 'https://www.mdx-embed.com']
 
 const cors = Cors({
   origin: (origin, callback) => {
