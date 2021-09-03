@@ -1,7 +1,7 @@
 {
   "name": "paulie-api",
   "version": "1.0.0",
-  "description": "An API for paulie.dev and pauliescanlon.io",
+  "description": "An API for all my things",
   "main": "index.js",
   "scripts": {
     "develop": "gatsby develop",
@@ -9,8 +9,9 @@
     "clean": "gatsby clean",
     "serve": "gatsby serve",
     "start": "npm run develop",
-    "prettier": "prettier --config ./.prettierrc.js --ignore-path ./.prettierignore --write \"**/*.{json,js,ts,tsx}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prettier": "prettier --config ./.prettierrc.js --ignore-path ./.prettierignore --write \"**/*.{json,js,ts,tsx,mdx}\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -30,15 +31,17 @@
     "@octokit/rest": "^18.5.6",
     "axios": "^0.21.1",
     "cors": "^2.8.5",
-    "gatsby": "^3.7.1",
+    "gatsby": "^3.13.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "stripe": "^8.170.0",
     "twitter-v2": "^1.1.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "dotenv": "^10.0.0",
-    "husky": "^4.3.0",
-    "prettier": "^2.3.1"
+    "husky": "^7.0.2",
+    "prettier": "^2.3.2"
   }
 }

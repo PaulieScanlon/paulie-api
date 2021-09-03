@@ -3,7 +3,12 @@ require('dotenv').config({
 })
 
 module.exports = {
-  flags: {
-    FUNCTIONS: true,
+  siteMetadata: {
+    url: `https://paulieapi.gatsbyjs.io`,
+    title: `Paulie API`,
+    image: `paulie-api-og-image.jpg`,
+    description: `An API for all my things`,
+    language: `en-gb`,
+    keywords: [`gatsby`, `gatsby-functions`],
   },
 }
