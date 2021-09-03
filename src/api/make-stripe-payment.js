@@ -47,8 +47,8 @@ export default async function handler(req, res) {
       mode: 'payment',
     })
 
-    res.status(200).json({ response: 'Ok', url: session.url })
+    res.status(200).json({ message: '🕺 Stripe checkout created ok', url: session.url })
   } catch (error) {
-    res.status(500).json({ response: 'Error', error: error })
+    res.status(500).json({ message: '🚫 Request blocked by CORS', error: error })
   }
 }
