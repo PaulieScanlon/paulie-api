@@ -27,11 +27,12 @@ const runCorsMiddleware = (req, res) => {
 export default async function handler(req, res) {
   const { success_url, cancel_url, amount, product } = req.body
 
-  // if (!success_url || !cancel_url || !amount || !product) {
-  //   res.status(400).json({ message: '⚠️ Missing required body params' })
-  // }
   try {
     await runCorsMiddleware(req, res)
+
+    if (!success_url || !cancel_url || !amount || !product) {
+      res.status(400).json({ message: '⚠️ Missing required body params' })
+    }
 
     const session = await stripe.checkout.sessions.create({
       success_url: success_url,
