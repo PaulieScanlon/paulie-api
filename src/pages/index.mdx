@@ -10,40 +10,14 @@ All API endpoints use the same resource origin: `https://paulieapi.gatsbyjs.io`
 
 ## Twitter
 
-<Message variant="primary">
-  <Grid
-    sx={{
-      gridTemplateColumns: 'auto 1fr',
-    }}
-  >
-    <Badge>POST</Badge>
-    <Text variant="mono">/api/get-twitter-user</Text>
-  </Grid>
-  <Icon path="lock" />
-</Message>
+<EndpointMessage type="POST" endpoint="/api/get-twitter-user" icon="lock" />
 
 This endpoint uses the Twitter `users/by/username/${username}` endpoint under the hood to return information about a Twitter user.
 
-<Grid
-  sx={{
-    alignItems: 'center',
-    gridTemplateColumns: '1fr auto',
-    p: {
-      fontSize: 'smaller',
-      m: 0
-    }
-  }}
->
-<small>Usage</small>
-
-[Run in browser](/get-twitter-user)
-
-</Grid>
+<UsageDetails to="/get-twitter-user" />
 
 <Box
-  sx={{
-    overflow: 'auto'
-  }}
+  variant='styles.tableWrapper'
 >
 
 | Endpoint                | Type | Parameters       | Allowed Domains          | Response |

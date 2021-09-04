@@ -9,6 +9,8 @@ import * as themeUiComponents from 'theme-ui'
 import Seo from './seo'
 import Header from './header'
 import Icon from './icon'
+import EndpointMessage from './endpoint-message'
+import UsageDetails from './usage-details'
 
 const components = {
   a: ({ href, children }) => {
@@ -35,6 +37,8 @@ const components = {
   code: Prism,
   ...themeUiComponents,
   Icon,
+  EndpointMessage,
+  UsageDetails,
 }
 
 const PageElement = ({ children }) => {

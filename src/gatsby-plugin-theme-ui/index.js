@@ -180,14 +180,18 @@ const theme = {
               verticalAlign: 'top',
             },
           },
-          'tr:nth-child(odd)': {
+          'tr:nth-of-type(odd)': {
             backgroundColor: 'oddRow',
           },
-          'tr:nth-child(even)': {
+          'tr:nth-of-type(even)': {
             backgroundColor: 'evenRow',
           },
         },
       },
+    },
+
+    tableWrapper: {
+      overflow: 'auto',
     },
 
     hr: {

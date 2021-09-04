@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 import { Box } from 'theme-ui'
 
 const config = {
@@ -24,6 +24,11 @@ const Icon = ({ path, ...sx }) => {
       <path d="M0 0h24v24H0z" fill="none" />
     </Box>
   )
+}
+
+Icon.propTypes = {
+  /** The name of the icon path */
+  path: PropTypes.string.isRequired,
 }
 
 export default Icon
