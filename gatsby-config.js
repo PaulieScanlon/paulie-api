@@ -11,5 +11,9 @@ module.exports = {
     language: `en-gb`,
     keywords: [`gatsby`, `gatsby-functions`],
   },
-  plugins: [`gatsby-plugin-theme-ui`, 'gatsby-plugin-theme-ui'],
+  plugins: [
+    `gatsby-plugin-theme-ui`,
+    `gatsby-plugin-theme-ui`,
+    `gatsby-plugin-mdx`,
+  ],
 }
