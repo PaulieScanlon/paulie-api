@@ -2,6 +2,7 @@ const { twitter } = require('../clients')
 import Cors from 'cors'
 
 const allowedOrigins = [
+  '*',
   'https://paulieapi.gatsbyjs.io',
   'https://paulie.dev',
   'https://www.pauliescanlon.io',
@@ -33,9 +34,9 @@ export default async function handler(req, res) {
     typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
   try {
-    // if (process.env.NODE_ENV === 'production') {
-    //   await runCorsMiddleware(req, res)
-    // }
+    if (process.env.NODE_ENV === 'production') {
+      await runCorsMiddleware(req, res)
+    }
     try {
       if (!username) {
         res.status(400).json({ message: '⚠️ Missing required body params' })
