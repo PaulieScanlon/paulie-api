@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import axios from 'axios'
-import { Spinner } from 'theme-ui'
+import { Spinner, Flex } from 'theme-ui'
 
 const MakeStripePayment = () => {
   const [response, setResponse] = useState(null)
@@ -33,7 +33,13 @@ const MakeStripePayment = () => {
           {JSON.stringify(response, null, 2)}
         </pre>
       ) : (
-        <Spinner />
+        <Flex
+          sx={{
+            justifyContent: 'center',
+          }}
+        >
+          <Spinner />
+        </Flex>
       )}
     </Fragment>
   )
