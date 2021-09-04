@@ -1,3 +1,3 @@
 # Paulie API
 
-The Documentation for [Paulie API](https://paulieapi.gatsbyjs.io/)
+The documentation for [Paulie API](https://paulieapi.gatsbyjs.io/)
