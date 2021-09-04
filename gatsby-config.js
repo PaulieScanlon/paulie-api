@@ -12,7 +12,7 @@ module.exports = {
     keywords: [`gatsby`, `gatsby-functions`],
   },
   plugins: [
-    `gatsby-plugin-theme-ui`,
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-theme-ui`,
     `gatsby-plugin-mdx`,
   ],
