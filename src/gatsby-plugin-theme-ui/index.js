@@ -201,6 +201,7 @@ const theme = {
 
     header: {
       alignItems: 'center',
+      justifyContent: 'space-between',
       height: 'header',
     },
   },

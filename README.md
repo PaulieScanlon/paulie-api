@@ -1,7 +1,11 @@
+<p align="center">
+  <a href="https://paulieapi.gatsbyjs.io/">
+    <img alt="https://paulieapi.gatsbyjs.io" src="https://paulieapi.gatsbyjs.io/images/paulie-api-og-image.jpg" />
+  </a>
+</p>
+
+<br />
+
 # Paulie API
 
 The documentation for [Paulie API](https://paulieapi.gatsbyjs.io/)
-
-## GitHub Rest API docs
-
-[https://docs.github.com/en/rest/overview](https://docs.github.com/en/rest/overview)
