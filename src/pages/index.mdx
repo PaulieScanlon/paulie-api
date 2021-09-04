@@ -51,35 +51,13 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-twitter-user', {
   "message": "🕺 Twitter request ok",
   "user": {
     "description": "Jamstack Developer / Technical Content Writer (freelance)",
-    "id": "470012453",
-    "protected": false,
     "profile_image_url": "https://pbs.twimg.com/profile_images/1230516491084275714/ZnhK4vNX_normal.jpg",
-    "public_metrics": {
-      "followers_count": 1543,
-      "following_count": 949,
-      "tweet_count": 8396,
-      "listed_count": 108
-    },
-    "pinned_tweet_id": "1413545912484483073",
     "created_at": "2012-01-21T07:13:24.000Z",
-    "verified": false,
     "name": "Paul Scanlon",
-    "entities": {
-      "url": {
-        "urls": [
-          {
-            "start": 0,
-            "end": 23,
-            "url": "https://t.co/4ABWM2bXYQ",
-            "expanded_url": "https://www.paulie.dev",
-            "display_url": "paulie.dev"
-          }
-        ]
-      }
-    },
     "url": "https://t.co/4ABWM2bXYQ",
     "username": "PaulieScanlon",
     "location": "Worthing / UK"
+    ...
   }
 }
 ```
@@ -139,5 +117,68 @@ await fetch('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
 {
   "message": "🕺 Stripe checkout created ok",
   "url": "https://checkout.stripe.com/pay/cs_test_a1zSrSYeXc5y5DnEbSCsXQ8kYIuV4vaaDcFbOVpZPsTllPfbSFgdtJ9Jtl#fidkdWxOYHwnPyd1blpxYHZxWjA0T1ZVfV9OQTNCQmBHVDcxYmdyQkRON39zbzNBN2J2S0xkZj1RZ003MTJxU3RvNEJBalFPaWxRR0Zib0xwclZPSGZyTzVrTWpMc0tqUlNBQz1ibjJ1c01vNTV%2FZ21Dan9ubycpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl"
+}
+```
+
+<Divider />
+
+## [GitHub](#stripe)
+
+<EndpointMessage type="POST" endpoint="/api/get-github-user" icon="lock" />
+
+This endpoint uses the Octokit `octokit.request('GET /user', { name: username })` method under the hood to return information about a GitHub username.
+
+<UsageDetails to="/get-github-user" />
+
+<Box
+  variant='styles.tableWrapper'
+>
+
+| Endpoint               | Type | Parameters       | Allowed Domains | Response |
+| ---------------------- | ---- | ---------------- | --------------- | -------- |
+| `/api/get-github-user` | POST | username: string | n/a             | JSON     |
+
+</Box>
+
+<small>Example Request</small>
+
+```javascript
+// using axios
+await axios('https://paulieapi.gatsbyjs.io/api/get-github-user', {
+  method: 'POST',
+  data: {
+    username: 'PaulieScanlon',
+  },
+})
+
+// using fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user', {
+  method: 'POST',
+  body: JSON.stringify({
+    username: 'PaulieScanlon',
+  }),
+})
+```
+
+<small>Example response</small>
+
+```json
+{
+  "message": "🕺 GitHub request ok",
+  "user": {
+    "login": "PaulieScanlon",
+    "avatar_url": "https://avatars.githubusercontent.com/u/1465706?v=4",
+    "name": "Paul Scanlon",
+    "blog": "www.paulie.dev",
+    "bio": "Jamstack Developer / Technical Content Writer (freelance)",
+    "public_repos": 78,
+    "public_gists": 18,
+    "followers": 203,
+    "following": 55,
+    "private_gists": 1,
+    "total_private_repos": 15,
+    "owned_private_repos": 15
+    ...
+  }
 }
 ```
