@@ -31,7 +31,7 @@ const theme = {
   },
 
   sizes: {
-    container: 840,
+    container: 940,
     header: 48,
     full: '100%',
   },
