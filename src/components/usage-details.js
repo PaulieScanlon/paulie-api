@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Grid } from 'theme-ui'
 import { Link } from 'gatsby'
 
@@ -22,6 +23,11 @@ const UsageDetails = ({ to }) => {
       <Link to={to}>Run in browser</Link>
     </Grid>
   )
+}
+
+UsageDetails.propTypes = {
+  /** The route to link to */
+  to: PropTypes.string.isRequired,
 }
 
 export default UsageDetails
