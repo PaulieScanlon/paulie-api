@@ -20,9 +20,9 @@ This endpoint uses the Twitter `users/by/username/${username}` endpoint under th
   variant='styles.tableWrapper'
 >
 
-| Endpoint                | Type | Parameters       | Allowed Domains                                    | Response |
-| ----------------------- | ---- | ---------------- | -------------------------------------------------- | -------- |
-| `/api/get-twitter-user` | POST | username: string | https://paulie.dev <br /> https://pauliescanlon.io | JSON     |
+| Endpoint                | Type | Parameters       | required | default | Allowed Domains                                    | Response |
+| ----------------------- | ---- | ---------------- | -------- | ------- | -------------------------------------------------- | -------- |
+| `/api/get-twitter-user` | POST | username: string | true     | n/a     | https://paulie.dev <br /> https://pauliescanlon.io | JSON     |
 
 </Box>
 
@@ -76,12 +76,12 @@ This endpoint uses the Stripe `stripe.checkout.sessions.create` method under the
   variant='styles.tableWrapper'
 >
 
-| Endpoint                   | Type | Parameters          | Allowed Domains           | Response |
-| -------------------------- | ---- | ------------------- | ------------------------- | -------- |
-| `/api/make-stripe-payment` | POST | product: string     | https://www.mdx-embed.com | JSON     |
-| -                          | -    | amount: number      | -                         | -        |
-| -                          | -    | success_url: string | -                         | -        |
-| -                          | -    | cancel_url: string  | -                         | -        |
+| Endpoint                   | Type | Parameters          | required | default | Allowed Domains           | Response |
+| -------------------------- | ---- | ------------------- | -------- | ------- | ------------------------- | -------- |
+| `/api/make-stripe-payment` | POST | product: string     | true     | n/a     | https://www.mdx-embed.com | JSON     |
+| -                          | -    | amount: number      | true     | n/a     | -                         | -        |
+| -                          | -    | success_url: string | true     | n/a     | -                         | -        |
+| -                          | -    | cancel_url: string  | true     | n/a     | -                         | -        |
 
 </Box>
 
@@ -122,7 +122,7 @@ await fetch('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
 
 <Divider />
 
-## [GitHub](#stripe)
+## [GitHub](#github)
 
 <EndpointMessage type="POST" endpoint="/api/get-github-user" icon="lock" />
 
@@ -134,9 +134,9 @@ This endpoint uses the Octokit `octokit.request('GET /user', { name: username })
   variant='styles.tableWrapper'
 >
 
-| Endpoint               | Type | Parameters       | Allowed Domains | Response |
-| ---------------------- | ---- | ---------------- | --------------- | -------- |
-| `/api/get-github-user` | POST | username: string | n/a             | JSON     |
+| Endpoint               | Type | Parameters       | required | default | Allowed Domains | Response |
+| ---------------------- | ---- | ---------------- | -------- | ------- | --------------- | -------- |
+| `/api/get-github-user` | POST | username: string | true     | n/a     | n/a             | JSON     |
 
 </Box>
 
@@ -180,5 +180,72 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user', {
     "owned_private_repos": 15
     ...
   }
+}
+```
+
+<Divider />
+
+<EndpointMessage type="POST" endpoint="/api/get-github-events" icon="lock" />
+
+This endpoint uses the Octokit `octokit.request('GET /users/{username}/events', { username: username, })` method under the hood to return events for a GitHub username.
+
+<UsageDetails to="/get-github-events" />
+
+<Box
+  variant='styles.tableWrapper'
+>
+
+| Endpoint                 | Type | Parameters       | required | default | Allowed Domains | Response |
+| ------------------------ | ---- | ---------------- | -------- | ------- | --------------- | -------- |
+| `/api/get-github-events` | POST | username: string | true     | n/a     | n/a             | JSON     |
+| -                        | -    | results: number  | false    | 5       | -               | -        |
+
+</Box>
+
+<small>Example Request</small>
+
+```javascript
+// using axios
+await axios('https://paulieapi.gatsbyjs.io/api/get-github-events', {
+  method: 'POST',
+  data: {
+    username: 'PaulieScanlon',
+    results: 5,
+  },
+})
+
+// using fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/get-github-events', {
+  method: 'POST',
+  body: JSON.stringify({
+    username: 'PaulieScanlon',
+    results: 5,
+  }),
+})
+```
+
+<small>Example response</small>
+
+```json
+{
+  "message": "🕺 GitHub request ok",
+  "events": [
+    {
+      "id": "17853848747",
+      "type": "PushEvent",
+      "actor": {
+        "login": "PaulieScanlon",
+        "display_login": "PaulieScanlon",
+        "url": "https://api.github.com/users/PaulieScanlon",
+        "avatar_url": "https://avatars.githubusercontent.com/u/1465706?"
+      },
+      "repo": {
+        "id": 311980309,
+        "name": "PaulieScanlon/paulie-api",
+        "url": "https://api.github.com/repos/PaulieScanlon/paulie-api"
+      },
+      ...
+    }
+  ]
 }
 ```
