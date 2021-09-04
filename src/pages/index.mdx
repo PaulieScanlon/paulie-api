@@ -1,6 +1,6 @@
 # [The Documentation for Paulie API](https://github.com/PaulieScanlon/paulie-api)
 
-This site is built using [Gatsby](https://www.gatsbyjs.com/) and exposes private Serverless Function API endpoints provided by [Gatsby Functions](https://www.gatsbyjs.com/docs/reference/functions/) and acts as a standalone API for all of my things 🕺
+This site is built using [Gatsby](https://www.gatsbyjs.com/) and restricts access to a set of [Gatsby Serverless Functions](https://www.gatsbyjs.com/docs/reference/functions/). <br /> It acts as a standalone API for all of my things 🕺
 
 <Divider />
 
@@ -90,7 +90,7 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-twitter-user', {
 
 <EndpointMessage type="POST" endpoint="/api/make-stripe-payment" icon="lock" />
 
-This endpoint uses Stripe `stripe.checkout.sessions.create` under the hood to create a checkout url with user entered amount.
+This endpoint uses the Stripe `stripe.checkout.sessions.create` method under the hood to create a checkout url for a user provided payment amount.
 
 <UsageDetails to="/make-stripe-payment" />
 
