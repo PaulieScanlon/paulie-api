@@ -2,7 +2,6 @@ const { twitter } = require('../clients')
 import Cors from 'cors'
 
 const allowedOrigins = [
-  'http://localhost:8000',
   'https://paulieapi.gatsbyjs.io',
   'https://paulie.dev',
   'https://www.pauliescanlon.io',
