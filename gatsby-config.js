@@ -7,7 +7,7 @@ module.exports = {
     url: `https://paulieapi.gatsbyjs.io`,
     title: `Paulie API`,
     image: `paulie-api-og-image.jpg`,
-    description: `An API for all my things`,
+    description: `The Documentation for Paulie API`,
     language: `en-gb`,
     keywords: [`gatsby`, `gatsby-functions`],
   },

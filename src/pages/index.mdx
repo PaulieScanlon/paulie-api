@@ -1,4 +1,4 @@
-# [Paulie API Documentation](https://github.com/PaulieScanlon/paulie-api)
+# [The Documentation for Paulie API](https://github.com/PaulieScanlon/paulie-api)
 
 This site is built using [Gatsby](https://www.gatsbyjs.com/) and exposes private Serverless Function API endpoints provided by [Gatsby Functions](https://www.gatsbyjs.com/docs/reference/functions/) and acts as a standalone API for all of my things 🕺
 
@@ -8,7 +8,7 @@ All API endpoints use the same resource origin: `https://paulieapi.gatsbyjs.io`
 
 <Divider />
 
-## Twitter
+## [Twitter](#twitter)
 
 <EndpointMessage type="POST" endpoint="/api/get-twitter-user" icon="lock" />
 
@@ -20,10 +20,9 @@ This endpoint uses the Twitter `users/by/username/${username}` endpoint under th
   variant='styles.tableWrapper'
 >
 
-| Endpoint                | Type | Parameters       | Allowed Domains          | Response |
-| ----------------------- | ---- | ---------------- | ------------------------ | -------- |
-| `/api/get-twitter-user` | POST | username: string | https://paulie.dev       | JSON     |
-| -                       | -    | -                | https://pauliescanlon.io | -        |
+| Endpoint                | Type | Parameters       | Allowed Domains                                    | Response |
+| ----------------------- | ---- | ---------------- | -------------------------------------------------- | -------- |
+| `/api/get-twitter-user` | POST | username: string | https://paulie.dev <br /> https://pauliescanlon.io | JSON     |
 
 </Box>
 
@@ -86,3 +85,59 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-twitter-user', {
 ```
 
 <Divider />
+
+## [Stripe](#stripe)
+
+<EndpointMessage type="POST" endpoint="/api/make-stripe-payment" icon="lock" />
+
+This endpoint uses Stripe `stripe.checkout.sessions.create` under the hood to create a checkout url with user entered amount.
+
+<UsageDetails to="/make-stripe-payment" />
+
+<Box
+  variant='styles.tableWrapper'
+>
+
+| Endpoint                   | Type | Parameters          | Allowed Domains           | Response |
+| -------------------------- | ---- | ------------------- | ------------------------- | -------- |
+| `/api/make-stripe-payment` | POST | product: string     | https://www.mdx-embed.com | JSON     |
+| -                          | -    | amount: number      | -                         | -        |
+| -                          | -    | success_url: string | -                         | -        |
+| -                          | -    | cancel_url: string  | -                         | -        |
+
+</Box>
+
+<small>Example Request</small>
+
+```javascript
+// using axios
+await axios('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
+  method: 'POST',
+  data: {
+    product: 'prod_K6dGWR54oYDK1q',
+    amount: 5,
+    success_url: 'https://www.mdx-embed.com',
+    cancel_url: 'https://www.mdx-embed.com',
+  },
+})
+
+// using fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
+  method: 'POST',
+  body: JSON.stringify({
+    product: 'prod_K6dGWR54oYDK1q',
+    amount: 5,
+    success_url: 'https://www.mdx-embed.com',
+    cancel_url: 'https://www.mdx-embed.com',
+  }),
+})
+```
+
+<small>Example response</small>
+
+```json
+{
+  "message": "🕺 Stripe checkout created ok",
+  "url": "https://checkout.stripe.com/pay/cs_test_a1zSrSYeXc5y5DnEbSCsXQ8kYIuV4vaaDcFbOVpZPsTllPfbSFgdtJ9Jtl#fidkdWxOYHwnPyd1blpxYHZxWjA0T1ZVfV9OQTNCQmBHVDcxYmdyQkRON39zbzNBN2J2S0xkZj1RZ003MTJxU3RvNEJBalFPaWxRR0Zib0xwclZPSGZyTzVrTWpMc0tqUlNBQz1ibjJ1c01vNTV%2FZ21Dan9ubycpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl"
+}
+```

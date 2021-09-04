@@ -1,7 +1,10 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 import Cors from 'cors'
 
-const allowedOrigins = ['https://www.mdx-embed.com']
+const allowedOrigins = [
+  'https://paulieapi.gatsbyjs.io',
+  'https://www.mdx-embed.com',
+]
 
 const cors = Cors({
   origin: (origin, callback) => {
@@ -28,7 +31,9 @@ export default async function handler(req, res) {
   const { success_url, cancel_url, amount, product } = req.body
 
   try {
-    await runCorsMiddleware(req, res)
+    if (process.env.NODE_ENV === 'production') {
+      await runCorsMiddleware(req, res)
+    }
     try {
       if (!success_url || !cancel_url || !amount || !product) {
         res.status(400).json({ message: '⚠️ Missing required body params' })
