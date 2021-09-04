@@ -9,13 +9,13 @@ const GetTwitterUser = () => {
 
   const getTwitterUser = async () => {
     try {
-      const a = await axios('/api/get-twitter-user', {
+      const response = await axios('/api/get-twitter-user', {
         method: 'POST',
         data: {
           username: 'PaulieScanlon',
         },
       })
-      setResponse(a.data)
+      setResponse(response.data)
     } catch (error) {
       setResponse(error.response)
     }
