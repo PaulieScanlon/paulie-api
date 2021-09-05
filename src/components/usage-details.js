@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Grid } from 'theme-ui'
-import { Link } from 'gatsby'
+import { Grid, Link } from 'theme-ui'
+import { Link as GatsbyLink } from 'gatsby'
 
-const UsageDetails = ({ to }) => {
+const UsageDetails = ({ to, href }) => {
   return (
     <Grid
       sx={{
@@ -18,16 +18,26 @@ const UsageDetails = ({ to }) => {
         },
       }}
     >
-      <small>Usage</small>
-
-      <Link to={to}>Run in browser</Link>
+      <small>{to ? 'Usage' : 'Example Response'}</small>
+      {to ? <GatsbyLink to={to}>Run in browser</GatsbyLink> : null}
+      {href ? (
+        <Link
+          href={`https://github.com/PaulieScanlon/paulie-api/blob/main/src/api${href}.js`}
+          target="_blank"
+          rel="noopener"
+        >
+          View src
+        </Link>
+      ) : null}
     </Grid>
   )
 }
 
 UsageDetails.propTypes = {
   /** The route to link to */
-  to: PropTypes.string.isRequired,
+  to: PropTypes.string,
+  /** The href to link to */
+  href: PropTypes.string,
 }
 
 export default UsageDetails
