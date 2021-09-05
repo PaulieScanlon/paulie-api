@@ -10,7 +10,7 @@ const MakeStripePayment = () => {
       const response = await axios('/api/make-stripe-payment', {
         method: 'POST',
         data: {
-          product: 'prod_K6dGWR54oYDK1q',
+          product: 'prod_KAgqqzBEBmuYkT',
           amount: 5,
           success_url: 'https://paulieapi.gatsbyjs.io/make-stripe-payment',
           cancel_url: 'https://paulieapi.gatsbyjs.io/make-stripe-payment',
