@@ -28,6 +28,8 @@ export default async function handler(req, res) {
   const { username, results = 5 } =
     typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
+  console.log('results: ', results)
+
   try {
     if (process.env.NODE_ENV === 'production') {
       await runCorsMiddleware(req, res)
@@ -40,7 +42,7 @@ export default async function handler(req, res) {
 
       res.status(200).json({
         message: '🕺 GitHub request ok',
-        events: data ? data.slice(0, results) : '🦜 Events not found',
+        events: data.length ? data.slice(0, results) : '🦜 Events not found',
       })
     } catch {
       res.status(500).json({ error: '🚫 GitHub error' })

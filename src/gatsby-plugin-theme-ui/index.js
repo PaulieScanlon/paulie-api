@@ -104,6 +104,11 @@ const theme = {
 
   forms: {
     my: 4,
+    alignItems: 'flex-end',
+    label: {
+      display: 'grid',
+      gap: 1,
+    },
   },
 
   styles: {

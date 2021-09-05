@@ -32,7 +32,7 @@ const GetTwitterUser = () => {
     getTwitterUser()
   }, [])
 
-  const handleChange = (event) => {
+  const handleSearchChange = (event) => {
     setResponse('')
     setUserName(event.target.value)
   }
@@ -50,17 +50,15 @@ const GetTwitterUser = () => {
   return (
     <Fragment>
       <FormInputSearch
-        inputValue={username}
+        searchValue={username}
         inputPlaceholder="username"
         onSubmit={handleSubmit}
-        onChange={handleChange}
+        onSearchChange={handleSearchChange}
         onClear={handleClear}
         isSubmitting={isSubmitting}
       />
       {response ? (
-        <pre className="language-javascript">
-          {JSON.stringify(response, null, 2)}
-        </pre>
+        <pre className="language-json">{JSON.stringify(response, null, 2)}</pre>
       ) : (
         <Flex
           sx={{

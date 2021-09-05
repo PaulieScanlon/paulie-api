@@ -29,9 +29,7 @@ const MakeStripePayment = () => {
   return (
     <Fragment>
       {response ? (
-        <pre className="language-javascript">
-          {JSON.stringify(response, null, 2)}
-        </pre>
+        <pre className="language-json">{JSON.stringify(response, null, 2)}</pre>
       ) : (
         <Flex
           sx={{

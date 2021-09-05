@@ -1,14 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Box, Button, Input, Text, IconButton } from 'theme-ui'
+import {
+  Grid,
+  Box,
+  Button,
+  Input,
+  Text,
+  IconButton,
+  Label,
+  Flex,
+} from 'theme-ui'
 
 import Icon from '../components/icon'
 
 const FormInputSearch = ({
-  inputValue,
+  searchValue,
+  numberValue,
   inputPlaceholder,
   onSubmit,
-  onChange,
+  onSearchChange,
+  onNumberChange,
   onClear,
   isSubmitting,
 }) => {
@@ -21,61 +32,92 @@ const FormInputSearch = ({
         gridTemplateColumns: ['auto', '1fr auto'],
       }}
     >
-      <Box
+      <Grid
         sx={{
-          position: 'relative',
+          gridTemplateColumns: ['1fr auto'],
+          gap: 1,
         }}
       >
-        <Text
-          variant="small"
-          sx={{
-            position: 'absolute',
-            top: '50%',
-            left: 2,
-            transform: 'translateY(-52%)',
-            color: 'lighten',
-          }}
-        >
-          @
-        </Text>
-        <Input
-          type="text"
-          placeholder={inputPlaceholder}
-          value={inputValue}
-          onChange={onChange}
-          sx={{
-            pl: '24px',
-          }}
-        />
-        <IconButton
-          onClick={onClear}
-          type="button"
-          sx={{
-            position: 'absolute',
-            top: '50%',
-            right: 2,
-            transform: 'translateY(-50%)',
-          }}
-        >
-          <Icon path="clear" />
-        </IconButton>
+        {' '}
+        <Label>
+          Search
+          <Box
+            sx={{
+              position: 'relative',
+            }}
+          >
+            <Text
+              variant="small"
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: 2,
+                transform: 'translateY(-52%)',
+                color: 'lighten',
+              }}
+            >
+              @
+            </Text>
+
+            <Input
+              type="text"
+              placeholder={inputPlaceholder}
+              value={searchValue}
+              onChange={onSearchChange}
+              sx={{
+                pl: '24px',
+              }}
+            />
+
+            <IconButton
+              onClick={onClear}
+              type="button"
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                right: 2,
+                transform: 'translateY(-50%)',
+              }}
+            >
+              <Icon path="clear" />
+            </IconButton>
+          </Box>
+        </Label>
+        {numberValue ? (
+          <Label>
+            Results
+            <Input
+              type="number"
+              min={1}
+              max={30}
+              value={numberValue}
+              onChange={onNumberChange}
+            />
+          </Label>
+        ) : null}
+      </Grid>
+      <Box>
+        <Button disabled={isSubmitting || !searchValue} type="submit">
+          Submit
+        </Button>
       </Box>
-      <Button disabled={isSubmitting || !inputValue} type="submit">
-        Submit
-      </Button>
     </Grid>
   )
 }
 
 FormInputSearch.propTypes = {
-  /** The input value */
-  inputValue: PropTypes.string.isRequired,
+  /** The search value */
+  searchValue: PropTypes.string.isRequired,
+  /** The number value */
+  numberValue: PropTypes.number,
   /** The input placeholder */
   inputPlaceholder: PropTypes.string.isRequired,
   /** The onSubmit handler */
   onSubmit: PropTypes.func.isRequired,
-  /** The onChange handler */
-  onChange: PropTypes.func.isRequired,
+  /** The onSearchChange handler */
+  onSearchChange: PropTypes.func.isRequired,
+  /** The onNumberChange handler */
+  onNumberChange: PropTypes.func.isRequired,
   /** The onClear handler */
   onClear: PropTypes.func.isRequired,
   /** The status of the form */

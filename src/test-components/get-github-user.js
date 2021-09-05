@@ -13,8 +13,6 @@ const GetGitHubUser = () => {
     setResponse('')
     setIsSubmitting(true)
 
-    console.log(username)
-
     try {
       const response = await axios('/api/get-github-user', {
         method: 'POST',
@@ -34,7 +32,7 @@ const GetGitHubUser = () => {
     getGitHubUser()
   }, [])
 
-  const handleChange = (event) => {
+  const handleSearchChange = (event) => {
     setResponse('')
     setUserName(event.target.value)
   }
@@ -52,17 +50,15 @@ const GetGitHubUser = () => {
   return (
     <Fragment>
       <FormInputSearch
-        inputValue={username}
+        searchValue={username}
         inputPlaceholder="username"
         onSubmit={handleSubmit}
-        onChange={handleChange}
+        onSearchChange={handleSearchChange}
         onClear={handleClear}
         isSubmitting={isSubmitting}
       />
       {response ? (
-        <pre className="language-javascript">
-          {JSON.stringify(response, null, 2)}
-        </pre>
+        <pre className="language-json">{JSON.stringify(response, null, 2)}</pre>
       ) : (
         <Flex
           sx={{

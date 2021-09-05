@@ -24,7 +24,7 @@ const UsageDetails = ({ to, href }) => {
         },
       }}
     >
-      <small>{to ? 'Usage' : 'Example Response'}</small>
+      <small>{to ? 'Usage' : ''}</small>
       {to ? (
         <GatsbyLink to={to}>
           <Icon path="play" />
