@@ -34,11 +34,14 @@ export default async function handler(req, res) {
     }
 
     try {
-      const { data } = await octokit.request('GET /user', {
-        name: username,
+      const { data } = await octokit.request(`GET /users/${username}`, {
+        username: username,
       })
 
-      res.status(200).json({ message: '🕺 GitHub request ok', user: data })
+      res.status(200).json({
+        message: '🕺 GitHub request ok',
+        user: data ? data : '🦜 Username not found',
+      })
     } catch {
       res.status(500).json({ error: '🚫 GitHub error' })
     }

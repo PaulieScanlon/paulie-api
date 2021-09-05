@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 
       res.status(200).json({
         message: '🕺 GitHub request ok',
-        events: data.slice(0, results),
+        events: data ? data.slice(0, results) : '🦜 Events not found',
       })
     } catch {
       res.status(500).json({ error: '🚫 GitHub error' })
