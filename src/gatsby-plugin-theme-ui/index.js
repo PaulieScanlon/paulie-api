@@ -118,6 +118,9 @@ const theme = {
 
       a: {
         color: 'primary',
+        ':hover': {
+          opacity: 0.9,
+        },
       },
 
       p: {

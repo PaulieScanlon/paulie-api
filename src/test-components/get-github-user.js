@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import { Spinner, Flex } from 'theme-ui'
 
-import FormInput from '../components/form-input'
+import FormInputSearch from '../components/form-input-search'
 
 const GetGitHubUser = () => {
   const [response, setResponse] = useState(null)
@@ -51,7 +51,7 @@ const GetGitHubUser = () => {
 
   return (
     <Fragment>
-      <FormInput
+      <FormInputSearch
         inputValue={username}
         inputPlaceholder="username"
         onSubmit={handleSubmit}

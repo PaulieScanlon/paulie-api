@@ -4,7 +4,13 @@ import { Box } from 'theme-ui'
 import { Link } from 'gatsby'
 
 const Logo = () => (
-  <Box>
+  <Box
+    sx={{
+      a: {
+        display: 'block',
+      },
+    }}
+  >
     <Link to="/" title="Paulie API">
       <Box
         sx={{

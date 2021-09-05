@@ -4,7 +4,7 @@ import { Grid, Box, Button, Input, Text, IconButton } from 'theme-ui'
 
 import Icon from '../components/icon'
 
-const FormInput = ({
+const FormInputSearch = ({
   inputValue,
   inputPlaceholder,
   onSubmit,
@@ -67,7 +67,7 @@ const FormInput = ({
   )
 }
 
-FormInput.propTypes = {
+FormInputSearch.propTypes = {
   /** The input value */
   inputValue: PropTypes.string.isRequired,
   /** The input placeholder */
@@ -82,4 +82,4 @@ FormInput.propTypes = {
   isSubmitting: PropTypes.bool.isRequired,
 }
 
-export default FormInput
+export default FormInputSearch
