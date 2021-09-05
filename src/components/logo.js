@@ -4,17 +4,7 @@ import { Box } from 'theme-ui'
 import { Link } from 'gatsby'
 
 const Logo = () => (
-  <Box
-    sx={{
-      a: {
-        ':focus': {
-          outline: 'none',
-          transition: '.2s linear box-shadow',
-          boxShadow: (theme) => `0 2px 0 0 ${theme.colors.primary}`,
-        },
-      },
-    }}
-  >
+  <Box>
     <Link to="/" title="Paulie API">
       <Box
         sx={{

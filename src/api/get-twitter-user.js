@@ -47,7 +47,11 @@ export default async function handler(req, res) {
             'created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld',
         },
       })
-      res.status(200).json({ message: '🕺 Twitter request ok', user: data })
+
+      res.status(200).json({
+        message: '🕺 Twitter request ok',
+        user: data ? data : '🦜 Username not found',
+      })
     } catch {
       res.status(500).json({ error: '🚫 Twitter error' })
     }

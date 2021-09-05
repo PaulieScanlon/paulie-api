@@ -66,6 +66,29 @@ const theme = {
     },
   },
 
+  buttons: {
+    default: {
+      fontFamily: 'body',
+      cursor: 'pointer',
+      ':hover': {
+        opacity: 0.9,
+      },
+      ':disabled': {
+        cursor: 'not-allowed',
+        backgroundColor: 'muted',
+      },
+    },
+    primary: {
+      variant: 'buttons.default',
+    },
+    icon: {
+      width: '24px',
+      height: '24px',
+      p: 1,
+      variant: 'buttons.default',
+    },
+  },
+
   layout: {
     container: {
       px: [3, 4],
@@ -77,6 +100,10 @@ const theme = {
       fontWeight: 'bold',
       fontFamily: 'monospace',
     },
+  },
+
+  forms: {
+    my: 4,
   },
 
   styles: {

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Grid, Link } from 'theme-ui'
 import { Link as GatsbyLink } from 'gatsby'
 
+import Icon from './icon'
+
 const UsageDetails = ({ to, href }) => {
   return (
     <Grid
@@ -15,17 +17,30 @@ const UsageDetails = ({ to, href }) => {
         },
         a: {
           fontSize: 'smaller',
+          display: 'grid',
+          alignItems: 'center',
+          gap: 1,
+          gridTemplateColumns: 'auto 1fr',
         },
       }}
     >
       <small>{to ? 'Usage' : 'Example Response'}</small>
-      {to ? <GatsbyLink to={to}>Run in browser</GatsbyLink> : null}
+      {to ? (
+        <GatsbyLink to={to}>
+          <Icon path="play" />
+          Run in browser
+        </GatsbyLink>
+      ) : null}
       {href ? (
         <Link
           href={`https://github.com/PaulieScanlon/paulie-api/blob/main/src/api${href}.js`}
           target="_blank"
           rel="noopener"
+          sx={{
+            color: 'secondary',
+          }}
         >
+          <Icon path="code" />
           View src
         </Link>
       ) : null}
