@@ -2,22 +2,22 @@ import React, { Fragment, useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import { Spinner, Flex } from 'theme-ui'
 
-import FormInputSearch from '../components/form-input-search'
+import FormInputSearch from './form-input-search'
 
 const INITIAL_USERNAME = 'PaulieScanlon'
 
-const GetTwitterUser = () => {
+const GetGitHubUser = () => {
   const [response, setResponse] = useState(null)
   const [username, setUserName] = useState(INITIAL_USERNAME)
   const [search, setSearch] = useState(INITIAL_USERNAME)
   const [isSubmitting, setIsSubmitting] = useState(true)
 
-  const getTwitterUser = useCallback(async () => {
+  const getGitHubUser = useCallback(async () => {
     setResponse('')
     setIsSubmitting(true)
 
     try {
-      const response = await axios('/api/get-twitter-user', {
+      const response = await axios('/api/get-github-user', {
         method: 'POST',
         data: {
           username: search,
@@ -32,8 +32,8 @@ const GetTwitterUser = () => {
   }, [search])
 
   useEffect(() => {
-    getTwitterUser()
-  }, [getTwitterUser])
+    getGitHubUser()
+  }, [getGitHubUser])
 
   const handleSearchChange = (event) => {
     setResponse('')
@@ -75,4 +75,4 @@ const GetTwitterUser = () => {
   )
 }
 
-export default GetTwitterUser
+export default GetGitHubUser

@@ -1,3 +1,10 @@
+---
+embeddedImagesLocal:
+  - ./api-overview-diagram.jpg
+---
+
+import { getImage, GatsbyImage } from 'gatsby-plugin-image'
+
 # About
 
 Paulie API is a standalone API and documentation site. It accepts request from a restricted list of `origins` for various functionality required for a number of my own websites.
@@ -33,7 +40,10 @@ This means the site **can't** run it's own Serverless Functions or it makes use 
 
 </Grid>
 
-<img src="../images/api-overview-diagram.jpg" alt="API overview diagram" />
+<GatsbyImage
+  image={getImage(props.localImages[0])}
+  alt="API overview diagram"
+/>
 
 ## [https://paulie.dev](https://paulie.dev)
 

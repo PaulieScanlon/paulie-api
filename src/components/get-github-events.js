@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import { Spinner, Flex } from 'theme-ui'
 
-import FormInputSearch from '../components/form-input-search'
+import FormInputSearch from './form-input-search'
 
 const INITIAL_USERNAME = 'PaulieScanlon'
 const INITIAL_RESULTS = 5
