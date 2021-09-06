@@ -108,7 +108,7 @@ FormInputSearch.propTypes = {
   /** The onSearchChange handler */
   onSearchChange: PropTypes.func.isRequired,
   /** The onNumberChange handler */
-  onNumberChange: PropTypes.func.isRequired,
+  onNumberChange: PropTypes.func,
   /** The onClear handler */
   onClear: PropTypes.func.isRequired,
   /** The status of the form */

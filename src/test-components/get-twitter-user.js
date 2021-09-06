@@ -4,9 +4,12 @@ import { Spinner, Flex } from 'theme-ui'
 
 import FormInputSearch from '../components/form-input-search'
 
+const INITIAL_USERNAME = 'PaulieScanlon'
+
 const GetTwitterUser = () => {
   const [response, setResponse] = useState(null)
-  const [username, setUserName] = useState('PaulieScanlon')
+  const [username, setUserName] = useState(INITIAL_USERNAME)
+  const [search, setSearch] = useState(INITIAL_USERNAME)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const getTwitterUser = useCallback(async () => {
@@ -17,7 +20,7 @@ const GetTwitterUser = () => {
       const response = await axios('/api/get-twitter-user', {
         method: 'POST',
         data: {
-          username: username,
+          username: search,
         },
       })
       setResponse(response.data)
@@ -26,11 +29,11 @@ const GetTwitterUser = () => {
       setResponse(error.response)
       setIsSubmitting(false)
     }
-  }, [username])
+  }, [search])
 
   useEffect(() => {
     getTwitterUser()
-  }, [])
+  }, [getTwitterUser])
 
   const handleSearchChange = (event) => {
     setResponse('')
@@ -44,7 +47,7 @@ const GetTwitterUser = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    getTwitterUser()
+    setSearch(username)
   }
 
   return (

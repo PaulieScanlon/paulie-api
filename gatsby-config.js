@@ -3,6 +3,9 @@ require('dotenv').config({
 })
 
 module.exports = {
+  flags: {
+    DEV_SSR: false,
+  },
   siteMetadata: {
     url: `https://paulieapi.gatsbyjs.io`,
     title: `Paulie API`,

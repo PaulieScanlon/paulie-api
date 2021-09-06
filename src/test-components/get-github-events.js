@@ -4,10 +4,15 @@ import { Spinner, Flex } from 'theme-ui'
 
 import FormInputSearch from '../components/form-input-search'
 
+const INITIAL_USERNAME = 'PaulieScanlon'
+const INITIAL_RESULTS = 5
+
 const GetGitHubEvents = () => {
   const [response, setResponse] = useState(null)
-  const [username, setUserName] = useState('PaulieScanlon')
-  const [results, setResults] = useState(5)
+  const [username, setUserName] = useState(INITIAL_USERNAME)
+  const [search, setSearch] = useState(INITIAL_USERNAME)
+  const [results, setResults] = useState(INITIAL_RESULTS)
+  const [amount, setAmount] = useState(INITIAL_RESULTS)
   const [isSubmitting, setIsSubmitting] = useState(true)
 
   const getGitHubEvents = useCallback(async () => {
@@ -18,8 +23,8 @@ const GetGitHubEvents = () => {
       const response = await axios('/api/get-github-events', {
         method: 'POST',
         data: {
-          username: username,
-          results: results,
+          username: search,
+          results: amount,
         },
       })
       setResponse(response.data)
@@ -28,11 +33,11 @@ const GetGitHubEvents = () => {
       setResponse(error.response)
       setIsSubmitting(false)
     }
-  }, [username, results])
+  }, [search, amount])
 
   useEffect(() => {
     getGitHubEvents()
-  }, [])
+  }, [getGitHubEvents])
 
   const handleSearchChange = (event) => {
     setResponse('')
@@ -40,6 +45,7 @@ const GetGitHubEvents = () => {
   }
 
   const handleNumberChange = (event) => {
+    setResponse('')
     setResults(event.target.value)
   }
 
@@ -50,14 +56,15 @@ const GetGitHubEvents = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    getGitHubEvents()
+    setSearch(username)
+    setAmount(results)
   }
 
   return (
     <Fragment>
       <FormInputSearch
         searchValue={username}
-        numberValue={results}
+        numberValue={parseInt(results)}
         inputPlaceholder="username"
         onSubmit={handleSubmit}
         onSearchChange={handleSearchChange}

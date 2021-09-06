@@ -4,9 +4,12 @@ import { Spinner, Flex } from 'theme-ui'
 
 import FormInputSearch from '../components/form-input-search'
 
+const INITIAL_USERNAME = 'PaulieScanlon'
+
 const GetGitHubUser = () => {
   const [response, setResponse] = useState(null)
-  const [username, setUserName] = useState('PaulieScanlon')
+  const [username, setUserName] = useState(INITIAL_USERNAME)
+  const [search, setSearch] = useState(INITIAL_USERNAME)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const getGitHubUser = useCallback(async () => {
@@ -17,7 +20,7 @@ const GetGitHubUser = () => {
       const response = await axios('/api/get-github-user', {
         method: 'POST',
         data: {
-          username: username,
+          username: search,
         },
       })
       setResponse(response.data)
@@ -26,11 +29,11 @@ const GetGitHubUser = () => {
       setResponse(error.response)
       setIsSubmitting(false)
     }
-  }, [username])
+  }, [search])
 
   useEffect(() => {
     getGitHubUser()
-  }, [])
+  }, [getGitHubUser])
 
   const handleSearchChange = (event) => {
     setResponse('')
@@ -44,7 +47,7 @@ const GetGitHubUser = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    getGitHubUser()
+    setSearch(username)
   }
 
   return (
