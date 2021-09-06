@@ -1,9 +1,3 @@
-<p align="center">
-  <a href="https://paulieapi.gatsbyjs.io/">
-    <img alt="https://paulieapi.gatsbyjs.io" src="https://paulieapi.gatsbyjs.io/images/paulie-api-og-image.jpg" />
-  </a>
-</p>
-
 <br />
 
 # Paulie API
