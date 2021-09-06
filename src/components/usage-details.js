@@ -9,6 +9,7 @@ const UsageDetails = ({ to, href }) => {
   return (
     <Grid
       sx={{
+        mt: to ? 0 : 4,
         alignItems: 'center',
         gridTemplateColumns: '1fr auto',
         p: {
@@ -24,7 +25,8 @@ const UsageDetails = ({ to, href }) => {
         },
       }}
     >
-      <small>{to ? 'Usage' : ''}</small>
+      {to ? <small>Usage</small> : <GatsbyLink to="/">Back</GatsbyLink>}
+
       {to ? (
         <GatsbyLink to={to}>
           <Icon path="play" />
@@ -40,8 +42,8 @@ const UsageDetails = ({ to, href }) => {
             color: 'secondary',
           }}
         >
-          <Icon path="code" />
           View src
+          <Icon path="code" sx={{ mt: '2px' }} />
         </Link>
       ) : null}
     </Grid>

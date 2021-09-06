@@ -10,7 +10,7 @@ const GetTwitterUser = () => {
   const [response, setResponse] = useState(null)
   const [username, setUserName] = useState(INITIAL_USERNAME)
   const [search, setSearch] = useState(INITIAL_USERNAME)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(true)
 
   const getTwitterUser = useCallback(async () => {
     setResponse('')
