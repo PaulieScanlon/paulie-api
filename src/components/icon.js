@@ -17,8 +17,8 @@ const Icon = ({ path, ...sx }) => {
     <Box
       as="svg"
       xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="100%"
+      width="18px"
+      height="18px"
       fill="currentcolor"
       viewBox="0 0 24 24"
       preserveAspectRatio="xMidYMid meet"

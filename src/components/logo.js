@@ -14,8 +14,8 @@ const Logo = () => (
     <Link to="/" title="Paulie API">
       <Box
         sx={{
-          height: '25px',
-          overflow: 'hidden',
+          width: '130px',
+          height: '28px',
           svg: {
             '.primary': {
               fill: 'primary',
@@ -36,7 +36,7 @@ const Logo = () => (
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 162 35"
           width="100%"
-          height="100%"
+          // height="auto"
         >
           <g>
             <path
