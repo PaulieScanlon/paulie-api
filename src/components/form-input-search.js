@@ -21,16 +21,15 @@ const FormInputSearch = ({
       onSubmit={onSubmit}
       sx={{
         gridTemplateColumns: ['auto', '1fr auto'],
-        gap: 2,
+        gap: numberValue ? 3 : 2,
       }}
     >
       <Grid
         sx={{
           gridTemplateColumns: ['1fr auto'],
-          gap: 1,
+          gap: [numberValue ? 2 : 0, 2],
         }}
       >
-        {' '}
         <Label>
           Search
           <Box
@@ -42,15 +41,14 @@ const FormInputSearch = ({
               variant="small"
               sx={{
                 position: 'absolute',
-                top: '50%',
+                top: '48%',
                 left: 2,
-                transform: 'translateY(-52%)',
+                transform: 'translateY(-50%)',
                 color: 'lighten',
               }}
             >
               @
             </Text>
-
             <Input
               type="text"
               placeholder={inputPlaceholder}
@@ -60,7 +58,6 @@ const FormInputSearch = ({
                 pl: '24px',
               }}
             />
-
             <IconButton
               onClick={onClear}
               type="button"

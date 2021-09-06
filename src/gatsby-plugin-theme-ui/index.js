@@ -126,9 +126,12 @@ const theme = {
   forms: {
     my: 4,
     alignItems: 'flex-end',
+    input: {
+      fontSize: [2, 1],
+    },
     label: {
       display: 'grid',
-      gap: 1,
+      gap: 2,
     },
   },
 
