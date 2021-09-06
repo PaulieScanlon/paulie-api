@@ -6,7 +6,7 @@ const anchorScroll = (location) => {
   if (location && location.hash && anchor) {
     const item = document.querySelectorAll(`a[href="${location.hash}"]`)[0]
       .offsetTop
-    const mainNavHeight = document.querySelector(`header`).offsetHeight - 32
+    const mainNavHeight = document.querySelector(`header`).offsetHeight + 32
 
     setTimeout(() => {
       window.scrollTo({

@@ -40,6 +40,10 @@ const theme = {
     full: '100%',
   },
 
+  zIndices: {
+    header: 999,
+  },
+
   messages: {
     default: {
       color: 'darken',
@@ -265,10 +269,25 @@ const theme = {
       mb: 4,
     },
 
+    main: {
+      paddingTop: (theme) => theme.sizes.header,
+    },
+
     header: {
+      position: 'fixed',
+      borderBottomWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderBottomColor: 'border',
+      width: 'full',
+      alignItems: 'center',
+      height: 'header',
+      backgroundColor: 'background',
+      zIndex: 'header',
+    },
+
+    nav: {
       alignItems: 'center',
       justifyContent: 'space-between',
-      height: 'header',
     },
   },
 }

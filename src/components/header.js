@@ -7,34 +7,36 @@ import Icon from './icon'
 
 const Header = () => {
   return (
-    <Container>
-      <Flex as="header" variant="styles.header">
-        <Logo />
-        <Grid
-          sx={{
-            gridTemplateColumns: 'repeat(2, auto)',
-            alignItems: 'center',
-            '.nav': {
-              variant: 'links.nav',
-            },
-          }}
-        >
-          <GatsbyLink to="/about" className="nav">
-            About
-          </GatsbyLink>
-          <Link
-            href="https://github.com/PaulieScanlon/paulie-api"
-            target="_blank"
-            rel="noopener"
+    <Flex as="header" variant="styles.header">
+      <Container>
+        <Flex as="nav" variant="styles.nav">
+          <Logo />
+          <Grid
             sx={{
-              color: 'text',
+              gridTemplateColumns: 'repeat(2, auto)',
+              alignItems: 'center',
+              '.nav': {
+                variant: 'links.nav',
+              },
             }}
           >
-            <Icon path="github" sx={{ width: '24px', height: '24px' }} />
-          </Link>
-        </Grid>
-      </Flex>
-    </Container>
+            <GatsbyLink to="/about" className="nav">
+              About
+            </GatsbyLink>
+            <Link
+              href="https://github.com/PaulieScanlon/paulie-api"
+              target="_blank"
+              rel="noopener"
+              sx={{
+                color: 'text',
+              }}
+            >
+              <Icon path="github" sx={{ width: '24px', height: '24px' }} />
+            </Link>
+          </Grid>
+        </Flex>
+      </Container>
+    </Flex>
   )
 }
 
