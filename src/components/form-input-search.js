@@ -21,6 +21,7 @@ const FormInputSearch = ({
       onSubmit={onSubmit}
       sx={{
         gridTemplateColumns: ['auto', '1fr auto'],
+        gap: 2,
       }}
     >
       <Grid
@@ -87,11 +88,9 @@ const FormInputSearch = ({
           </Label>
         ) : null}
       </Grid>
-      <Box>
-        <Button disabled={isSubmitting || !searchValue} type="submit">
-          Submit
-        </Button>
-      </Box>
+      <Button disabled={isSubmitting || !searchValue} type="submit">
+        Submit
+      </Button>
     </Grid>
   )
 }
