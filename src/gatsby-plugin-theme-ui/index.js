@@ -252,7 +252,7 @@ const theme = {
       overflow: 'auto',
     },
 
-    h4: {
+    h3: {
       color: 'highlight',
     },
 

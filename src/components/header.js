@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Flex, Grid, Link, NavLink } from 'theme-ui'
+import { Container, Flex, Grid, Link } from 'theme-ui'
 import { Link as GatsbyLink } from 'gatsby'
 
 import Logo from './logo'
