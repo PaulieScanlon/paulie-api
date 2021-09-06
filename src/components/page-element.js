@@ -33,12 +33,6 @@ const components = {
       </Link>
     )
   },
-  // img: (props) => {
-  //   console.log('props: ', props)
-  //   // return null
-  //   return <StaticImage src={props.src} alt={props.alt} />
-  // },
-
   pre: ({ children }) => <Fragment>{children}</Fragment>,
   code: Prism,
   ...themeUiComponents,
