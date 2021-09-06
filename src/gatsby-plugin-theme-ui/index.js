@@ -30,6 +30,10 @@ const theme = {
     body: 400,
   },
 
+  lineHeights: {
+    body: '1.5rem',
+  },
+
   sizes: {
     container: 940,
     header: 48,
@@ -89,6 +93,19 @@ const theme = {
     },
   },
 
+  links: {
+    nav: {
+      fontWeight: 'bold',
+      textDecoration: 'none',
+      p: 2,
+      backgroundColor: 'darken',
+      borderRadius: 4,
+      '&[aria-current="page"]': {
+        color: 'muted',
+      },
+    },
+  },
+
   layout: {
     container: {
       px: [3, 4],
@@ -130,7 +147,8 @@ const theme = {
 
       p: {
         mt: 3,
-        mb: 4,
+        mb: 2,
+        lineHeight: 'body',
         code: {
           borderRadius: 4,
           fontSize: '15px',
@@ -225,8 +243,21 @@ const theme = {
       },
     },
 
+    img: {
+      width: 'full',
+      height: 'auto',
+    },
+
     tableWrapper: {
       overflow: 'auto',
+    },
+
+    h4: {
+      color: 'highlight',
+    },
+
+    li: {
+      lineHeight: 'body',
     },
 
     hr: {

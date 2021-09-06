@@ -1,15 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Grid,
-  Box,
-  Button,
-  Input,
-  Text,
-  IconButton,
-  Label,
-  Flex,
-} from 'theme-ui'
+import { Grid, Box, Button, Input, Text, IconButton, Label } from 'theme-ui'
 
 import Icon from '../components/icon'
 

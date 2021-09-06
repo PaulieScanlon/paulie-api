@@ -1,4 +1,4 @@
-# [The documentation for Paulie API](https://github.com/PaulieScanlon/paulie-api)
+# The documentation for Paulie API
 
 This site is built using [Gatsby](https://www.gatsbyjs.com/) and restricts access to a set of [Serverless Functions](https://www.gatsbyjs.com/docs/reference/functions/) hosted on [Gatsby Cloud](https://www.gatsbyjs.com/products/cloud/). <br /> It acts as a standalone API for all of my things 🕺
 
@@ -13,6 +13,8 @@ All API endpoints use the same resource origin: `https://paulieapi.gatsbyjs.io`
 <EndpointMessage type="POST" endpoint="/api/get-twitter-user" icon="lock" />
 
 This endpoint uses the Twitter `users/by/username/${username}` endpoint under the hood to return information about a Twitter username.
+
+<br />
 
 <UsageDetails to="/get-twitter-user" />
 
@@ -69,6 +71,8 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-twitter-user', {
 <EndpointMessage type="POST" endpoint="/api/make-stripe-payment" icon="lock" />
 
 This endpoint uses the Stripe `stripe.checkout.sessions.create` method under the hood to create a checkout url for a user provided payment amount.
+
+<br />
 
 <UsageDetails to="/make-stripe-payment" />
 
@@ -127,6 +131,8 @@ await fetch('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
 <EndpointMessage type="POST" endpoint="/api/get-github-user" icon="lock" />
 
 This endpoint uses the Octokit `octokit.request('GET /users/${username}')` under the hood to return information about a GitHub username.
+
+<br />
 
 <UsageDetails to="/get-github-user" />
 
@@ -188,6 +194,8 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user', {
 <EndpointMessage type="POST" endpoint="/api/get-github-events" icon="lock" />
 
 This endpoint uses the Octokit `octokit.request('GET /users/${username}/events')` under the hood to return events for a GitHub username.
+
+<br />
 
 <UsageDetails to="/get-github-events" />
 
