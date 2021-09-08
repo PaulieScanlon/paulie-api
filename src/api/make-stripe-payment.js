@@ -4,6 +4,7 @@ import Cors from 'cors'
 const allowedOrigins = [
   'https://paulieapi.gatsbyjs.io',
   'https://www.mdx-embed.com',
+  'https://paulie.dev',
 ]
 
 const cors = Cors({
