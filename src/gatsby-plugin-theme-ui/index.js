@@ -9,6 +9,7 @@ const theme = {
     tertiary: '#00ccff',
     muted: '#666666',
     highlight: '#ffceeb',
+    highlightHover: '#fdb9e1',
     gray: '#272727',
     accent: '#ffff00',
     lighten: '#cccccc',

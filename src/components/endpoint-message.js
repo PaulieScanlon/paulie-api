@@ -11,16 +11,23 @@ const EndpointMessage = ({ type, endpoint, icon, isExpanded }) => {
         cursor: 'pointer',
         mb: 2,
         lineHeight: 'body',
+        '.endpoint-text': {
+          transition: '.2s linear margin-left, .1s linear color',
+        },
         '.expand-icon': {
           height: '20px',
           width: '20px',
           borderRadius: '50%',
-          transition: '.1s linear background-color',
+          transition: '.2s linear background-color',
         },
         ':hover': {
+          '.endpoint-text': {
+            color: 'primary',
+            ml: '3px',
+          },
           '.expand-icon': {
             color: 'primary',
-            backgroundColor: 'darken',
+            backgroundColor: 'highlightHover',
           },
         },
       }}
@@ -32,7 +39,9 @@ const EndpointMessage = ({ type, endpoint, icon, isExpanded }) => {
         }}
       >
         <Badge>{type}</Badge>
-        <Text variant="mono">{endpoint}</Text>
+        <Text className="endpoint-text" variant="mono">
+          {endpoint}
+        </Text>
       </Grid>
       <Grid
         sx={{
