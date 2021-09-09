@@ -16,7 +16,6 @@ const GetGitHubEvents = () => {
   const [isSubmitting, setIsSubmitting] = useState(true)
 
   const getGitHubEvents = useCallback(async () => {
-    setResponse('')
     setIsSubmitting(true)
 
     try {

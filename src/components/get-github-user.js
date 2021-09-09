@@ -13,7 +13,6 @@ const GetGitHubUser = () => {
   const [isSubmitting, setIsSubmitting] = useState(true)
 
   const getGitHubUser = useCallback(async () => {
-    setResponse('')
     setIsSubmitting(true)
 
     try {

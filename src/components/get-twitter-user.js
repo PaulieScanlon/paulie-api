@@ -13,7 +13,6 @@ const GetTwitterUser = () => {
   const [isSubmitting, setIsSubmitting] = useState(true)
 
   const getTwitterUser = useCallback(async () => {
-    setResponse('')
     setIsSubmitting(true)
 
     try {

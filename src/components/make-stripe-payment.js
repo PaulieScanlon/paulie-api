@@ -16,7 +16,6 @@ const MakeStripePayment = () => {
   const [isSubmitting, setIsSubmitting] = useState(true)
 
   const makeStripePayment = useCallback(async () => {
-    setResponse('')
     setIsSubmitting(true)
 
     try {
