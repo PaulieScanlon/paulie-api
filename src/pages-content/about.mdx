@@ -9,12 +9,16 @@ import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 
 Paulie API is a standalone API and documentation site. It accepts request from a restricted list of `origins` for various functionality required for a number of my own websites.
 
-All of the sites listed below use this API. Some of the functionality required has been abstracted to this API for one of two reasons:
+<Divider />
 
-1. The Serverless Function is used by more than one origin
-2. The origin site is not built using Gatsby and can't run it's own Serverless Functions
+## Rational
 
-_I've shorthanded this functionality as follows:_
+All of the sites listed below use this API and the functionality has been abstracted for one of two reasons:
+
+1. The origin site is not built using Gatsby and can't run it's own Serverless Functions
+2. The Serverless Function is used by more than one origin
+
+_I've shorthanded this functionality to mean the following:_
 
 <Grid
     sx={{
@@ -26,7 +30,9 @@ _I've shorthanded this functionality as follows:_
 
 ### SOF: Same Origin Function
 
-This means that the site **can** run it's own Serverless functions and both the Front and Backend run on the same origin.
+This means that the site **can** run it's own Serverless functions and both the Front and Back-end are deployed to the same origin.
+
+<small>This is denoted using solid lines in the diagram below</small>
 
 </Box>
 
@@ -35,6 +41,8 @@ This means that the site **can** run it's own Serverless functions and both the 
 ### COF: Cross Origin Function
 
 This means the site **can't** run it's own Serverless Functions or it makes use of a Serverless Function that is used by more than one origin.
+
+<small>This is denoted using dashed lines in the diagram below</small>
 
  </Box>
 
@@ -45,7 +53,11 @@ This means the site **can't** run it's own Serverless Functions or it makes use 
   alt="API overview diagram"
 />
 
-## [https://paulie.dev](https://paulie.dev)
+<Divider />
+
+## Origins
+
+### [https://paulie.dev](https://paulie.dev)
 
 #### This site is built using [Gatsby](https://www.gatsbyjs.com)
 
@@ -56,7 +68,7 @@ It uses is own SOF's to `POST` and `GET` user reactions stored in a [Fauna](http
 - Uses SOF ✅
 - Uses COF ✅
 
-## [https://pauliescanlon.io](https://pauliescanlon.io)
+### [https://pauliescanlon.io](https://pauliescanlon.io)
 
 #### This site is built using [Gatsby](https://www.gatsbyjs.com)
 
@@ -67,7 +79,7 @@ It has no SOF's
 - Uses SOF ❌
 - Uses COF ✅
 
-## [https://mdx-embed.com](https://mdx-embed.com)
+### [https://mdx-embed.com](https://mdx-embed.com)
 
 #### This site is built using [Storybook](https://storybook.js.org)
 

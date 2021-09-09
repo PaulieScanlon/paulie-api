@@ -146,6 +146,10 @@ const theme = {
       fontWeight: 'body',
       fontSize: '1',
 
+      '.gatsby-image-wrapper': {
+        my: 4,
+      },
+
       small: {
         color: 'muted',
       },
@@ -255,21 +259,17 @@ const theme = {
       },
     },
 
-    img: {
-      width: 'full',
-      height: 'auto',
-    },
-
     tableWrapper: {
       overflow: 'auto',
     },
 
     h3: {
-      color: 'highlight',
+      color: 'accent',
     },
 
     li: {
       lineHeight: 'body',
+      color: 'lighten',
     },
 
     hr: {
