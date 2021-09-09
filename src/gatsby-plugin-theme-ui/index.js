@@ -89,6 +89,11 @@ const theme = {
     primary: {
       variant: 'buttons.default',
     },
+    secondary: {
+      variant: 'buttons.default',
+      color: 'darken',
+      backgroundColor: 'secondary',
+    },
     icon: {
       width: '24px',
       height: '24px',
