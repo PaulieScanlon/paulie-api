@@ -65,11 +65,16 @@ const theme = {
   },
 
   badges: {
+    primary: {
+      lineHeight: 'body',
+    },
     secondary: {
+      variant: 'badges.primary',
       color: 'darken',
       backgroundColor: 'secondary',
     },
     tertiary: {
+      variant: 'badges.primary',
       backgroundColor: 'tertiary',
     },
   },
@@ -93,6 +98,10 @@ const theme = {
       variant: 'buttons.default',
       color: 'darken',
       backgroundColor: 'secondary',
+    },
+    ghost: {
+      p: 0,
+      backgroundColor: 'transparent',
     },
     icon: {
       width: '24px',

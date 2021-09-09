@@ -12,6 +12,7 @@ import * as themeUiComponents from 'theme-ui'
 import Icon from '../components/icon'
 import EndpointMessage from '../components/endpoint-message'
 import UsageDetails from '../components/usage-details'
+import ExpandableContent from '../components/expandable-content'
 
 const components = {
   a: ({ href, children }) => {
@@ -40,6 +41,7 @@ const components = {
   Icon,
   EndpointMessage,
   UsageDetails,
+  ExpandableContent,
 }
 
 const MdxPage = ({
