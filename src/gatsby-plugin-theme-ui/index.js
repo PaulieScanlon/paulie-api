@@ -144,6 +144,9 @@ const theme = {
     input: {
       fontSize: [2, 1],
     },
+    select: {
+      fontSize: [2, 1],
+    },
     label: {
       display: 'grid',
       gap: 2,

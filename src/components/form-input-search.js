@@ -30,7 +30,7 @@ const FormInputSearch = ({
           gap: [numberValue ? 2 : 0, 2],
         }}
       >
-        <Label>
+        <Label htmlFor="input-value">
           Search
           <Box
             sx={{
@@ -50,6 +50,7 @@ const FormInputSearch = ({
               @
             </Text>
             <Input
+              id="input-value"
               type="text"
               placeholder={inputPlaceholder}
               value={searchValue}
@@ -73,9 +74,10 @@ const FormInputSearch = ({
           </Box>
         </Label>
         {numberValue ? (
-          <Label>
+          <Label htmlFor="number-value">
             Results
             <Input
+              id="number-value"
               type="number"
               min={1}
               max={30}

@@ -26,7 +26,7 @@ const FormInputValue = ({
           gap: 2,
         }}
       >
-        <Label>
+        <Label htmlFor="number-value">
           Product
           <Select value={productValue} onChange={onSelectChange}>
             <option value="prod_KAgqqzBEBmuYkT">mdx-embed</option>
@@ -36,6 +36,7 @@ const FormInputValue = ({
         <Label>
           Amount
           <Input
+            id="number-value"
             type="number"
             min={1}
             max={30}
