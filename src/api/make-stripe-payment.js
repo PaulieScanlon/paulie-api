@@ -64,6 +64,6 @@ export default async function handler(req, res) {
       res.status(500).json({ message: '🚫 Stripe checkout error' })
     }
   } catch (error) {
-    res.status(500).json({ message: '🚫 Request blocked by CORS' })
+    res.status(403).json({ message: '🚫 Request blocked by CORS' })
   }
 }
