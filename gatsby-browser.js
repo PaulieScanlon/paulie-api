@@ -1,5 +1,6 @@
 import React from 'react'
 import PageElement from './src/components/page-element'
+import RootElement from './src/components/root-element'
 
 const anchorScroll = (location) => {
   const anchor = document.querySelectorAll(`a[href="${location.hash}"]`)[0]
@@ -24,4 +25,8 @@ export const onRouteUpdate = ({ location }) => {
 
 export const wrapPageElement = ({ element }) => {
   return <PageElement>{element}</PageElement>
+}
+
+export const wrapRootElement = ({ element }) => {
+  return <RootElement>{element}</RootElement>
 }

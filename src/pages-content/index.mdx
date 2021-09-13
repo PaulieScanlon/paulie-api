@@ -10,7 +10,7 @@ All API endpoints use the same resource origin: `https://paulieapi.gatsbyjs.io`
 
 ## [Twitter](#twitter)
 
-<ExpandableContent  startExpanded={true}trigger={ (isExpanded) => <EndpointMessage type="POST" endpoint="/api/get-twitter-user" icon="lock" isExpanded={isExpanded} isExpanded={isExpanded} />}>
+<ExpandableContent id='getTwitterUser'>
 
 This endpoint uses the Twitter `users/by/username/${username}` endpoint under the hood to return information about a Twitter username.
 
@@ -70,7 +70,7 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-twitter-user', {
 
 ## [Stripe](#stripe)
 
-<ExpandableContent trigger={(isExpanded) => <EndpointMessage type="POST" endpoint="/api/make-stripe-payment" icon="lock" isExpanded={isExpanded} />}>
+<ExpandableContent id='makeStripePayment'>
 
 This endpoint uses the Stripe `stripe.checkout.sessions.create` method under the hood to create a checkout url for a user provided payment amount.
 
@@ -132,7 +132,7 @@ await fetch('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
 
 ## [GitHub](#github)
 
-<ExpandableContent trigger={(isExpanded) => <EndpointMessage type="POST" endpoint="/api/get-github-user" icon="lock" isExpanded={isExpanded} />}>
+<ExpandableContent id='getGithubUser'>
 
 This endpoint uses the Octokit `octokit.request('GET /users/${username}')` under the hood to return information about a GitHub username.
 
@@ -197,8 +197,7 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user', {
 
 </ExpandableContent>
 
-<ExpandableContent trigger={(isExpanded) => <EndpointMessage type="POST" endpoint="/api/get-github-events" icon="lock" isExpanded={isExpanded} />
-}>
+<ExpandableContent id='getGithubEvents'>
 
 This endpoint uses the Octokit `octokit.request('GET /users/${username}/events')` under the hood to return events for a GitHub username.
 

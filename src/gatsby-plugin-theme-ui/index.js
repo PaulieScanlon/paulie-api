@@ -67,7 +67,7 @@ const theme = {
 
   badges: {
     primary: {
-      lineHeight: 'body',
+      lineHeight: '1.3rem',
     },
     secondary: {
       variant: 'badges.primary',

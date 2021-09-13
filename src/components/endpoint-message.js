@@ -9,7 +9,6 @@ const EndpointMessage = ({ type, endpoint, icon, isExpanded }) => {
       variant="primary"
       sx={{
         cursor: 'pointer',
-        mb: 2,
         lineHeight: 'body',
         '.endpoint-text': {
           transition: '.2s linear margin-left, .1s linear color',

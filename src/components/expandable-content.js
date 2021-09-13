@@ -1,29 +1,44 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { Grid, Box, Button } from 'theme-ui'
 
-const ExpandableContent = ({ startExpanded = false, trigger, children }) => {
-  const [isExpanded, setIsExpanded] = useState(startExpanded)
+import { AppContext } from '../context/app-context'
+
+import EndpointMessage from './endpoint-message'
+
+const ExpandableContent = ({ id, trigger, children }) => {
+  const { state, dispatch } = useContext(AppContext)
 
   const handleClick = () => {
-    setIsExpanded(!isExpanded)
+    dispatch({
+      type: 'setExpanded',
+      id: id,
+      isExpanded: !state[id].isExpanded,
+    })
   }
 
   return (
-    <Grid>
+    <Grid
+      sx={{
+        mb: 2,
+      }}
+    >
       <Button onClick={handleClick} variant="ghost">
-        {trigger(isExpanded)}
+        <EndpointMessage
+          type="POST"
+          endpoint={`/api/${id}`}
+          icon="lock"
+          isExpanded={state[id].isExpanded}
+        />
       </Button>
-      {isExpanded ? <Box>{children}</Box> : null}
+      {state[id].isExpanded ? <Box>{children}</Box> : null}
     </Grid>
   )
 }
 
 ExpandableContent.propTypes = {
-  /** The trigger component */
-  trigger: PropTypes.func.isRequired,
-  /** Initial expanded state */
-  startExpanded: PropTypes.bool,
+  /** The id used by context API to persist expanded state */
+  id: PropTypes.string.isRequired,
 }
 
 export default ExpandableContent
