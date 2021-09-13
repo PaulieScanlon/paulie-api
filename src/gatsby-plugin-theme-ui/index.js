@@ -260,6 +260,7 @@ const theme = {
               borderColor: 'border',
               p: 2,
               verticalAlign: 'top',
+              whiteSpace: 'pre',
             },
           },
           'tr:nth-of-type(odd)': {

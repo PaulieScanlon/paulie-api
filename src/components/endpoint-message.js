@@ -12,6 +12,8 @@ const EndpointMessage = ({ type, endpoint, icon, isExpanded }) => {
         lineHeight: 'body',
         '.endpoint-text': {
           transition: '.2s linear margin-left, .1s linear color',
+          textAlign: 'left',
+          fontSize: [0, 1],
         },
         '.expand-icon': {
           height: '20px',
