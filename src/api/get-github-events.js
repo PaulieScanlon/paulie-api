@@ -33,7 +33,7 @@ export default async function handler(req, res) {
 
   try {
     if (process.env.NODE_ENV === 'production') {
-      await runCorsMiddleware(req, res)
+      // await runCorsMiddleware(req, res)
     }
 
     try {
