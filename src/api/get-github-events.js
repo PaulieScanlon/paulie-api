@@ -2,6 +2,7 @@ const { octokit } = require('../clients')
 import Cors from 'cors'
 
 const allowedOrigins = [
+  'https://pauliescanlon.github.io',
   'https://paulieapi.gatsbyjs.io',
   'https://pauliescanlon.github.io',
 ]
@@ -35,11 +36,11 @@ export default async function handler(req, res) {
   console.log('req.headers.origin: ', req.headers.origin)
   console.log('')
 
-  res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
+  // res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
 
   try {
     if (process.env.NODE_ENV === 'production') {
-      // await runCorsMiddleware(req, res)
+      await runCorsMiddleware(req, res)
     }
 
     try {
