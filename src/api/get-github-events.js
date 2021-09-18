@@ -31,6 +31,10 @@ export default async function handler(req, res) {
   const { username, results = 5 } =
     typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
+  console.log('')
+  console.log('req.originalUrl: ', req.originalUrl)
+  console.log('')
+
   res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
 
   try {
