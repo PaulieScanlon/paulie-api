@@ -32,7 +32,7 @@ export default async function handler(req, res) {
     typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
   console.log('')
-  console.log('req.originalUrl: ', req.originalUrl)
+  console.log('req.headers.origin: ', req.headers.origin)
   console.log('')
 
   res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
