@@ -2,6 +2,7 @@ const { octokit } = require('../clients')
 import Cors from 'cors'
 
 const allowedOrigins = [
+  // undefined allows the GitHub build request to succeed
   undefined,
   'https://pauliescanlon.github.io',
   'https://paulieapi.gatsbyjs.io',
