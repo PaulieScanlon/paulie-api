@@ -4,6 +4,7 @@ import Cors from 'cors'
 const allowedOrigins = [
   // undefined allows the GitHub build request to succeed
   undefined,
+  'http://localhost:3000',
   'https://pauliescanlon.github.io',
   'https://paulieapi.gatsbyjs.io',
   'https://pauliescanlon.github.io',
