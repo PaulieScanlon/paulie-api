@@ -13,8 +13,8 @@ const initialState = {
     endpoint: 'get-github-user',
     isExpanded: false,
   },
-  getGithubEvents: {
-    endpoint: 'get-github-events',
+  getGithubUserEvents: {
+    endpoint: 'get-github-user-events',
     isExpanded: false,
   },
 }

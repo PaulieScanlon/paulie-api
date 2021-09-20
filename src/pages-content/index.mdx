@@ -197,22 +197,22 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user', {
 
 </ExpandableContent>
 
-<ExpandableContent id='getGithubEvents'>
+<ExpandableContent id='getGithubUserEvents'>
 
 This endpoint uses the Octokit `octokit.request('GET /users/${username}/events')` under the hood to return events for a GitHub username.
 
 <br />
 
-<UsageDetails to="/get-github-events" />
+<UsageDetails to="/get-github-user-events" />
 
 <Box
   variant='styles.tableWrapper'
 >
 
-| Endpoint                 | Type | Parameters       | required | default | Allowed Domains                 | Response |
-| ------------------------ | ---- | ---------------- | -------- | ------- | ------------------------------- | -------- |
-| `/api/get-github-events` | POST | username: string | true     | n/a     | https://pauliescanlon.github.io | JSON     |
-| -                        | -    | results: number  | false    | 5       | -                               | -        |
+| Endpoint                      | Type | Parameters       | required | default | Allowed Domains                 | Response |
+| ----------------------------- | ---- | ---------------- | -------- | ------- | ------------------------------- | -------- |
+| `/api/get-github-user-events` | POST | username: string | true     | n/a     | https://pauliescanlon.github.io | JSON     |
+| -                             | -    | results: number  | false    | 5       | -                               | -        |
 
 </Box>
 

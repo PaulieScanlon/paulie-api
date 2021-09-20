@@ -7,7 +7,7 @@ import FormInputSearch from './form-input-search'
 const INITIAL_USERNAME = 'PaulieScanlon'
 const INITIAL_RESULTS = 5
 
-const GetGitHubEvents = () => {
+const GetGitHubUserEvents = () => {
   const [response, setResponse] = useState(null)
   const [username, setUserName] = useState(INITIAL_USERNAME)
   const [search, setSearch] = useState(INITIAL_USERNAME)
@@ -19,7 +19,7 @@ const GetGitHubEvents = () => {
     setIsSubmitting(true)
 
     try {
-      const response = await axios('/api/get-github-events', {
+      const response = await axios('/api/get-github-user-events', {
         method: 'POST',
         data: {
           username: search,
@@ -86,4 +86,4 @@ const GetGitHubEvents = () => {
   )
 }
 
-export default GetGitHubEvents
+export default GetGitHubUserEvents
