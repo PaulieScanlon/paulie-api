@@ -220,7 +220,7 @@ This endpoint uses the Octokit `octokit.request('GET /users/${username}/events')
 
 ```javascript
 // using axios
-await axios('https://paulieapi.gatsbyjs.io/api/get-github-events', {
+await axios('https://paulieapi.gatsbyjs.io/api/get-github-user-events', {
   method: 'POST',
   data: {
     username: 'PaulieScanlon',
@@ -229,7 +229,7 @@ await axios('https://paulieapi.gatsbyjs.io/api/get-github-events', {
 })
 
 // using fetch
-await fetch('https://paulieapi.gatsbyjs.io/api/get-github-events', {
+await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user-events', {
   method: 'POST',
   body: JSON.stringify({
     username: 'PaulieScanlon',
@@ -259,6 +259,79 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-events', {
         "url": "https://api.github.com/repos/PaulieScanlon/paulie-api"
       },
       ...
+    }
+  ]
+}
+```
+
+</ExpandableContent>
+
+<ExpandableContent id='getGithubRepoEvents'>
+
+This endpoint uses the Octokit `octokit.request('GET /repos/{owner}/{repo}/events')` under the hood to return events for a GitHub username.
+
+<br />
+
+<UsageDetails to="/get-github-repo-events" />
+
+<Box
+  variant='styles.tableWrapper'
+>
+
+| Endpoint                      | Type | Parameters      | required | default | Allowed Domains                 | Response |
+| ----------------------------- | ---- | --------------- | -------- | ------- | ------------------------------- | -------- |
+| `/api/get-github-repo-events` | POST | owner: string   | true     | n/a     | https://pauliescanlon.github.io | JSON     |
+| -                             | -    | repo: string    | true     | n/a     | -                               | -        |
+| -                             | -    | results: number | false    | 5       | -                               | -        |
+
+</Box>
+
+<small>Example Request</small>
+
+```javascript
+// using axios
+await axios('https://paulieapi.gatsbyjs.io/api/get-github-repo-events', {
+  method: 'POST',
+  data: {
+    owner: 'PaulieScanlon',
+    repo: 'mdx-embed',
+    results: 5,
+  },
+})
+
+// using fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/get-github-repo-events', {
+  method: 'POST',
+  body: JSON.stringify({
+    owner: 'PaulieScanlon',
+    repo: 'mdx-embed',
+    results: 5,
+  }),
+})
+```
+
+<small>Example Response</small>
+
+```json
+{
+  "message": "🕺 GitHub request ok",
+  "events": [
+    {
+      "id": "18049970778",
+      "type": "IssueCommentEvent",
+      "actor": {
+        "id": 29119,
+        "login": "spacecowb0y",
+        "display_login": "spacecowb0y",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/spacecowb0y",
+        "avatar_url": "https://avatars.githubusercontent.com/u/29119?"
+      },
+      "repo": {
+        "id": 290021490,
+        "name": "PaulieScanlon/mdx-embed",
+        "url": "https://api.github.com/repos/PaulieScanlon/mdx-embed"
+      }
     }
   ]
 }

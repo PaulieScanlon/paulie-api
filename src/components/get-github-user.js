@@ -1,15 +1,15 @@
 import React, { Fragment, useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
-import { Spinner, Flex } from 'theme-ui'
+import { Spinner, Flex, Grid, Button } from 'theme-ui'
 
-import FormInputSearch from './form-input-search'
+import InputSearch from './input-search'
 
 const INITIAL_USERNAME = 'PaulieScanlon'
 
 const GetGitHubUser = () => {
   const [response, setResponse] = useState(null)
-  const [username, setUserName] = useState(INITIAL_USERNAME)
-  const [search, setSearch] = useState(INITIAL_USERNAME)
+  const [username, setUsername] = useState(INITIAL_USERNAME)
+  const [_username, _setUsername] = useState(INITIAL_USERNAME)
   const [isSubmitting, setIsSubmitting] = useState(true)
 
   const getGitHubUser = useCallback(async () => {
@@ -19,7 +19,7 @@ const GetGitHubUser = () => {
       const response = await axios('/api/get-github-user', {
         method: 'POST',
         data: {
-          username: search,
+          username: _username,
         },
       })
       setResponse(response.data)
@@ -28,37 +28,55 @@ const GetGitHubUser = () => {
       setResponse(error.response)
       setIsSubmitting(false)
     }
-  }, [search])
+  }, [_username])
 
   useEffect(() => {
     getGitHubUser()
   }, [getGitHubUser])
 
-  const handleSearchChange = (event) => {
+  const handleUsernameChange = (event) => {
     setResponse('')
-    setUserName(event.target.value)
+    setUsername(event.target.value)
   }
 
-  const handleClear = () => {
+  const handleUsernameClear = () => {
     setResponse('')
-    setUserName('')
+    setUsername('')
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    setSearch(username)
+    _setUsername(username)
   }
-
   return (
     <Fragment>
-      <FormInputSearch
-        searchValue={username}
-        inputPlaceholder="username"
+      <Grid
+        as="form"
+        variant="forms"
         onSubmit={handleSubmit}
-        onSearchChange={handleSearchChange}
-        onClear={handleClear}
-        isSubmitting={isSubmitting}
-      />
+        sx={{
+          gridTemplateColumns: ['auto', '1fr auto'],
+          gap: [3, 2],
+        }}
+      >
+        <Grid
+          sx={{
+            gridTemplateColumns: ['auto', '1fr'],
+            gap: 2,
+          }}
+        >
+          <InputSearch
+            label="Username"
+            searchPlaceholder={INITIAL_USERNAME}
+            searchValue={username}
+            onChange={handleUsernameChange}
+            onClear={handleUsernameClear}
+          />
+        </Grid>
+        <Button disabled={isSubmitting || !username} type="submit">
+          Submit
+        </Button>
+      </Grid>
       {response ? (
         <pre className="language-json">{JSON.stringify(response, null, 2)}</pre>
       ) : (

@@ -39,7 +39,7 @@ const FormInputValue = ({
             id="number-value"
             type="number"
             min={1}
-            max={30}
+            max={100}
             value={numberValue}
             onChange={onNumberChange}
           />

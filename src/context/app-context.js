@@ -17,6 +17,10 @@ const initialState = {
     endpoint: 'get-github-user-events',
     isExpanded: false,
   },
+  getGithubRepoEvents: {
+    endpoint: 'get-github-repo-events',
+    isExpanded: false,
+  },
 }
 
 const reducer = (state, actions) => {

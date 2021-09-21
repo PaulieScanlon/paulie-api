@@ -5,25 +5,30 @@ import { Spinner, Flex, Grid, Button } from 'theme-ui'
 import InputSearch from './input-search'
 import InputNumber from './input-number'
 
-const INITIAL_USERNAME = 'PaulieScanlon'
+const INITIAL_OWNER = 'PaulieScanlon'
+const INITIAL_REPO = 'mdx-embed'
 const INITIAL_RESULTS = 5
 
-const GetGitHubUserEvents = () => {
+const GetGitHubRepoEvents = () => {
   const [response, setResponse] = useState(null)
-  const [username, setUsername] = useState(INITIAL_USERNAME)
-  const [_username, _setUsername] = useState(INITIAL_USERNAME)
+  const [owner, setOwner] = useState(INITIAL_OWNER)
+  const [_owner, _setOwner] = useState(INITIAL_OWNER)
+  const [repo, setRepo] = useState(INITIAL_REPO)
+  const [_repo, _setRepo] = useState(INITIAL_REPO)
   const [results, setResults] = useState(INITIAL_RESULTS)
   const [_results, _setResults] = useState(INITIAL_RESULTS)
+
   const [isSubmitting, setIsSubmitting] = useState(true)
 
   const getGitHubEvents = useCallback(async () => {
     setIsSubmitting(true)
 
     try {
-      const response = await axios('/api/get-github-user-events', {
+      const response = await axios('/api/get-github-repo-events', {
         method: 'POST',
         data: {
-          username: _username,
+          owner: _owner,
+          repo: _repo,
           results: _results,
         },
       })
@@ -33,20 +38,30 @@ const GetGitHubUserEvents = () => {
       setResponse(error.response)
       setIsSubmitting(false)
     }
-  }, [_username, _results])
+  }, [_owner, _repo, _results])
 
   useEffect(() => {
     getGitHubEvents()
   }, [getGitHubEvents])
 
-  const handleUsernameChange = (event) => {
+  const handleOwnerChange = (event) => {
     setResponse('')
-    setUsername(event.target.value)
+    setOwner(event.target.value)
   }
 
-  const handleUsernameClear = () => {
+  const handleOwnerClear = () => {
     setResponse('')
-    setUsername('')
+    setOwner('')
+  }
+
+  const handleRepoChange = (event) => {
+    setResponse('')
+    setRepo(event.target.value)
+  }
+
+  const handleRepoClear = () => {
+    setResponse('')
+    setRepo('')
   }
 
   const handleResultsChange = (event) => {
@@ -56,7 +71,8 @@ const GetGitHubUserEvents = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    _setUsername(username)
+    _setOwner(owner)
+    _setRepo(repo)
     _setResults(results)
   }
 
@@ -73,16 +89,24 @@ const GetGitHubUserEvents = () => {
       >
         <Grid
           sx={{
-            gridTemplateColumns: ['auto', '1fr auto'],
+            gridTemplateColumns: ['auto', '1fr 1fr auto'],
             gap: 2,
           }}
         >
           <InputSearch
-            label="Username"
-            searchPlaceholder={INITIAL_USERNAME}
-            searchValue={username}
-            onChange={handleUsernameChange}
-            onClear={handleUsernameClear}
+            label="Owner"
+            searchPlaceholder={INITIAL_OWNER}
+            searchValue={owner}
+            onChange={handleOwnerChange}
+            onClear={handleOwnerClear}
+          />
+          <InputSearch
+            label="Repository"
+            searchPlaceholder="mdx-embed"
+            searchValue={repo}
+            onChange={handleRepoChange}
+            onClear={handleRepoClear}
+            showSymbol={false}
           />
           <InputNumber
             label="Results"
@@ -90,10 +114,11 @@ const GetGitHubUserEvents = () => {
             onChange={handleResultsChange}
           />
         </Grid>
-        <Button disabled={isSubmitting || !username} type="submit">
+        <Button disabled={isSubmitting || !owner || !repo} type="submit">
           Submit
         </Button>
       </Grid>
+
       {response ? (
         <pre className="language-json">{JSON.stringify(response, null, 2)}</pre>
       ) : (
@@ -109,4 +134,4 @@ const GetGitHubUserEvents = () => {
   )
 }
 
-export default GetGitHubUserEvents
+export default GetGitHubRepoEvents

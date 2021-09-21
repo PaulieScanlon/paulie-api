@@ -31,8 +31,11 @@ const runCorsMiddleware = (req, res) => {
 }
 
 export default async function handler(req, res) {
-  const { username, results = 5 } =
-    typeof req.body === 'string' ? JSON.parse(req.body) : req.body
+  const {
+    owner,
+    repo,
+    results = 5,
+  } = typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
   try {
     if (process.env.NODE_ENV === 'production') {
@@ -40,11 +43,15 @@ export default async function handler(req, res) {
     }
 
     try {
-      // https://docs.github.com/en/rest/reference/activity#list-public-events-received-by-a-user
-      const { data } = await octokit.request('GET /users/{username}/events', {
-        username: username,
-        per_page: results,
-      })
+      // https://docs.github.com/en/rest/reference/activity#list-repository-events
+      const { data } = await octokit.request(
+        'GET /repos/{owner}/{repo}/events',
+        {
+          owner: owner,
+          repo: repo,
+          per_page: results,
+        }
+      )
 
       res.status(200).json({
         message: '🕺 GitHub request ok',
