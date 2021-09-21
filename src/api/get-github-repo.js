@@ -25,22 +25,25 @@ const runCorsMiddleware = (req, res) => {
 }
 
 export default async function handler(req, res) {
-  const { username } =
+  const { owner, repo } =
     typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
+  res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
   try {
-    if (process.env.NODE_ENV === 'production') {
-      await runCorsMiddleware(req, res)
-    }
+    // if (process.env.NODE_ENV === 'production') {
+    //   await runCorsMiddleware(req, res)
+    // }
 
     try {
-      const { data } = await octokit.request(`GET /users/{username}`, {
-        username: username,
+      // https://docs.github.com/en/rest/reference/repos#get-a-repository
+      const { data } = await octokit.request(`GET /repos/{owner}/{repo}`, {
+        owner: owner,
+        repo: repo,
       })
 
       res.status(200).json({
         message: '🕺 GitHub request ok',
-        user: data ? data : '🦜 Username not found',
+        repo: data ? data : '🦜 Repository not found',
       })
     } catch {
       res.status(500).json({ error: '🚫 GitHub error' })

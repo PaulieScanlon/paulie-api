@@ -13,6 +13,10 @@ const initialState = {
     endpoint: 'get-github-user',
     isExpanded: false,
   },
+  getGithubRepo: {
+    endpoint: 'get-github-repo',
+    isExpanded: false,
+  },
   getGithubUserEvents: {
     endpoint: 'get-github-user-events',
     isExpanded: false,

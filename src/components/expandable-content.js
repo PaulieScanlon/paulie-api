@@ -20,7 +20,7 @@ const ExpandableContent = ({ id, trigger, children }) => {
   return (
     <Grid
       sx={{
-        mb: 2,
+        mb: 3,
       }}
     >
       {state ? (

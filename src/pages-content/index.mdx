@@ -146,7 +146,7 @@ This endpoint uses the Octokit `octokit.request('GET /users/${username}')` under
 
 | Endpoint               | Type | Parameters       | required | default | Allowed Domains | Response |
 | ---------------------- | ---- | ---------------- | -------- | ------- | --------------- | -------- |
-| `/api/get-github-user` | POST | username: string | true     | n/a     | n/a             | JSON     |
+| `/api/get-github-user` | POST | username: string | true     | n/a     | paulie.dev      | JSON     |
 
 </Box>
 
@@ -190,6 +190,74 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user', {
     "owned_private_repos": 15
     ...
   }
+}
+```
+
+<Divider />
+
+</ExpandableContent>
+
+<ExpandableContent id='getGithubRepo'>
+
+This endpoint uses the Octokit `GET /repos/{owner}/{repo}` under the hood to return information about a GitHub repository.
+
+<br />
+
+<UsageDetails to="/get-github-repo" />
+
+<Box
+  variant='styles.tableWrapper'
+>
+
+| Endpoint               | Type | Parameters    | required | default | Allowed Domains                 | Response |
+| ---------------------- | ---- | ------------- | -------- | ------- | ------------------------------- | -------- |
+| `/api/get-github-repo` | POST | owner: string | true     | n/a     | https://pauliescanlon.github.io | JSON     |
+|                        |      | repo: string  | true     | n/a     |                                 |          |
+
+</Box>
+
+<small>Example Request</small>
+
+```javascript
+// using axios
+await axios('https://paulieapi.gatsbyjs.io/api/get-github-repo', {
+  method: 'POST',
+  data: {
+    owner: 'PaulieScanlon',
+    repo: 'mdx-embed',
+  },
+})
+
+// using fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/get-github-repo', {
+  method: 'POST',
+  body: JSON.stringify({
+    owner: 'PaulieScanlon',
+    repo: 'mdx-embed',
+  }),
+})
+```
+
+<small>Example Response</small>
+
+```json
+{
+  "message": "🕺 GitHub request ok",
+  "repo": {
+    "id": 290021490,
+    "node_id": "MDEwOlJlcG9zaXRvcnkyOTAwMjE0OTA=",
+    "name": "mdx-embed",
+    "full_name": "PaulieScanlon/mdx-embed",
+    "private": false,
+    "owner": {
+      "login": "PaulieScanlon",
+      "id": 1465706,
+      "node_id": "MDQ6VXNlcjE0NjU3MDY=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1465706?v=4",
+      ...
+    }
+  },
+  ...
 }
 ```
 
@@ -268,7 +336,7 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user-events', {
 
 <ExpandableContent id='getGithubRepoEvents'>
 
-This endpoint uses the Octokit `octokit.request('GET /repos/{owner}/{repo}/events')` under the hood to return events for a GitHub username.
+This endpoint uses the Octokit `octokit.request('GET /repos/{owner}/{repo}/events')` under the hood to return events for a GitHub repository.
 
 <br />
 

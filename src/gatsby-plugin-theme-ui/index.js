@@ -162,7 +162,9 @@ const theme = {
       'input:-webkit-autofill:first-line': {
         color: (theme) => `${theme.colors.primary}!important`,
       },
-
+      'input:-webkit-autofill': {
+        borderColor: 'text',
+      },
       '.gatsby-image-wrapper': {
         my: 4,
       },
