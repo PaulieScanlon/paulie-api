@@ -1,7 +1,12 @@
 const { octokit } = require('../clients')
 import Cors from 'cors'
 
-const allowedOrigins = ['https://paulieapi.gatsbyjs.io']
+const allowedOrigins = [
+  // undefined allows the GitHub pages build request to succeed
+  undefined,
+  'https://pauliescanlon.github.io',
+  'https://paulieapi.gatsbyjs.io',
+]
 
 const cors = Cors({
   origin: (origin, callback) => {
@@ -28,11 +33,12 @@ export default async function handler(req, res) {
   const { owner, repo } =
     typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
-  res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
+  // res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
+
   try {
-    // if (process.env.NODE_ENV === 'production') {
-    //   await runCorsMiddleware(req, res)
-    // }
+    if (process.env.NODE_ENV === 'production') {
+      await runCorsMiddleware(req, res)
+    }
 
     try {
       // https://docs.github.com/en/rest/reference/repos#get-a-repository

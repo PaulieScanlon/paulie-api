@@ -36,12 +36,12 @@ export default async function handler(req, res) {
     results = 5,
   } = typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
-  res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
+  // res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
 
   try {
-    // if (process.env.NODE_ENV === 'production') {
-    //   await runCorsMiddleware(req, res)
-    // }
+    if (process.env.NODE_ENV === 'production') {
+      await runCorsMiddleware(req, res)
+    }
 
     try {
       // https://docs.github.com/en/rest/reference/activity#list-repository-events
