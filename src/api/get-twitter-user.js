@@ -1,5 +1,14 @@
 const { twitter } = require('../clients')
 
+import { remark } from 'remark'
+import remarkHtml from 'remark-html'
+
+const convertToMarkdown = async (string) => {
+  const response = await remark().use(remarkHtml).process(string)
+
+  return String(response)
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
 
@@ -18,9 +27,12 @@ export default async function handler(req, res) {
       },
     })
 
+    const markdown = await convertToMarkdown(data.description)
+
     res.status(200).json({
       message: '🕺 Twitter request ok',
       user: data ? data : '🦜 Username not found',
+      markdown: markdown,
     })
   } catch {
     res.status(500).json({ error: '🚫 Twitter error' })
