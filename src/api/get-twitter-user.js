@@ -1,5 +1,5 @@
 const { twitter } = require('../clients')
-import Cors from 'cors'
+
 import { remark } from 'remark'
 import remarkHtml from 'remark-html'
 
