@@ -1,7 +1,7 @@
 const { twitter } = require('../clients')
 
 export default async function handler(req, res) {
-  req.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', '*')
 
   const { username } =
     typeof req.body === 'string' ? JSON.parse(req.body) : req.body
