@@ -4,6 +4,8 @@ export default async function handler(req, res) {
   const { username } =
     typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
+  res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
+
   try {
     if (!username) {
       res.status(400).json({ message: '⚠️ Missing required body params' })

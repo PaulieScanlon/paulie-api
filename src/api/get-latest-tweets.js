@@ -3,6 +3,8 @@ const { twitter } = require('../clients')
 export default async function handler(req, res) {
   const { id } = typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
+  res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
+
   try {
     if (!id) {
       res.status(400).json({ message: '⚠️ Missing required body params' })
