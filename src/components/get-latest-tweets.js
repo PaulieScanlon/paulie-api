@@ -4,22 +4,23 @@ import { Spinner, Flex, Grid, Button } from 'theme-ui'
 
 import InputSearch from './input-search'
 
-const INITIAL_USERNAME = 'PaulieScanlon'
+const INITIAL_ID = 470012453
 
-const GetTwitterUser = () => {
+const GetLatestTweets = () => {
   const [response, setResponse] = useState(null)
-  const [username, setUsername] = useState(INITIAL_USERNAME)
-  const [_username, _setUsername] = useState(INITIAL_USERNAME)
+  const [id, setId] = useState(INITIAL_ID)
+  const [_id, _setId] = useState(INITIAL_ID)
   const [isSubmitting, setIsSubmitting] = useState(true)
 
-  const getTwitterUser = useCallback(async () => {
+  const getLatestTweets = useCallback(async () => {
     setIsSubmitting(true)
 
     try {
-      const response = await axios('/api/get-twitter-user', {
+      const response = await axios('/api/get-latest-tweets', {
         method: 'POST',
         data: {
-          username: _username,
+          // https://tools.codeofaninja.com/find-twitter-id
+          id: _id,
         },
       })
       setResponse(response.data)
@@ -28,25 +29,25 @@ const GetTwitterUser = () => {
       setResponse(error.response)
       setIsSubmitting(false)
     }
-  }, [_username])
+  }, [_id])
 
   useEffect(() => {
-    getTwitterUser()
-  }, [getTwitterUser])
+    getLatestTweets()
+  }, [getLatestTweets])
 
-  const handleUsernameChange = (event) => {
+  const handleIdChange = (event) => {
     setResponse('')
-    setUsername(event.target.value)
+    setId(event.target.value)
   }
 
-  const handleUsernameClear = () => {
+  const handleIdClear = () => {
     setResponse('')
-    setUsername('')
+    setId('')
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    _setUsername(username)
+    _setId(id)
   }
   return (
     <Fragment>
@@ -66,14 +67,14 @@ const GetTwitterUser = () => {
           }}
         >
           <InputSearch
-            label="Username"
-            searchPlaceholder={INITIAL_USERNAME}
-            searchValue={username}
-            onChange={handleUsernameChange}
-            onClear={handleUsernameClear}
+            label="Id"
+            searchPlaceholder={INITIAL_ID}
+            searchValue={id}
+            onChange={handleIdChange}
+            onClear={handleIdClear}
           />
         </Grid>
-        <Button disabled={isSubmitting || !username} type="submit">
+        <Button disabled={isSubmitting || !id} type="submit">
           Submit
         </Button>
       </Grid>
@@ -92,4 +93,4 @@ const GetTwitterUser = () => {
   )
 }
 
-export default GetTwitterUser
+export default GetLatestTweets

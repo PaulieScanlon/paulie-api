@@ -1,9 +1,13 @@
 import React, { createContext, useReducer } from 'react'
 
 const initialState = {
+  getLatestTweets: {
+    endpoint: 'get-latest-tweets',
+    isExpanded: true,
+  },
   getTwitterUser: {
     endpoint: 'get-twitter-user',
-    isExpanded: true,
+    isExpanded: false,
   },
   makeStripePayment: {
     endpoint: 'make-stripe-payment',

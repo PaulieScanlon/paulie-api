@@ -10,6 +10,81 @@ All API endpoints use the same resource origin: `https://paulieapi.gatsbyjs.io`
 
 ## [Twitter](#twitter)
 
+<ExpandableContent id='getLatestTweets'>
+
+This endpoint uses the Twitter `users/${id}/tweets` endpoint under the hood to return a users latest Tweet information.
+
+<br />
+
+<UsageDetails to="/get-latest-tweets" />
+
+<Box
+  variant='styles.tableWrapper'
+>
+
+| Endpoint                 | Type | Parameters       | required | default | Allowed Domains | Response |
+| ------------------------ | ---- | ---------------- | -------- | ------- | --------------- | -------- |
+| `/api/get-latest-tweets` | POST | username: string | true     | n/a     |                 | JSON     |
+
+</Box>
+
+<small>Example Request</small>
+
+```javascript
+// using axios
+await axios('https://paulieapi.gatsbyjs.io/api/get-latest-tweets', {
+  method: 'POST',
+  data: {
+    id: 470012453,
+  },
+})
+
+// using fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/get-latest-tweets', {
+  method: 'POST',
+  body: JSON.stringify({ id: 470012453 }),
+})
+```
+
+<small>Example Response</small>
+
+```json
+{
+  "message": "🕺 Twitter request ok",
+  "tweets": [
+    {
+      "author_id": "470012453",
+      "entities": {
+        "annotations": [
+          {
+            "start": 23,
+            "end": 27,
+            "probability": 0.9787,
+            "type": "Person",
+            "normalized_text": "Brian"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "FoodyBrian",
+            "id": "1177475647259561987"
+          }
+        ]
+      },
+      "text": "@FoodyBrian Ha! thanks Brian!",
+      "id": "1554443625878196228",
+      "created_at": "2022-08-02T12:26:55.000Z"
+    }
+  ]
+}
+```
+
+<Divider />
+
+</ExpandableContent>
+
 <ExpandableContent id='getTwitterUser'>
 
 This endpoint uses the Twitter `users/by/username/${username}` endpoint under the hood to return information about a Twitter username.
