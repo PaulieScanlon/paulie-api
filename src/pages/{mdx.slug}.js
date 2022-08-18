@@ -1,13 +1,11 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
-import { Link as GatsbyLink } from 'gatsby'
-import Prism from '@theme-ui/prism'
+import { Link } from 'gatsby'
 
-import { Link } from 'theme-ui'
-import * as themeUiComponents from 'theme-ui'
+import { stripLeadingSlash } from '../utils/strip-leading-slash'
 
 import Icon from '../components/icon'
 import EndpointMessage from '../components/endpoint-message'
@@ -16,28 +14,21 @@ import ExpandableContent from '../components/expandable-content'
 
 const components = {
   a: ({ href, children }) => {
-    // If it's an external url use Link and target _blank
-    if (href.match(/^(http|https):/g)) {
+    // If it's an external url, use <a> and target _blank
+    if (href.match(/^(http|https|mailto):/g)) {
       return (
-        <Link href={href} target="_blank" rel="noopener">
+        <a href={href} target="_blank" rel="noreferrer">
           {children}
-        </Link>
+        </a>
       )
     }
-    // if it's a # use Link which will fires an anchorScroll in gatsby-browser
+    // if it's a jumplink #, use Link which will fires an anchorScroll in gatsby-browser
     if (href.match(/#/gi)) {
-      return <Link href={href}>{children}</Link>
+      return <a href={stripLeadingSlash(href)}>{children}</a>
     }
-    // if it's anything else use GatsbyLink
-    return (
-      <Link as={GatsbyLink} to={href}>
-        {children}
-      </Link>
-    )
+    // if it's anything else, use Link
+    return <Link to={href}>{children}</Link>
   },
-  pre: ({ children }) => <Fragment>{children}</Fragment>,
-  code: Prism,
-  ...themeUiComponents,
   Icon,
   EndpointMessage,
   UsageDetails,
@@ -60,7 +51,7 @@ const MdxPage = ({
 }
 
 export const pageQuery = graphql`
-  query MDXQuery($id: String!) {
+  query ($id: String!) {
     mdx(id: { eq: $id }) {
       id
       frontmatter {

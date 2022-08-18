@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
-import ContextProvider from '../context/app-context'
+import Seo from './seo'
+import Header from './header'
 
 const RootElement = ({ children }) => {
-  return <ContextProvider>{children}</ContextProvider>
+  return (
+    <Fragment>
+      <Seo />
+      <Header />
+      <main>{children}</main>
+    </Fragment>
+  )
 }
 
 export default RootElement

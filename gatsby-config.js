@@ -17,7 +17,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-theme-ui`,
     `gatsby-plugin-mdx`,
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
@@ -41,7 +40,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `content`,
-        path: `${__dirname}/src/pages-content/`,
+        path: `${__dirname}/content/`,
       },
     },
   ],

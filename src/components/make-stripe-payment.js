@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
-import { Spinner, Flex, Button } from 'theme-ui'
 
 import FormInputValue from './form-input-value'
 
@@ -71,8 +70,8 @@ const MakeStripePayment = () => {
           <pre className="language-json">
             {JSON.stringify(response, null, 2)}
           </pre>
-          <Flex sx={{ justifyContent: 'center' }}>
-            <Button
+          <Fragment>
+            <button
               as="a"
               variant="secondary"
               href={response.url}
@@ -82,17 +81,11 @@ const MakeStripePayment = () => {
               }}
             >
               Checkout
-            </Button>
-          </Flex>
+            </button>
+          </Fragment>
         </Fragment>
       ) : (
-        <Flex
-          sx={{
-            justifyContent: 'center',
-          }}
-        >
-          {isSubmitting ? <Spinner /> : null}
-        </Flex>
+        <div>{isSubmitting ? <div>Loading</div> : null}</div>
       )}
     </Fragment>
   )

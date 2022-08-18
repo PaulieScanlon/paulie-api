@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Input, Label } from 'theme-ui'
 
 const InputNumber = ({ label, numberValue, onChange }) => {
   return (
-    <Label htmlFor="number-value">
+    <label htmlFor="number-value">
       {label}
-      <Input
+      <input
         id="number-value"
         type="number"
         min={1}
@@ -14,7 +13,7 @@ const InputNumber = ({ label, numberValue, onChange }) => {
         value={numberValue}
         onChange={onChange}
       />
-    </Label>
+    </label>
   )
 }
 

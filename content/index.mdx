@@ -2,15 +2,9 @@
 
 This site is built using [Gatsby](https://www.gatsbyjs.com/) and restricts access to a set of [Serverless Functions](https://www.gatsbyjs.com/docs/reference/functions/) hosted on [Gatsby Cloud](https://www.gatsbyjs.com/products/cloud/). <br /> It acts as a standalone API for all of my things 🕺
 
-<Divider />
-
 All API endpoints use the same resource origin: `https://paulieapi.gatsbyjs.io`
 
-<Divider />
-
 ## [Twitter](#twitter)
-
-<ExpandableContent id='getLatestTweets'>
 
 This endpoint uses the Twitter `users/${id}/tweets` endpoint under the hood to return a users latest Tweet information.
 
@@ -18,15 +12,9 @@ This endpoint uses the Twitter `users/${id}/tweets` endpoint under the hood to r
 
 <UsageDetails to="/get-latest-tweets" />
 
-<Box
-  variant='styles.tableWrapper'
->
-
 | Endpoint                 | Type | Parameters | required | default | Allowed Domains | Response |
 | ------------------------ | ---- | ---------- | -------- | ------- | --------------- | -------- |
 | `/api/get-latest-tweets` | POST | id: number | true     | n/a     |                 | JSON     |
-
-</Box>
 
 <small>Example Request</small>
 
@@ -81,27 +69,11 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-latest-tweets', {
 }
 ```
 
-<Divider />
-
-</ExpandableContent>
-
-<ExpandableContent id='getTwitterUser'>
-
 This endpoint uses the Twitter `users/by/username/${username}` endpoint under the hood to return information about a Twitter username.
-
-<br />
-
-<UsageDetails to="/get-twitter-user" />
-
-<Box
-  variant='styles.tableWrapper'
->
 
 | Endpoint                | Type | Parameters       | required | default | Allowed Domains                                    | Response |
 | ----------------------- | ---- | ---------------- | -------- | ------- | -------------------------------------------------- | -------- |
 | `/api/get-twitter-user` | POST | username: string | true     | n/a     | https://paulie.dev <br /> https://pauliescanlon.io | JSON     |
-
-</Box>
 
 <small>Example Request</small>
 
@@ -139,23 +111,9 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-twitter-user', {
 }
 ```
 
-<Divider />
-
-</ExpandableContent>
-
 ## [Stripe](#stripe)
 
-<ExpandableContent id='makeStripePayment'>
-
 This endpoint uses the Stripe `stripe.checkout.sessions.create` method under the hood to create a checkout url for a user provided payment amount.
-
-<br />
-
-<UsageDetails to="/make-stripe-payment" />
-
-<Box
-  variant='styles.tableWrapper'
->
 
 | Endpoint                   | Type | Parameters          | required | default | Allowed Domains                                     | Response |
 | -------------------------- | ---- | ------------------- | -------- | ------- | --------------------------------------------------- | -------- |
@@ -163,8 +121,6 @@ This endpoint uses the Stripe `stripe.checkout.sessions.create` method under the
 | -                          | -    | amount: number      | true     | n/a     | -                                                   | -        |
 | -                          | -    | success_url: string | true     | n/a     | -                                                   | -        |
 | -                          | -    | cancel_url: string  | true     | n/a     | -                                                   | -        |
-
-</Box>
 
 <small>Example Request</small>
 
@@ -201,29 +157,13 @@ await fetch('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
 }
 ```
 
-<Divider />
-
-</ExpandableContent>
-
 ## [GitHub](#github)
 
-<ExpandableContent id='getGithubUser'>
-
 This endpoint uses the Octokit `octokit.request('GET /users/${username}')` under the hood to return information about a GitHub username.
-
-<br />
-
-<UsageDetails to="/get-github-user" />
-
-<Box
-  variant='styles.tableWrapper'
->
 
 | Endpoint               | Type | Parameters       | required | default | Allowed Domains | Response |
 | ---------------------- | ---- | ---------------- | -------- | ------- | --------------- | -------- |
 | `/api/get-github-user` | POST | username: string | true     | n/a     | paulie.dev      | JSON     |
-
-</Box>
 
 <small>Example Request</small>
 
@@ -268,28 +208,12 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user', {
 }
 ```
 
-<Divider />
-
-</ExpandableContent>
-
-<ExpandableContent id='getGithubRepo'>
-
 This endpoint uses the Octokit `GET /repos/{owner}/{repo}` under the hood to return information about a GitHub repository.
-
-<br />
-
-<UsageDetails to="/get-github-repo" />
-
-<Box
-  variant='styles.tableWrapper'
->
 
 | Endpoint               | Type | Parameters    | required | default | Allowed Domains                 | Response |
 | ---------------------- | ---- | ------------- | -------- | ------- | ------------------------------- | -------- |
 | `/api/get-github-repo` | POST | owner: string | true     | n/a     | https://pauliescanlon.github.io | JSON     |
 |                        |      | repo: string  | true     | n/a     |                                 |          |
-
-</Box>
 
 <small>Example Request</small>
 
@@ -336,28 +260,12 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-repo', {
 }
 ```
 
-<Divider />
-
-</ExpandableContent>
-
-<ExpandableContent id='getGithubUserEvents'>
-
 This endpoint uses the Octokit `octokit.request('GET /users/${username}/events')` under the hood to return events for a GitHub username.
-
-<br />
-
-<UsageDetails to="/get-github-user-events" />
-
-<Box
-  variant='styles.tableWrapper'
->
 
 | Endpoint                      | Type | Parameters       | required | default | Allowed Domains                 | Response |
 | ----------------------------- | ---- | ---------------- | -------- | ------- | ------------------------------- | -------- |
 | `/api/get-github-user-events` | POST | username: string | true     | n/a     | https://pauliescanlon.github.io | JSON     |
 | -                             | -    | results: number  | false    | 5       | -                               | -        |
-
-</Box>
 
 <small>Example Request</small>
 
@@ -407,27 +315,13 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user-events', {
 }
 ```
 
-</ExpandableContent>
-
-<ExpandableContent id='getGithubRepoEvents'>
-
 This endpoint uses the Octokit `octokit.request('GET /repos/{owner}/{repo}/events')` under the hood to return events for a GitHub repository.
-
-<br />
-
-<UsageDetails to="/get-github-repo-events" />
-
-<Box
-  variant='styles.tableWrapper'
->
 
 | Endpoint                      | Type | Parameters      | required | default | Allowed Domains                 | Response |
 | ----------------------------- | ---- | --------------- | -------- | ------- | ------------------------------- | -------- |
 | `/api/get-github-repo-events` | POST | owner: string   | true     | n/a     | https://pauliescanlon.github.io | JSON     |
 | -                             | -    | repo: string    | true     | n/a     | -                               | -        |
 | -                             | -    | results: number | false    | 5       | -                               | -        |
-
-</Box>
 
 <small>Example Request</small>
 
@@ -479,5 +373,3 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-repo-events', {
   ]
 }
 ```
-
-</ExpandableContent>

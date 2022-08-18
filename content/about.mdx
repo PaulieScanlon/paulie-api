@@ -20,23 +20,11 @@ All of the sites listed below use this API and the functionality has been abstra
 
 _I've shorthanded this functionality to mean the following:_
 
-<Grid
-    sx={{
-        gridTemplateColumns: ['1fr', ['1fr 1fr']]
-    }}
->
-
-<Box>
-
 ### SOF: Same Origin Function
 
 This means that the site **can** run it's own Serverless functions and both the Front and Back-end are deployed to the same origin.
 
 <small>This is denoted using solid lines in the diagram below</small>
-
-</Box>
-
-<Box>
 
 ### COF: Cross Origin Function
 
@@ -44,16 +32,10 @@ This means the site **can't** run it's own Serverless Functions or it makes use 
 
 <small>This is denoted using dashed lines in the diagram below</small>
 
- </Box>
-
-</Grid>
-
 <GatsbyImage
   image={getImage(props.localImages[0])}
   alt="API overview diagram"
 />
-
-<Divider />
 
 ## Origins
 
@@ -88,8 +70,6 @@ It uses COF's to connect to the `make-stripe-payment` endpoint. It can't use SOF
 - Built with Gatsby ❌
 - Uses SOF ❌
 - Uses COF ✅
-
-<br />
 
 ### [https://pauliescanlon.github.io](https://pauliescanlon.github.io)
 

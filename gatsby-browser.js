@@ -1,5 +1,4 @@
 import React from 'react'
-import PageElement from './src/components/page-element'
 import RootElement from './src/components/root-element'
 
 const anchorScroll = (location) => {
@@ -21,10 +20,6 @@ const anchorScroll = (location) => {
 export const onRouteUpdate = ({ location }) => {
   anchorScroll(location)
   return true
-}
-
-export const wrapPageElement = ({ element }) => {
-  return <PageElement>{element}</PageElement>
 }
 
 export const wrapRootElement = ({ element }) => {

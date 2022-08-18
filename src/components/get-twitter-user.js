@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
-import { Spinner, Flex, Grid, Button } from 'theme-ui'
 
 import InputSearch from './input-search'
 
@@ -50,21 +49,8 @@ const GetTwitterUser = () => {
   }
   return (
     <Fragment>
-      <Grid
-        as="form"
-        variant="forms"
-        onSubmit={handleSubmit}
-        sx={{
-          gridTemplateColumns: ['auto', '1fr auto'],
-          gap: [3, 2],
-        }}
-      >
-        <Grid
-          sx={{
-            gridTemplateColumns: ['auto', '1fr'],
-            gap: 2,
-          }}
-        >
+      <form onSubmit={handleSubmit}>
+        <div>
           <InputSearch
             label="Username"
             searchPlaceholder={INITIAL_USERNAME}
@@ -72,21 +58,15 @@ const GetTwitterUser = () => {
             onChange={handleUsernameChange}
             onClear={handleUsernameClear}
           />
-        </Grid>
-        <Button disabled={isSubmitting || !username} type="submit">
+        </div>
+        <button disabled={isSubmitting || !username} type="submit">
           Submit
-        </Button>
-      </Grid>
+        </button>
+      </form>
       {response ? (
         <pre className="language-json">{JSON.stringify(response, null, 2)}</pre>
       ) : (
-        <Flex
-          sx={{
-            justifyContent: 'center',
-          }}
-        >
-          {isSubmitting ? <Spinner /> : null}
-        </Flex>
+        <div>{isSubmitting ? <div>Loading</div> : null}</div>
       )}
     </Fragment>
   )

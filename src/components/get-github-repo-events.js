@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
-import { Spinner, Flex, Grid, Button } from 'theme-ui'
 
 import InputSearch from './input-search'
 import InputNumber from './input-number'
@@ -78,21 +77,8 @@ const GetGitHubRepoEvents = () => {
 
   return (
     <Fragment>
-      <Grid
-        as="form"
-        variant="forms"
-        onSubmit={handleSubmit}
-        sx={{
-          gridTemplateColumns: ['auto', '1fr auto'],
-          gap: [3, 2],
-        }}
-      >
-        <Grid
-          sx={{
-            gridTemplateColumns: ['auto', '1fr 1fr auto'],
-            gap: 2,
-          }}
-        >
+      <form onSubmit={handleSubmit}>
+        <div>
           <InputSearch
             label="Owner"
             searchPlaceholder={INITIAL_OWNER}
@@ -113,22 +99,16 @@ const GetGitHubRepoEvents = () => {
             numberValue={results}
             onChange={handleResultsChange}
           />
-        </Grid>
-        <Button disabled={isSubmitting || !owner || !repo} type="submit">
+        </div>
+        <button disabled={isSubmitting || !owner || !repo} type="submit">
           Submit
-        </Button>
-      </Grid>
+        </button>
+      </form>
 
       {response ? (
         <pre className="language-json">{JSON.stringify(response, null, 2)}</pre>
       ) : (
-        <Flex
-          sx={{
-            justifyContent: 'center',
-          }}
-        >
-          {isSubmitting ? <Spinner /> : null}
-        </Flex>
+        <div>{isSubmitting ? <div>Loading</div> : null}</div>
       )}
     </Fragment>
   )

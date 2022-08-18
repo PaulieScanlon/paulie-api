@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Button, Input, Select, Label } from 'theme-ui'
 
 const FormInputValue = ({
   productValue,
@@ -11,44 +10,30 @@ const FormInputValue = ({
   isSubmitting,
 }) => {
   return (
-    <Grid
-      as="form"
-      variant="forms"
-      onSubmit={onSubmit}
-      sx={{
-        gridTemplateColumns: ['auto', '1fr auto'],
-        gap: 2,
-      }}
-    >
-      <Grid
-        sx={{
-          gridTemplateColumns: ['1fr auto'],
-          gap: 2,
-        }}
-      >
-        <Label htmlFor="number-value">
-          Product
-          <Select value={productValue} onChange={onSelectChange}>
-            <option value="prod_KAgqqzBEBmuYkT">mdx-embed</option>
-            <option value="prod_KBkjqz2EoA4xXU">paulie.dev</option>
-          </Select>
-        </Label>
-        <Label>
-          Amount
-          <Input
-            id="number-value"
-            type="number"
-            min={1}
-            max={100}
-            value={numberValue}
-            onChange={onNumberChange}
-          />
-        </Label>
-      </Grid>
-      <Button disabled={isSubmitting} type="submit">
+    <form>
+      <label htmlFor="number-value">
+        Product
+        <select value={productValue} onChange={onSelectChange}>
+          <option value="prod_KAgqqzBEBmuYkT">mdx-embed</option>
+          <option value="prod_KBkjqz2EoA4xXU">paulie.dev</option>
+        </select>
+      </label>
+
+      <label>
+        Amount
+        <input
+          id="number-value"
+          type="number"
+          min={1}
+          max={100}
+          value={numberValue}
+          onChange={onNumberChange}
+        />
+      </label>
+      <button disabled={isSubmitting} type="submit">
         Submit
-      </Button>
-    </Grid>
+      </button>
+    </form>
   )
 }
 

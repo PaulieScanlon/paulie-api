@@ -1,37 +1,19 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Link } from 'theme-ui'
-import { Link as GatsbyLink } from 'gatsby'
+import { Link } from 'gatsby'
 
 import Icon from './icon'
 
 const UsageDetails = ({ to, href }) => {
   return (
-    <Grid
-      sx={{
-        mt: to ? 0 : 4,
-        alignItems: 'center',
-        gridTemplateColumns: '1fr auto',
-        p: {
-          fontSize: 'smaller',
-          m: 0,
-        },
-        a: {
-          fontSize: 'smaller',
-          display: 'grid',
-          alignItems: 'center',
-          gap: 1,
-          gridTemplateColumns: 'auto 1fr',
-        },
-      }}
-    >
-      {to ? <small>Usage</small> : <GatsbyLink to="/">Back</GatsbyLink>}
+    <Fragment>
+      {to ? <small>Usage</small> : <Link to="/">Back</Link>}
 
       {to ? (
-        <GatsbyLink to={to}>
+        <Link to={to}>
           <Icon path="play" />
           Run in browser
-        </GatsbyLink>
+        </Link>
       ) : null}
       {href ? (
         <Link
@@ -46,7 +28,7 @@ const UsageDetails = ({ to, href }) => {
           <Icon path="code" sx={{ mt: '2px' }} />
         </Link>
       ) : null}
-    </Grid>
+    </Fragment>
   )
 }
 

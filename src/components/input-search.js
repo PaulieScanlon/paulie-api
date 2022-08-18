@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Label, Text, Input, IconButton, Box } from 'theme-ui'
 
 import Icon from './icon'
 
@@ -13,51 +12,22 @@ const InputSearch = ({
   showSymbol = true,
 }) => {
   return (
-    <Label htmlFor="input-value">
+    <label htmlFor="input-value">
       {label}
-      <Box
-        sx={{
-          position: 'relative',
-        }}
-      >
-        {showSymbol ? (
-          <Text
-            variant="small"
-            sx={{
-              position: 'absolute',
-              top: '48%',
-              left: 2,
-              transform: 'translateY(-50%)',
-              color: 'lighten',
-            }}
-          >
-            @
-          </Text>
-        ) : null}
-        <Input
+      <div>
+        {showSymbol ? <small>@</small> : null}
+        <input
           id="input-value"
           type="text"
           placeholder={searchPlaceholder}
           value={searchValue}
           onChange={onChange}
-          sx={{
-            pl: showSymbol ? '24px' : '8px',
-          }}
         />
-        <IconButton
-          onClick={onClear}
-          type="button"
-          sx={{
-            position: 'absolute',
-            top: '50%',
-            right: 2,
-            transform: 'translateY(-50%)',
-          }}
-        >
+        <button onClick={onClear} type="button">
           <Icon path="clear" />
-        </IconButton>
-      </Box>
-    </Label>
+        </button>
+      </div>
+    </label>
   )
 }
 

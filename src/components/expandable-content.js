@@ -1,42 +1,29 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Box, Button } from 'theme-ui'
-
-import { AppContext } from '../context/app-context'
 
 import EndpointMessage from './endpoint-message'
 
 const ExpandableContent = ({ id, trigger, children }) => {
-  const { state, dispatch } = useContext(AppContext)
-
   const handleClick = () => {
-    dispatch({
-      type: 'setExpanded',
-      id: id,
-      isExpanded: !state[id].isExpanded,
-    })
+    console.log('ExpandableContent | handleClick')
   }
 
   return (
-    <Grid
-      sx={{
-        mb: 3,
-      }}
-    >
-      {state ? (
+    <div>
+      {/* {state ? (
         <Fragment>
-          <Button onClick={handleClick} variant="ghost">
+          <button onClick={handleClick}>
             <EndpointMessage
               type="POST"
               endpoint={`/api/${state[id].endpoint}`}
               icon="lock"
               isExpanded={state[id].isExpanded}
             />
-          </Button>
-          {state[id].isExpanded ? <Box>{children}</Box> : null}
+          </button>
+          {state[id].isExpanded ? <span>{children}</span> : null}
         </Fragment>
-      ) : null}
-    </Grid>
+      ) : null} */}
+    </div>
   )
 }
 
