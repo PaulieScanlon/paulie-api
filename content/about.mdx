@@ -1,0 +1,75 @@
+---
+type: page
+title: About
+icon: M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z
+images:
+  - ./api-overview-diagram.jpg
+---
+
+import { getImage, GatsbyImage } from 'gatsby-plugin-image';
+
+# More About My Requirements
+
+Paulie API is a standalone API and documentation site. It provides access to a set of
+[Serverless Functions](https://www.gatsbyjs.com/docs/reference/functions/) hosted on
+[Gatsby Cloud](https://www.gatsbyjs.com/products/cloud/) that I use in number of my websites.
+
+## Rational
+
+All of the sites listed below use this API and the functionality has been abstracted for one of two reasons:
+
+1. The origin site is not built using Gatsby and can't run it's own Serverless Functions
+2. The Serverless Function is used by more than one origin
+
+_I've shorthanded this functionality to mean the following:_
+
+<GatsbyImage image={getImage(props.images[0])} alt="API overview diagram" />
+
+### SOF: Same Origin Function
+
+This means that the site **can** run it's own Serverless functions and both the Front and Back-end are deployed to the
+same origin.
+
+<small>This is denoted using solid lines in the diagram above</small>
+
+### COF: Cross Origin Function
+
+This means the site **can't** run it's own Serverless Functions or it makes use of a Serverless Function that is used by
+more than one origin.
+
+<small>This is denoted using dashed lines in the diagram above</small>
+
+## Origins
+
+### paulie.dev
+
+[paulie.dev](https://paulie.dev) is built using [Gatsby](https://www.gatsbyjs.com)
+
+It uses COF's to connect to the `get-twitter-user` and `make-stripe-payment` endpoint. It uses is own SOF's to `POST`
+and `GET` user reactions stored in a [Fauna](https://fauna.com/) database and `GET`'s to
+[Google Analytics](https://developers.google.com/analytics/devguides/reporting/data/v1?hl=en) that display site visitors
+Country locations.
+
+- Built with Gatsby ✅
+- Uses SOF ✅
+- Uses COF ✅
+
+### MDX Embed
+
+[MDX Embed](https://mdx-embed.com) is built using [Storybook](https://storybook.js.org)
+
+It uses COF's to connect to the `make-stripe-payment` endpoint.
+
+- Built with Gatsby ❌
+- Uses SOF ❌
+- Uses COF ✅
+
+### pauliescanlon.github.io
+
+[pauliescanlon.github.io](https://pauliescanlon.github.io) is built using [Astro](https://astro.build/)
+
+It uses COF's to connect to the `get-github-events` endpoint.
+
+- Built with Gatsby ❌
+- Uses SOF ❌
+- Uses COF ✅

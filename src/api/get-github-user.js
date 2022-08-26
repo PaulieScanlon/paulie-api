@@ -1,4 +1,4 @@
-const { octokit } = require('../clients')
+const { octokit } = require('../clients');
 // import Cors from 'cors'
 
 // const allowedOrigins = [
@@ -30,22 +30,21 @@ const { octokit } = require('../clients')
 // }
 
 export default async function handler(req, res) {
-  const { username } =
-    typeof req.body === 'string' ? JSON.parse(req.body) : req.body
+  const { username } = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
 
-  res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
+  res.setHeader('Access-Control-Allow-Origin', '*'); // YOLO
 
   try {
     const { data } = await octokit.request(`GET /users/{username}`, {
-      username: username,
-    })
+      username: username
+    });
 
     res.status(200).json({
       message: '🕺 GitHub request ok',
-      user: data ? data : '🦜 Username not found',
-    })
+      user: data ? data : '🦜 Username not found'
+    });
   } catch {
-    res.status(500).json({ error: '🚫 GitHub error' })
+    res.status(500).json({ error: '🚫 GitHub error' });
   }
 
   // try {

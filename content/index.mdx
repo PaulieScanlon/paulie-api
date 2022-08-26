@@ -1,0 +1,459 @@
+---
+type: page
+title: Home
+icon:
+  M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0
+  011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z
+---
+
+<h1>The documentation for Paulie API</h1>
+
+This site is built using [Gatsby](https://www.gatsbyjs.com/) and provides access to a set of
+[Serverless Functions](https://www.gatsbyjs.com/docs/reference/functions/) hosted on
+[Gatsby Cloud](https://www.gatsbyjs.com/products/cloud/).
+
+It acts as a standalone API for all of my things 🕺.
+
+You can test each of the endpoints, and preview the response using the <span className='text-primary font-bold'>▶ Run in
+browser</span> button.
+
+## Twitter
+
+### Latest Tweets
+
+This endpoint uses the Twitter `users/${id}/tweets` endpoint under the hood to return a users latest Tweets. Use
+[this link](https://tools.codeofaninja.com/find-twitter-id) to find your Twitter `id`.
+
+| Endpoint                 | Type | Parameters | Required | Default | Response |
+| ------------------------ | ---- | ---------- | -------- | ------- | -------- |
+| `/api/get-latest-tweets` | POST | id: number | true     | n/a     | JSON     |
+
+<RunInBrowser>
+  <GetLatestTweets />
+</RunInBrowser>
+
+<RequestResponseExpand type='request'>
+
+```javascript
+// axios
+await axios('https://paulieapi.gatsbyjs.io/api/get-latest-tweets', {
+  method: 'POST',
+  data: {
+    id: 470012453
+  }
+});
+
+// fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/get-latest-tweets', {
+  method: 'POST',
+  body: JSON.stringify({ id: 470012453 })
+});
+```
+
+</RequestResponseExpand>
+
+<RequestResponseExpand type='response'>
+
+```json
+{
+  "message": "🕺 Twitter request ok",
+  "tweets": [
+    {
+      "author_id": "470012453",
+      "entities": {
+        "annotations": [
+          {
+            "start": 23,
+            "end": 27,
+            "probability": 0.9787,
+            "type": "Person",
+            "normalized_text": "Brian"
+          }
+        ],
+        "mentions": [
+          {
+            "start": 0,
+            "end": 11,
+            "username": "FoodyBrian",
+            "id": "1177475647259561987"
+          }
+        ]
+      },
+      "text": "@FoodyBrian Ha! thanks Brian!",
+      "id": "1554443625878196228",
+      "created_at": "2022-08-02T12:26:55.000Z"
+    }
+  ]
+}
+```
+
+</RequestResponseExpand>
+
+### Twitter User
+
+This endpoint uses the Twitter `users/by/username/${username}` endpoint under the hood to return information about a
+Twitter username.
+
+| Endpoint                | Type | Parameters       | Required | Default | Response |
+| ----------------------- | ---- | ---------------- | -------- | ------- | -------- |
+| `/api/get-twitter-user` | POST | username: string | true     | n/a     | JSON     |
+
+<RunInBrowser>
+  <GetTwitterUser />
+</RunInBrowser>
+
+<RequestResponseExpand type='request'>
+
+```javascript
+// axios
+await axios('https://paulieapi.gatsbyjs.io/api/get-twitter-user', {
+  method: 'POST',
+  data: {
+    username: 'PaulieScanlon'
+  }
+});
+
+// fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/get-twitter-user', {
+  method: 'POST',
+  body: JSON.stringify({ username: 'PaulieScanlon' })
+});
+```
+
+</RequestResponseExpand>
+
+<RequestResponseExpand type='response'>
+
+```json
+{
+  "message": "🕺 Twitter request ok",
+  "user": {
+    "description": "Senior Software Engineer / DevRel @GatsbyJs",
+    "profile_image_url": "https://pbs.twimg.com/profile_images/1230516491084275714/ZnhK4vNX_normal.jpg",
+    "created_at": "2012-01-21T07:13:24.000Z",
+    "name": "Paul Scanlon",
+    "url": "https://t.co/4ABWM2bXYQ",
+    "username": "PaulieScanlon",
+    "location": "Worthing / UK"
+    ...
+  }
+}
+```
+
+</RequestResponseExpand>
+
+## Stripe
+
+### Make Stripe Payment
+
+This endpoint uses the Stripe `stripe.checkout.sessions.create` method under the hood to create a checkout url for a
+user provided payment amount.
+
+| Endpoint                   | Type | Parameters          | Required | Default | Response |
+| -------------------------- | ---- | ------------------- | -------- | ------- | -------- |
+| `/api/make-stripe-payment` | POST | product: string     | true     | n/a     | JSON     |
+| -                          | -    | amount: number      | true     | n/a     | -        |
+| -                          | -    | success_url: string | true     | n/a     | -        |
+| -                          | -    | cancel_url: string  | true     | n/a     | -        |
+
+<RunInBrowser>
+  <MakeStripePayment />
+</RunInBrowser>
+
+<RequestResponseExpand type='request'>
+
+```javascript
+// axios
+await axios('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
+  method: 'POST',
+  data: {
+    product: 'prod_KAgqqzBEBmuYkT',
+    amount: 5,
+    success_url: 'https://www.mdx-embed.com',
+    cancel_url: 'https://www.mdx-embed.com'
+  }
+});
+
+// fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
+  method: 'POST',
+  body: JSON.stringify({
+    product: 'prod_KAgqqzBEBmuYkT',
+    amount: 5,
+    success_url: 'https://www.mdx-embed.com',
+    cancel_url: 'https://www.mdx-embed.com'
+  })
+});
+```
+
+</RequestResponseExpand>
+
+<RequestResponseExpand type='response'>
+
+```json
+{
+  "message": "🕺 Stripe checkout created ok",
+  "url": "https://checkout.stripe.com/pay/cs_test_a1zSrSYeXc5y5DnEbSCsXQ8kYIuV4vaaDcFbOVpZPsTllPfbSFgdtJ9Jtl#fidkdWxOYHwnPyd1blpxYHZxWjA0T1ZVfV9OQTNCQmBHVDcxYmdyQkRON39zbzNBN2J2S0xkZj1RZ003MTJxU3RvNEJBalFPaWxRR0Zib0xwclZPSGZyTzVrTWpMc0tqUlNBQz1ibjJ1c01vNTV%2FZ21Dan9ubycpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl"
+}
+```
+
+</RequestResponseExpand>
+
+## GitHub
+
+### GitHub User
+
+This endpoint uses the Octokit `octokit.request('GET /users/${username}')` under the hood to return information about a
+GitHub username.
+
+| Endpoint               | Type | Parameters       | Required | Default | Response |
+| ---------------------- | ---- | ---------------- | -------- | ------- | -------- |
+| `/api/get-github-user` | POST | username: string | true     | n/a     | JSON     |
+
+<RunInBrowser>
+  <GetGitHubUser />
+</RunInBrowser>
+
+<RequestResponseExpand type='request'>
+
+```javascript
+// axios
+await axios('https://paulieapi.gatsbyjs.io/api/get-github-user', {
+  method: 'POST',
+  data: { username: 'PaulieScanlon' }
+});
+
+// fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user', {
+  method: 'POST',
+  body: JSON.stringify({
+    username: 'PaulieScanlon'
+  })
+});
+```
+
+</RequestResponseExpand>
+
+<RequestResponseExpand type='response'>
+
+```json
+{
+  "message": "🕺 GitHub request ok",
+  "user": {
+    "login": "PaulieScanlon",
+    "avatar_url": "https://avatars.githubusercontent.com/u/1465706?v=4",
+    "name": "Paul Scanlon",
+    "blog": "www.paulie.dev",
+    "bio": "Jamstack Developer / Technical Content Writer (freelance)",
+    "public_repos": 78,
+    "public_gists": 18,
+    "followers": 203,
+    "following": 55,
+    "private_gists": 1,
+    "total_private_repos": 15,
+    "owned_private_repos": 15
+    ...
+  }
+}
+```
+
+</RequestResponseExpand>
+
+### GitHub Repo
+
+This endpoint uses the Octokit `GET /repos/{owner}/{repo}` under the hood to return information about a GitHub
+repository.
+
+| Endpoint               | Type | Parameters    | Required | Default | Response |
+| ---------------------- | ---- | ------------- | -------- | ------- | -------- |
+| `/api/get-github-repo` | POST | owner: string | true     | n/a     | JSON     |
+|                        |      | repo: string  | true     | n/a     |          |
+
+<RunInBrowser>
+  <GetGitHubRepo />
+</RunInBrowser>
+
+<RequestResponseExpand type='request'>
+
+```javascript
+// axios
+await axios('https://paulieapi.gatsbyjs.io/api/get-github-repo', {
+  method: 'POST',
+  data: {
+    owner: 'PaulieScanlon',
+    repo: 'mdx-embed'
+  }
+});
+
+// fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/get-github-repo', {
+  method: 'POST',
+  body: JSON.stringify({
+    owner: 'PaulieScanlon',
+    repo: 'mdx-embed'
+  })
+});
+```
+
+</RequestResponseExpand>
+
+<RequestResponseExpand type='response'>
+
+```json
+{
+  "message": "🕺 GitHub request ok",
+  "repo": {
+    "id": 290021490,
+    "node_id": "MDEwOlJlcG9zaXRvcnkyOTAwMjE0OTA=",
+    "name": "mdx-embed",
+    "full_name": "PaulieScanlon/mdx-embed",
+    "private": false,
+    "owner": {
+      "login": "PaulieScanlon",
+      "id": 1465706,
+      "node_id": "MDQ6VXNlcjE0NjU3MDY=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1465706?v=4",
+      ...
+    }
+  },
+  ...
+}
+```
+
+</RequestResponseExpand>
+
+### GitHub User Events
+
+This endpoint uses the Octokit `octokit.request('GET /users/${username}/events')` under the hood to return events for a
+GitHub username.
+
+| Endpoint                      | Type | Parameters       | Required | Default | Response |
+| ----------------------------- | ---- | ---------------- | -------- | ------- | -------- |
+| `/api/get-github-user-events` | POST | username: string | true     | n/a     | JSON     |
+| -                             | -    | results: number  | false    | 5       | -        |
+
+<RunInBrowser>
+  <GetGitHubUserEvents />
+</RunInBrowser>
+
+<RequestResponseExpand type='request'>
+
+```javascript
+// axios
+await axios('https://paulieapi.gatsbyjs.io/api/get-github-user-events', {
+  method: 'POST',
+  data: {
+    username: 'PaulieScanlon',
+    results: 5
+  }
+});
+
+// fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user-events', {
+  method: 'POST',
+  body: JSON.stringify({
+    username: 'PaulieScanlon',
+    results: 5
+  })
+});
+```
+
+</RequestResponseExpand>
+
+<RequestResponseExpand type='response'>
+
+```json
+{
+  "message": "🕺 GitHub request ok",
+  "events": [
+    {
+      "id": "17853848747",
+      "type": "PushEvent",
+      "actor": {
+        "login": "PaulieScanlon",
+        "display_login": "PaulieScanlon",
+        "url": "https://api.github.com/users/PaulieScanlon",
+        "avatar_url": "https://avatars.githubusercontent.com/u/1465706?"
+      },
+      "repo": {
+        "id": 311980309,
+        "name": "PaulieScanlon/paulie-api",
+        "url": "https://api.github.com/repos/PaulieScanlon/paulie-api"
+      },
+      ...
+    }
+  ]
+}
+```
+
+</RequestResponseExpand>
+
+### GitHub Repo Events
+
+This endpoint uses the Octokit `octokit.request('GET /repos/{owner}/{repo}/events')` under the hood to return events for
+a GitHub repository.
+
+| Endpoint                      | Type | Parameters      | Required | Default | Response |
+| ----------------------------- | ---- | --------------- | -------- | ------- | -------- |
+| `/api/get-github-repo-events` | POST | owner: string   | true     | n/a     | JSON     |
+| -                             | -    | repo: string    | true     | n/a     | -        |
+| -                             | -    | results: number | false    | 5       | -        |
+
+<RunInBrowser>
+  <GetGitHubRepoEvents />
+</RunInBrowser>
+
+<RequestResponseExpand type='request'>
+
+```javascript
+// axios
+await axios('https://paulieapi.gatsbyjs.io/api/get-github-repo-events', {
+  method: 'POST',
+  data: {
+    owner: 'PaulieScanlon',
+    repo: 'mdx-embed',
+    results: 5
+  }
+});
+
+// fetch
+await fetch('https://paulieapi.gatsbyjs.io/api/get-github-repo-events', {
+  method: 'POST',
+  body: JSON.stringify({
+    owner: 'PaulieScanlon',
+    repo: 'mdx-embed',
+    results: 5
+  })
+});
+```
+
+</RequestResponseExpand>
+
+<RequestResponseExpand type='response'>
+
+```json
+{
+  "message": "🕺 GitHub request ok",
+  "events": [
+    {
+      "id": "18049970778",
+      "type": "IssueCommentEvent",
+      "actor": {
+        "id": 29119,
+        "login": "spacecowb0y",
+        "display_login": "spacecowb0y",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/spacecowb0y",
+        "avatar_url": "https://avatars.githubusercontent.com/u/29119?"
+      },
+      "repo": {
+        "id": 290021490,
+        "name": "PaulieScanlon/mdx-embed",
+        "url": "https://api.github.com/repos/PaulieScanlon/mdx-embed"
+      }
+    }
+  ]
+}
+```
+
+</RequestResponseExpand>

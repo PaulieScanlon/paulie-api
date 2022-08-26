@@ -1,56 +1,39 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Grid, Button, Input, Select, Label } from 'theme-ui'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const FormInputValue = ({
-  productValue,
-  numberValue,
-  onSubmit,
-  onSelectChange,
-  onNumberChange,
-  isSubmitting,
-}) => {
+const FormInputValue = ({ productValue, numberValue, onSubmit, onSelectChange, onNumberChange, isSubmitting }) => {
   return (
-    <Grid
-      as="form"
-      variant="forms"
-      onSubmit={onSubmit}
-      sx={{
-        gridTemplateColumns: ['auto', '1fr auto'],
-        gap: 2,
-      }}
-    >
-      <Grid
-        sx={{
-          gridTemplateColumns: ['1fr auto'],
-          gap: 2,
-        }}
-      >
-        <Label htmlFor="number-value">
-          Product
-          <Select value={productValue} onChange={onSelectChange}>
-            <option value="prod_KAgqqzBEBmuYkT">mdx-embed</option>
-            <option value="prod_KBkjqz2EoA4xXU">paulie.dev</option>
-          </Select>
-        </Label>
-        <Label>
-          Amount
-          <Input
-            id="number-value"
-            type="number"
-            min={1}
-            max={100}
-            value={numberValue}
-            onChange={onNumberChange}
-          />
-        </Label>
-      </Grid>
-      <Button disabled={isSubmitting} type="submit">
+    <form onSubmit={onSubmit} className="grid grid-cols-1fr-auto-auto gap-4 items-end text-text text">
+      <label htmlFor="number-value" className="flex flex-col">
+        Product
+        <select
+          value={productValue}
+          onChange={onSelectChange}
+          className="min-h-[40px] placeholder:text-primary/20 cursor-pointer bg-transparent p-2 rounded border-2 border-primary/30"
+        >
+          <option value="prod_KAgqqzBEBmuYkT">mdx-embed</option>
+          <option value="prod_KBkjqz2EoA4xXU">paulie.dev</option>
+        </select>
+      </label>
+
+      <label className="flex flex-col">
+        Amount
+        <input
+          id="number-value"
+          type="number"
+          min={1}
+          max={100}
+          value={numberValue}
+          onChange={onNumberChange}
+          className="placeholder:text-primary/20 bg-transparent p-2 rounded border-2 border-primary/30"
+        />
+      </label>
+      <button disabled={isSubmitting} type="submit">
         Submit
-      </Button>
-    </Grid>
-  )
-}
+      </button>
+    </form>
+  );
+};
 
 FormInputValue.propTypes = {
   /** The product value */
@@ -64,7 +47,7 @@ FormInputValue.propTypes = {
   /** The onNumberChange handler */
   onNumberChange: PropTypes.func,
   /** The status of the form */
-  isSubmitting: PropTypes.bool.isRequired,
-}
+  isSubmitting: PropTypes.bool.isRequired
+};
 
-export default FormInputValue
+export default FormInputValue;

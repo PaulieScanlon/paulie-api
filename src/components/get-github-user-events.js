@@ -1,82 +1,62 @@
-import React, { Fragment, useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
-import { Spinner, Flex, Grid, Button } from 'theme-ui'
+import React, { useState } from 'react';
+import axios from 'axios';
 
-import InputSearch from './input-search'
-import InputNumber from './input-number'
+import InputSearch from './input-search';
+import InputNumber from './input-number';
+import PrismSyntaxHighlight from './prism-syntax-highlight';
 
-const INITIAL_USERNAME = 'PaulieScanlon'
-const INITIAL_RESULTS = 5
+const INITIAL_USERNAME = 'PaulieScanlon';
+const INITIAL_RESULTS = 5;
 
 const GetGitHubUserEvents = () => {
-  const [response, setResponse] = useState(null)
-  const [username, setUsername] = useState(INITIAL_USERNAME)
-  const [_username, _setUsername] = useState(INITIAL_USERNAME)
-  const [results, setResults] = useState(INITIAL_RESULTS)
-  const [_results, _setResults] = useState(INITIAL_RESULTS)
-  const [isSubmitting, setIsSubmitting] = useState(true)
+  const [response, setResponse] = useState(null);
+  const [username, setUsername] = useState(INITIAL_USERNAME);
+  const [results, setResults] = useState(INITIAL_RESULTS);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const getGitHubEvents = useCallback(async () => {
-    setIsSubmitting(true)
+  const getGitHubEvents = async () => {
+    setIsSubmitting(true);
 
     try {
       const response = await axios('/api/get-github-user-events', {
         method: 'POST',
         data: {
-          username: _username,
-          results: _results,
-        },
-      })
-      setResponse(response.data)
-      setIsSubmitting(false)
+          username: username,
+          results: results
+        }
+      });
+      setResponse(response.data);
+      setIsSubmitting(false);
     } catch (error) {
-      setResponse(error.response)
-      setIsSubmitting(false)
+      setResponse(error.response);
+      setIsSubmitting(false);
     }
-  }, [_username, _results])
-
-  useEffect(() => {
-    getGitHubEvents()
-  }, [getGitHubEvents])
+  };
 
   const handleUsernameChange = (event) => {
-    setResponse('')
-    setUsername(event.target.value)
-  }
+    setResponse('');
+    setUsername(event.target.value);
+  };
 
   const handleUsernameClear = () => {
-    setResponse('')
-    setUsername('')
-  }
+    setResponse('');
+    setUsername('');
+  };
 
   const handleResultsChange = (event) => {
-    setResponse('')
-    setResults(parseInt(event.target.value))
-  }
+    setResponse('');
+    setResults(parseInt(event.target.value));
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    _setUsername(username)
-    _setResults(results)
-  }
+    event.preventDefault();
+    getGitHubEvents();
+  };
 
   return (
-    <Fragment>
-      <Grid
-        as="form"
-        variant="forms"
-        onSubmit={handleSubmit}
-        sx={{
-          gridTemplateColumns: ['auto', '1fr auto'],
-          gap: [3, 2],
-        }}
-      >
-        <Grid
-          sx={{
-            gridTemplateColumns: ['auto', '1fr auto'],
-            gap: 2,
-          }}
-        >
+    <div className="mb-6 px-4">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1fr-auto gap-4 items-end text-text text">
+        <div className="grid grid-cols-1fr-1fr gap-4">
           <InputSearch
             label="Username"
             searchPlaceholder={INITIAL_USERNAME}
@@ -84,29 +64,20 @@ const GetGitHubUserEvents = () => {
             onChange={handleUsernameChange}
             onClear={handleUsernameClear}
           />
-          <InputNumber
-            label="Results"
-            numberValue={results}
-            onChange={handleResultsChange}
-          />
-        </Grid>
-        <Button disabled={isSubmitting || !username} type="submit">
+          <InputNumber label="Results" numberValue={results} onChange={handleResultsChange} />
+        </div>
+        <button disabled={isSubmitting || !username} type="submit">
           Submit
-        </Button>
-      </Grid>
+        </button>
+      </form>
+      {isSubmitting ? <div className="my-4">Loading</div> : null}
       {response ? (
-        <pre className="language-json">{JSON.stringify(response, null, 2)}</pre>
-      ) : (
-        <Flex
-          sx={{
-            justifyContent: 'center',
-          }}
-        >
-          {isSubmitting ? <Spinner /> : null}
-        </Flex>
-      )}
-    </Fragment>
-  )
-}
+        <div className="pt-6">
+          <PrismSyntaxHighlight className="language-json">{JSON.stringify(response, null, 2)}</PrismSyntaxHighlight>
+        </div>
+      ) : null}
+    </div>
+  );
+};
 
-export default GetGitHubUserEvents
+export default GetGitHubUserEvents;

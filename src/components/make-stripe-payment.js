@@ -1,63 +1,55 @@
-import React, { Fragment, useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
-import { Spinner, Flex, Button } from 'theme-ui'
+import React, { Fragment, useState } from 'react';
+import axios from 'axios';
 
-import FormInputValue from './form-input-value'
+import FormInputValue from './form-input-value';
+import PrismSyntaxHighlight from './prism-syntax-highlight';
 
-const INITIAL_PRODUCT = 'prod_KAgqqzBEBmuYkT'
-const INITIAL_AMOUNT = 5
+const INITIAL_PRODUCT = 'prod_KAgqqzBEBmuYkT';
+const INITIAL_AMOUNT = 5;
 
 const MakeStripePayment = () => {
-  const [response, setResponse] = useState(null)
-  const [price, setPrice] = useState(INITIAL_AMOUNT)
-  const [amount, setAmount] = useState(INITIAL_AMOUNT)
-  const [product, setProduct] = useState(INITIAL_PRODUCT)
-  const [select, setSelect] = useState(INITIAL_PRODUCT)
-  const [isSubmitting, setIsSubmitting] = useState(true)
+  const [response, setResponse] = useState(null);
+  const [price, setPrice] = useState(INITIAL_AMOUNT);
+  const [select, setSelect] = useState(INITIAL_PRODUCT);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const makeStripePayment = useCallback(async () => {
-    setIsSubmitting(true)
-
+  const makeStripePayment = async () => {
+    setIsSubmitting(true);
     try {
       const response = await axios('/api/make-stripe-payment', {
         method: 'POST',
         data: {
-          product: product,
-          amount: amount,
+          product: select,
+          amount: price,
           success_url: 'https://paulieapi.gatsbyjs.io/make-stripe-payment',
-          cancel_url: 'https://paulieapi.gatsbyjs.io/make-stripe-payment',
-        },
-      })
-      setResponse(response.data)
-      setIsSubmitting(false)
+          cancel_url: 'https://paulieapi.gatsbyjs.io/make-stripe-payment'
+        }
+      });
+      setResponse(response.data);
+      setIsSubmitting(false);
     } catch (error) {
-      setResponse(error.response)
-      setIsSubmitting(false)
+      setResponse(error.response);
+      setIsSubmitting(false);
     }
-  }, [product, amount])
-
-  useEffect(() => {
-    makeStripePayment()
-  }, [makeStripePayment])
+  };
 
   const handleSelectChange = (event) => {
-    setResponse('')
-    setSelect(event.target.value)
-  }
+    setResponse('');
+    setSelect(event.target.value);
+  };
 
   const handleNumberChange = (event) => {
-    setResponse('')
-    setPrice(event.target.value)
-  }
+    setResponse('');
+    setPrice(event.target.value);
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    setAmount(price)
-    setProduct(select)
-  }
+    event.preventDefault();
+    makeStripePayment();
+  };
 
   return (
-    <Fragment>
+    <div className="mb-6 px-4">
       <FormInputValue
         productValue={select}
         numberValue={parseInt(price)}
@@ -68,34 +60,20 @@ const MakeStripePayment = () => {
       />
       {response ? (
         <Fragment>
-          <pre className="language-json">
-            {JSON.stringify(response, null, 2)}
-          </pre>
-          <Flex sx={{ justifyContent: 'center' }}>
-            <Button
-              as="a"
-              variant="secondary"
-              href={response.url}
-              target="_blank"
-              sx={{
-                width: ['full', 'auto'],
-              }}
-            >
+          <div className="py-6">
+            <PrismSyntaxHighlight className="language-json">{JSON.stringify(response, null, 2)}</PrismSyntaxHighlight>
+          </div>
+          <div className="flex justify-center">
+            <a href={response.url} className="link-button" target="_blank" rel="noreferrer">
               Checkout
-            </Button>
-          </Flex>
+            </a>
+          </div>
         </Fragment>
       ) : (
-        <Flex
-          sx={{
-            justifyContent: 'center',
-          }}
-        >
-          {isSubmitting ? <Spinner /> : null}
-        </Flex>
+        <Fragment>{isSubmitting ? <div className="my-4">Loading</div> : null}</Fragment>
       )}
-    </Fragment>
-  )
-}
+    </div>
+  );
+};
 
-export default MakeStripePayment
+export default MakeStripePayment;

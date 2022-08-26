@@ -1,22 +1,22 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Input, Label } from 'theme-ui'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const InputNumber = ({ label, numberValue, onChange }) => {
   return (
-    <Label htmlFor="number-value">
+    <label htmlFor="number-value">
       {label}
-      <Input
+      <input
         id="number-value"
         type="number"
+        className="block w-full placeholder:text-primary/20 bg-transparent px-4 py-2 rounded border-2 border-primary/30"
         min={1}
         max={30}
         value={numberValue}
         onChange={onChange}
       />
-    </Label>
-  )
-}
+    </label>
+  );
+};
 
 InputNumber.propTypes = {
   /** The input label */
@@ -24,7 +24,7 @@ InputNumber.propTypes = {
   /** The number value */
   numberValue: PropTypes.number.isRequired,
   /** The onChange handler */
-  onChange: PropTypes.func.isRequired,
-}
+  onChange: PropTypes.func.isRequired
+};
 
-export default InputNumber
+export default InputNumber;

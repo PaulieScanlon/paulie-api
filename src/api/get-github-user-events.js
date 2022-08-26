@@ -1,4 +1,4 @@
-const { octokit } = require('../clients')
+const { octokit } = require('../clients');
 // import Cors from 'cors'
 
 // const allowedOrigins = [
@@ -30,24 +30,23 @@ const { octokit } = require('../clients')
 // }
 
 export default async function handler(req, res) {
-  const { username, results = 5 } =
-    typeof req.body === 'string' ? JSON.parse(req.body) : req.body
+  const { username, results = 5 } = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
 
-  res.setHeader('Access-Control-Allow-Origin', '*') // YOLO
+  res.setHeader('Access-Control-Allow-Origin', '*'); // YOLO
 
   try {
     // https://docs.github.com/en/rest/reference/activity#list-public-events-received-by-a-user
     const { data } = await octokit.request('GET /users/{username}/events', {
       username: username,
-      per_page: results,
-    })
+      per_page: results
+    });
 
     res.status(200).json({
       message: '🕺 GitHub request ok',
-      events: data.length ? data : '🦜 Events not found',
-    })
+      events: data.length ? data : '🦜 Events not found'
+    });
   } catch {
-    res.status(500).json({ error: '🚫 GitHub error' })
+    res.status(500).json({ error: '🚫 GitHub error' });
   }
 
   // try {

@@ -1,48 +1,56 @@
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+  path: `.env.${process.env.NODE_ENV || 'production'}`
+});
+
+const wrapESMPlugin = (name) =>
+  function wrapESM(opts) {
+    return async (...args) => {
+      const mod = await import(name);
+      const plugin = mod.default(opts);
+      return plugin(...args);
+    };
+  };
 
 module.exports = {
-  flags: {
-    DEV_SSR: false,
-  },
   siteMetadata: {
-    url: `https://paulieapi.gatsbyjs.io`,
-    title: `Paulie API`,
-    image: `paulie-api-og-image.jpg`,
-    description: `The documentation for Paulie API`,
-    language: `en-gb`,
-    keywords: [`gatsby`, `gatsby-functions`],
+    name: 'Paulie API',
+    description: 'The documentation for Paulie API',
+    keywords: ['Gatsby', 'Gatsby Serverless Functions'],
+    siteUrl: 'https://paulieapi.gatsbyjs.io',
+    defaultImage: 'https://paulieapi.gatsbyjs.io/images/paulie-api-og-image.jpg'
   },
   plugins: [
-    `gatsby-plugin-gatsby-cloud`,
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-theme-ui`,
-    `gatsby-plugin-mdx`,
-    `gatsby-plugin-image`,
-    `gatsby-transformer-sharp`,
+    'gatsby-plugin-postcss',
+    'gatsby-plugin-gatsby-cloud',
+    'gatsby-plugin-image',
+    'gatsby-transformer-sharp',
     {
-      resolve: `gatsby-plugin-sharp`,
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        rehypePlugins: [wrapESMPlugin('rehype-slug'), [wrapESMPlugin('rehype-autolink-headings'), { behavior: 'wrap' }]]
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-sharp',
       options: {
         defaults: {
           quality: 100,
-          formats: ['auto', 'webp', 'avif'],
-          placeholder: 'blurred',
-        },
-      },
+          formats: ['auto', 'webp'],
+          placeholder: 'blurred'
+        }
+      }
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
-      },
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID
+      }
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `content`,
-        path: `${__dirname}/src/pages-content/`,
-      },
-    },
-  ],
-}
+        path: `${__dirname}/content/`
+      }
+    }
+  ]
+};
