@@ -1,27 +1,20 @@
-import React from 'react'
-import RootElement from './src/components/root-element'
+import React from 'react';
 
-const anchorScroll = (location) => {
-  const anchor = document.querySelectorAll(`a[href="${location.hash}"]`)[0]
-  if (location && location.hash && anchor) {
-    const item = document.querySelectorAll(`a[href="${location.hash}"]`)[0]
-      .offsetTop
-    const mainNavHeight = document.querySelector(`header`).offsetHeight + 32
+import PageElement from './src/components/page-element';
 
-    setTimeout(() => {
-      window.scrollTo({
-        top: item - mainNavHeight,
-        behavior: 'smooth',
-      })
-    }, 50)
-  }
-}
+import './src/styles/global.css';
 
 export const onRouteUpdate = ({ location }) => {
-  anchorScroll(location)
-  return true
-}
+  const element = document.getElementById(location.hash.split('#')[1]?.toLowerCase());
 
-export const wrapRootElement = ({ element }) => {
-  return <RootElement>{element}</RootElement>
-}
+  if (element) {
+    window.scrollTo({
+      top: element.offsetTop - 80,
+      left: 0
+    });
+  }
+};
+
+export const wrapPageElement = ({ element, props }) => {
+  return <PageElement {...props}>{element}</PageElement>;
+};

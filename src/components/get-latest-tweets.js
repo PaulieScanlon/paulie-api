@@ -1,76 +1,71 @@
-import React, { Fragment, useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios';
 
-import InputSearch from './input-search'
+import InputSearch from './input-search';
+import PrismSyntaxHighlight from './prism-syntax-highlight';
 
-const INITIAL_ID = 470012453
+const INITIAL_ID = 470012453;
 
 const GetLatestTweets = () => {
-  const [response, setResponse] = useState(null)
-  const [id, setId] = useState(INITIAL_ID)
-  const [_id, _setId] = useState(INITIAL_ID)
-  const [isSubmitting, setIsSubmitting] = useState(true)
+  const [response, setResponse] = useState(null);
+  const [id, setId] = useState(INITIAL_ID);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const getLatestTweets = useCallback(async () => {
-    setIsSubmitting(true)
+  const getTweets = async () => {
+    setIsSubmitting(true);
 
     try {
       const response = await axios('/api/get-latest-tweets', {
         method: 'POST',
         data: {
-          // https://tools.codeofaninja.com/find-twitter-id
-          id: _id,
-        },
-      })
-      setResponse(response.data)
-      setIsSubmitting(false)
+          id: id
+        }
+      });
+      setResponse(response.data);
+      setIsSubmitting(false);
     } catch (error) {
-      setResponse(error.response)
-      setIsSubmitting(false)
+      setResponse(error.response);
+      setIsSubmitting(false);
     }
-  }, [_id])
-
-  useEffect(() => {
-    getLatestTweets()
-  }, [getLatestTweets])
+  };
 
   const handleIdChange = (event) => {
-    setResponse('')
-    setId(event.target.value)
-  }
+    setResponse('');
+    setId(event.target.value);
+  };
 
   const handleIdClear = () => {
-    setResponse('')
-    setId('')
-  }
+    setResponse('');
+    setId('');
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    _setId(id)
-  }
+    event.preventDefault();
+    getTweets();
+  };
   return (
-    <Fragment>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <InputSearch
-            label="Id"
-            searchPlaceholder={INITIAL_ID}
-            searchValue={id}
-            onChange={handleIdChange}
-            onClear={handleIdClear}
-          />
-        </div>
+    <div className="mb-6 px-4">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1fr-auto gap-4 items-end text-text text">
+        <InputSearch
+          label="Id"
+          searchPlaceholder={`${INITIAL_ID}`}
+          searchValue={id}
+          onChange={handleIdChange}
+          onClear={handleIdClear}
+        />
+
         <button disabled={isSubmitting || !id} type="submit">
           Submit
         </button>
       </form>
+      {isSubmitting ? <div className="my-4">Loading</div> : null}
       {response ? (
-        <pre className="language-json">{JSON.stringify(response, null, 2)}</pre>
-      ) : (
-        <div>{isSubmitting ? <div>Loading</div> : null}</div>
-      )}
-    </Fragment>
-  )
-}
+        <div className="pt-6">
+          <PrismSyntaxHighlight className="language-json">{JSON.stringify(response, null, 2)}</PrismSyntaxHighlight>
+        </div>
+      ) : null}
+    </div>
+  );
+};
 
-export default GetLatestTweets
+export default GetLatestTweets;

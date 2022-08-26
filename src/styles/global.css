@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply antialiased text-text bg-background;
+  }
+  /* details > summary::-webkit-details-marker,
+  details > summary::marker {
+    @apply: hidden;
+  } */
+}
+
+.main-navigation {
+  @apply transition-all duration-300 inline-grid grid-cols-auto-1fr gap-x-4 items-center rounded-full border hover:border-outline border-transparent hover:bg-surface px-3 py-2 font-medium hover:text-text;
+}
+
+.sub-navigation {
+  @apply transition-all duration-300 inline-grid grid-cols-auto-1fr gap-x-2 items-center rounded-full border hover:border-outline border-transparent hover:bg-surface px-3 py-2 font-medium hover:text-text;
+}
+
+.child-navigation {
+  @apply transition-all duration-300 inline-grid rounded-full border hover:border-outline border-transparent hover:bg-surface px-3 py-2 hover:text-text;
+}
+
+.prose :where(h1):not(:where([class~='not-prose'] *)) {
+  @apply text-text;
+}
+
+.prose :where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'] *)) a {
+  @apply no-underline font-bold;
+}
+
+.prose :where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'] *)) a::before {
+  content: '';
+}
+.prose :where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'] *)) a:hover::before {
+  @apply absolute text-base rounded;
+  content: '#';
+  margin-left: -14px;
+  margin-top: 0.6%;
+}
+
+.prose :where(table):not(:where([class~='not-prose'] *)) {
+  @apply box-border border-collapse rounded border border-solid border-outline bg-surface overflow-hidden;
+}
+
+.prose :where(thead):not(:where([class~='not-prose'] *)) {
+  @apply bg-outline/40 border-b-0;
+}
+
+.prose :where(tbody tr):not(:where([class~='not-prose'] *)) {
+  @apply border-b-outline;
+}
+
+.prose :where(thead th):not(:where([class~='not-prose'] *)) {
+  @apply font-bold text-text p-2;
+}
+
+.prose :where(tbody td, tfoot td):not(:where([class~='not-prose'] *)) {
+  @apply text-text p-2;
+}
+
+.prose :where(code):not(:where([class~='not-prose'] *)) {
+  @apply !font-normal px-1 py-1 rounded border border-outline;
+}
+
+pre {
+  @apply !bg-surface/90;
+}
+
+details {
+  @apply relative cursor-pointer;
+}
+
+details[open] > div {
+  @apply !cursor-text;
+}
+
+.prism-code {
+  @apply !m-0;
+}
+
+details > div > pre {
+  @apply !m-0;
+}
+
+details > summary.request-response {
+  @apply list-none;
+}
+summary.request-response::-webkit-details-marker {
+  @apply hidden;
+}
+
+details > summary.request-response:after {
+  @apply absolute right-3 top-1 text-lg;
+  content: '+ ';
+}
+
+details[open] > summary.request-response:after {
+  content: '- ';
+}
+
+button[type='submit'] {
+  @apply text-background cursor-pointer p-2 rounded border-2 border-primary/20 !bg-primary;
+}
+
+a.link-button {
+  @apply no-underline inline-flex justify-center font-bold text-tertiary cursor-pointer transition-all duration-300  p-2 rounded border-2 border-tertiary/30;
+}
+
+a.link-button:hover {
+  @apply border-tertiary/70;
+}
+
+button[type='submit']:disabled {
+  @apply text-primary/50 !bg-primary/20 cursor-not-allowed;
+}
