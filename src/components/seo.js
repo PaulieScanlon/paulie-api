@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { useStaticQuery, graphql } from 'gatsby';
 
 const Seo = ({ type, title, description, slug, image, tags }) => {
   const {
     site: {
-      siteMetadata: { name, siteUrl, defaultImage, keywords },
-    },
+      siteMetadata: { name, siteUrl, defaultImage, keywords }
+    }
   } = useStaticQuery(graphql`
     {
       site {
@@ -18,11 +18,11 @@ const Seo = ({ type, title, description, slug, image, tags }) => {
         }
       }
     }
-  `)
+  `);
 
-  const htmlTitle = `${name} | ${title}`
-  const ogImage = image ? image : defaultImage
-  const seoKeywords = tags ? tags : keywords
+  const htmlTitle = `${name} | ${title}`;
+  const ogImage = image ? image : defaultImage;
+  const seoKeywords = tags ? tags : keywords;
 
   return (
     <Fragment>
@@ -49,8 +49,8 @@ const Seo = ({ type, title, description, slug, image, tags }) => {
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={description}></meta>
     </Fragment>
-  )
-}
+  );
+};
 
 Seo.propTypes = {
   /** The type of meta - useful for Facebook */
@@ -64,11 +64,11 @@ Seo.propTypes = {
   /** Image url to use for opengraph image */
   image: PropTypes.string,
   /** Keywords to use in meta keywords */
-  tags: PropTypes.arrayOf(PropTypes.string),
-}
+  tags: PropTypes.arrayOf(PropTypes.string)
+};
 
 Seo.defaultProps = {
-  type: 'website',
-}
+  type: 'website'
+};
 
-export default Seo
+export default Seo;
