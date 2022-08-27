@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-import InputSearch from './input-search';
-import PrismSyntaxHighlight from './prism-syntax-highlight';
+import InputSearch from '../input-search';
+import PrismSyntaxHighlight from '../prism-syntax-highlight';
 
 const INITIAL_USERNAME = 'PaulieScanlon';
+const INITIAL_REPO = 'mdx-embed';
 
-const GetGitHubUser = () => {
+const Repo = () => {
   const [response, setResponse] = useState(null);
-  const [username, setUsername] = useState(INITIAL_USERNAME);
+  const [owner, setOwner] = useState(INITIAL_USERNAME);
+  const [repo, setRepo] = useState(INITIAL_REPO);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const getGitHubUser = async () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios('/api/get-github-user', {
-        method: 'POST',
-        data: {
-          username: username
-        }
-      });
-      setResponse(response.data);
+      const response = await (await fetch(`/api/v2/github/repo?owner=${owner}&repository=${repo}`)).json();
+
+      setResponse(response);
       setIsSubmitting(false);
     } catch (error) {
       setResponse(error.response);
@@ -31,31 +28,50 @@ const GetGitHubUser = () => {
 
   const handleUsernameChange = (event) => {
     setResponse('');
-    setUsername(event.target.value);
+    setOwner(event.target.value);
   };
 
   const handleUsernameClear = () => {
     setResponse('');
-    setUsername('');
+    setOwner('');
+  };
+
+  const handleRepoChange = (event) => {
+    setResponse('');
+    setRepo(event.target.value);
+  };
+
+  const handleRepoClear = () => {
+    setResponse('');
+    setRepo('');
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     getGitHubUser();
   };
+
   return (
     <div className="mb-6 px-4">
       <form onSubmit={handleSubmit} className="grid grid-cols-1fr-auto gap-4 items-end text-text text">
-        <div>
+        <div className="grid grid-cols-1fr-1fr gap-4">
           <InputSearch
             label="Username"
             searchPlaceholder={INITIAL_USERNAME}
-            searchValue={username}
+            searchValue={owner}
             onChange={handleUsernameChange}
             onClear={handleUsernameClear}
           />
+          <InputSearch
+            label="Repository"
+            searchPlaceholder="mdx-embed"
+            searchValue={repo}
+            onChange={handleRepoChange}
+            onClear={handleRepoClear}
+            showSymbol={false}
+          />
         </div>
-        <button disabled={isSubmitting || !username} type="submit">
+        <button disabled={isSubmitting || !owner} type="submit">
           Submit
         </button>
       </form>
@@ -69,4 +85,4 @@ const GetGitHubUser = () => {
   );
 };
 
-export default GetGitHubUser;
+export default Repo;

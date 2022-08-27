@@ -1,13 +1,12 @@
 import React, { Fragment, useState } from 'react';
-import axios from 'axios';
 
-import FormInputValue from './form-input-value';
-import PrismSyntaxHighlight from './prism-syntax-highlight';
+import FormInputValue from '../form-input-value';
+import PrismSyntaxHighlight from '../prism-syntax-highlight';
 
 const INITIAL_PRODUCT = 'prod_KAgqqzBEBmuYkT';
 const INITIAL_AMOUNT = 5;
 
-const MakeStripePayment = () => {
+const Payment = () => {
   const [response, setResponse] = useState(null);
   const [price, setPrice] = useState(INITIAL_AMOUNT);
   const [select, setSelect] = useState(INITIAL_PRODUCT);
@@ -16,16 +15,19 @@ const MakeStripePayment = () => {
   const makeStripePayment = async () => {
     setIsSubmitting(true);
     try {
-      const response = await axios('/api/make-stripe-payment', {
-        method: 'POST',
-        data: {
-          product: select,
-          amount: price,
-          success_url: 'https://paulieapi.gatsbyjs.io/make-stripe-payment',
-          cancel_url: 'https://paulieapi.gatsbyjs.io/make-stripe-payment'
-        }
-      });
-      setResponse(response.data);
+      const response = await (
+        await fetch('/api/v2/stripe/payment', {
+          method: 'POST',
+          body: JSON.stringify({
+            product: select,
+            amount: price,
+            success_url: 'https://www.mdx-embed.com',
+            cancel_url: 'https://www.mdx-embed.com'
+          })
+        })
+      ).json();
+
+      setResponse(response);
       setIsSubmitting(false);
     } catch (error) {
       setResponse(error.response);
@@ -76,4 +78,4 @@ const MakeStripePayment = () => {
   );
 };
 
-export default MakeStripePayment;
+export default Payment;

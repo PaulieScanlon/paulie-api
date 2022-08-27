@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-import InputSearch from './input-search';
-import PrismSyntaxHighlight from './prism-syntax-highlight';
+import InputSearch from '../input-search';
+import PrismSyntaxHighlight from '../prism-syntax-highlight';
 
 const INITIAL_USERNAME = 'PaulieScanlon';
 
-const GetTwitterUser = () => {
+const User = () => {
   const [response, setResponse] = useState(null);
   const [username, setUsername] = useState(INITIAL_USERNAME);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,13 +14,9 @@ const GetTwitterUser = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios('/api/get-twitter-user', {
-        method: 'POST',
-        data: {
-          username: username
-        }
-      });
-      setResponse(response.data);
+      const response = await (await fetch(`/api/v2/twitter/user?username=${username}`)).json();
+      setResponse(response);
+
       setIsSubmitting(false);
     } catch (error) {
       setResponse(error.response);
@@ -70,4 +65,4 @@ const GetTwitterUser = () => {
   );
 };
 
-export default GetTwitterUser;
+export default User;

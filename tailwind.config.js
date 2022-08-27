@@ -62,6 +62,10 @@ module.exports = {
               '&::after': {
                 content: '"" !important'
               }
+            },
+            blockquote: {
+              fontSize: '1rem!important',
+              color: theme('colors.text')
             }
           }
         }
