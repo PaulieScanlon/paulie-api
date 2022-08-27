@@ -25,6 +25,14 @@
   @apply transition-all duration-300 inline-grid rounded-full border hover:border-outline border-transparent hover:bg-surface px-3 py-2 hover:text-text;
 }
 
+.prose :where(blockquote):not(:where([class~='not-prose'] *)) {
+  @apply text-slate-300 text-xl bg-surface rounded border-l-highlight py-3 px-4;
+}
+
+.prose-lg :where(p):not(:where([class~='not-prose'] *)) {
+  @apply m-0;
+}
+
 .prose :where(h1):not(:where([class~='not-prose'] *)) {
   @apply text-text;
 }

@@ -1,30 +1,24 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-import InputSearch from './input-search';
-import PrismSyntaxHighlight from './prism-syntax-highlight';
+import InputSearch from '../../input-search';
+import InputNumber from '../../input-number';
+import PrismSyntaxHighlight from '../../prism-syntax-highlight';
 
 const INITIAL_USERNAME = 'PaulieScanlon';
-const INITIAL_REPO = 'mdx-embed';
+const INITIAL_RESULTS = 5;
 
-const GetGitHubRepo = () => {
+const Events = () => {
   const [response, setResponse] = useState(null);
-  const [owner, setOwner] = useState(INITIAL_USERNAME);
-  const [repo, setRepo] = useState(INITIAL_REPO);
+  const [username, setUsername] = useState(INITIAL_USERNAME);
+  const [results, setResults] = useState(INITIAL_RESULTS);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const getGitHubUser = async () => {
+  const getGitHubEvents = async () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios('/api/get-github-repo', {
-        method: 'POST',
-        data: {
-          owner: owner,
-          repo: repo
-        }
-      });
-      setResponse(response.data);
+      const response = await (await fetch(`/api/v2/github/user/events?username=${username}&results=${results}`)).json();
+      setResponse(response);
       setIsSubmitting(false);
     } catch (error) {
       setResponse(error.response);
@@ -34,27 +28,22 @@ const GetGitHubRepo = () => {
 
   const handleUsernameChange = (event) => {
     setResponse('');
-    setOwner(event.target.value);
+    setUsername(event.target.value);
   };
 
   const handleUsernameClear = () => {
     setResponse('');
-    setOwner('');
+    setUsername('');
   };
 
-  const handleRepoChange = (event) => {
+  const handleResultsChange = (event) => {
     setResponse('');
-    setRepo(event.target.value);
-  };
-
-  const handleRepoClear = () => {
-    setResponse('');
-    setRepo('');
+    setResults(parseInt(event.target.value));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    getGitHubUser();
+    getGitHubEvents();
   };
 
   return (
@@ -64,20 +53,13 @@ const GetGitHubRepo = () => {
           <InputSearch
             label="Username"
             searchPlaceholder={INITIAL_USERNAME}
-            searchValue={owner}
+            searchValue={username}
             onChange={handleUsernameChange}
             onClear={handleUsernameClear}
           />
-          <InputSearch
-            label="Repository"
-            searchPlaceholder="mdx-embed"
-            searchValue={repo}
-            onChange={handleRepoChange}
-            onClear={handleRepoClear}
-            showSymbol={false}
-          />
+          <InputNumber label="Results" numberValue={results} onChange={handleResultsChange} />
         </div>
-        <button disabled={isSubmitting || !owner} type="submit">
+        <button disabled={isSubmitting || !username} type="submit">
           Submit
         </button>
       </form>
@@ -91,4 +73,4 @@ const GetGitHubRepo = () => {
   );
 };
 
-export default GetGitHubRepo;
+export default Events;

@@ -24,30 +24,22 @@ browser</span> button.
 This endpoint uses the Twitter `users/${id}/tweets` endpoint under the hood to return a users latest Tweets. Use
 [this link](https://tools.codeofaninja.com/find-twitter-id) to find your Twitter `id`.
 
-| Endpoint                 | Type | Parameters | Required | Default | Response |
-| ------------------------ | ---- | ---------- | -------- | ------- | -------- |
-| `/api/get-latest-tweets` | POST | id: number | true     | n/a     | JSON     |
+| Type  | Endpoint               | Query      | Required | Default | Response |
+| ----- | ---------------------- | ---------- | -------- | ------- | -------- |
+| `GET` | /api/v2/twitter/tweets | id: number | true     | n/a     | JSON     |
 
 <RunInBrowser>
-  <GetLatestTweets />
+  <TwitterTweets />
 </RunInBrowser>
 
 <RequestResponseExpand type='request'>
 
 ```javascript
 // axios
-await axios('https://paulieapi.gatsbyjs.io/api/get-latest-tweets', {
-  method: 'POST',
-  data: {
-    id: 470012453
-  }
-});
+const response = await axios(`https://paulieapi.gatsbyjs.io/api/v2/twitter/tweets?id=470012453`);
 
 // fetch
-await fetch('https://paulieapi.gatsbyjs.io/api/get-latest-tweets', {
-  method: 'POST',
-  body: JSON.stringify({ id: 470012453 })
-});
+const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitter/tweets?id=470012453`)).json();
 ```
 
 </RequestResponseExpand>
@@ -94,30 +86,22 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-latest-tweets', {
 This endpoint uses the Twitter `users/by/username/${username}` endpoint under the hood to return information about a
 Twitter username.
 
-| Endpoint                | Type | Parameters       | Required | Default | Response |
-| ----------------------- | ---- | ---------------- | -------- | ------- | -------- |
-| `/api/get-twitter-user` | POST | username: string | true     | n/a     | JSON     |
+| Type  | Endpoint             | Query            | Required | Default | Response |
+| ----- | -------------------- | ---------------- | -------- | ------- | -------- |
+| `GET` | /api/v2/twitter/user | username: string | true     | n/a     | JSON     |
 
 <RunInBrowser>
-  <GetTwitterUser />
+  <TwitterUser />
 </RunInBrowser>
 
 <RequestResponseExpand type='request'>
 
 ```javascript
 // axios
-await axios('https://paulieapi.gatsbyjs.io/api/get-twitter-user', {
-  method: 'POST',
-  data: {
-    username: 'PaulieScanlon'
-  }
-});
+const response = await axios(`https://paulieapi.gatsbyjs.io/api/v2/twitter/user?username=PaulieScanlon`);
 
 // fetch
-await fetch('https://paulieapi.gatsbyjs.io/api/get-twitter-user', {
-  method: 'POST',
-  body: JSON.stringify({ username: 'PaulieScanlon' })
-});
+const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitter/user?username=PaulieScanlon`)).json();
 ```
 
 </RequestResponseExpand>
@@ -149,22 +133,22 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-twitter-user', {
 This endpoint uses the Stripe `stripe.checkout.sessions.create` method under the hood to create a checkout url for a
 user provided payment amount.
 
-| Endpoint                   | Type | Parameters          | Required | Default | Response |
-| -------------------------- | ---- | ------------------- | -------- | ------- | -------- |
-| `/api/make-stripe-payment` | POST | product: string     | true     | n/a     | JSON     |
-| -                          | -    | amount: number      | true     | n/a     | -        |
-| -                          | -    | success_url: string | true     | n/a     | -        |
-| -                          | -    | cancel_url: string  | true     | n/a     | -        |
+| Type   | Endpoint                | Parameters          | Required | Default | Response |
+| ------ | ----------------------- | ------------------- | -------- | ------- | -------- |
+| `POST` | `api/v2/stripe/payment` | product: string     | true     | n/a     | JSON     |
+|        | -                       | amount: number      | true     | n/a     | -        |
+|        | -                       | success_url: string | true     | n/a     | -        |
+|        | -                       | cancel_url: string  | true     | n/a     | -        |
 
 <RunInBrowser>
-  <MakeStripePayment />
+  <StripePayment />
 </RunInBrowser>
 
 <RequestResponseExpand type='request'>
 
 ```javascript
 // axios
-await axios('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
+await axios('https://paulieapi.gatsbyjs.io/api/v2/stripe/payment', {
   method: 'POST',
   data: {
     product: 'prod_KAgqqzBEBmuYkT',
@@ -175,15 +159,18 @@ await axios('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
 });
 
 // fetch
-await fetch('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
-  method: 'POST',
-  body: JSON.stringify({
-    product: 'prod_KAgqqzBEBmuYkT',
-    amount: 5,
-    success_url: 'https://www.mdx-embed.com',
-    cancel_url: 'https://www.mdx-embed.com'
+
+const response = await (
+  await fetch('https://paulieapi.gatsbyjs.io/api/v2/stripe/payment', {
+    method: 'POST',
+    body: JSON.stringify({
+      product: 'prod_KAgqqzBEBmuYkT',
+      amount: 5,
+      success_url: 'https://www.mdx-embed.com',
+      cancel_url: 'https://www.mdx-embed.com'
+    })
   })
-});
+).json();
 ```
 
 </RequestResponseExpand>
@@ -206,30 +193,22 @@ await fetch('https://paulieapi.gatsbyjs.io/api/make-stripe-payment', {
 This endpoint uses the Octokit `octokit.request('GET /users/${username}')` under the hood to return information about a
 GitHub username.
 
-| Endpoint               | Type | Parameters       | Required | Default | Response |
-| ---------------------- | ---- | ---------------- | -------- | ------- | -------- |
-| `/api/get-github-user` | POST | username: string | true     | n/a     | JSON     |
+| Type  | Endpoint             | Query            | Required | Default | Response |
+| ----- | -------------------- | ---------------- | -------- | ------- | -------- |
+| `GET` | `api/v2/github/user` | username: string | true     | n/a     | JSON     |
 
 <RunInBrowser>
-  <GetGitHubUser />
+  <GitHubUser />
 </RunInBrowser>
 
 <RequestResponseExpand type='request'>
 
 ```javascript
 // axios
-await axios('https://paulieapi.gatsbyjs.io/api/get-github-user', {
-  method: 'POST',
-  data: { username: 'PaulieScanlon' }
-});
+const response = await axios(`https://paulieapi.gatsbyjs.io/api/v2/github/user?username=PaulieScanlon`);
 
 // fetch
-await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user', {
-  method: 'POST',
-  body: JSON.stringify({
-    username: 'PaulieScanlon'
-  })
-});
+const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/github/user?username=PaulieScanlon`)).json();
 ```
 
 </RequestResponseExpand>
@@ -264,35 +243,27 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user', {
 This endpoint uses the Octokit `GET /repos/{owner}/{repo}` under the hood to return information about a GitHub
 repository.
 
-| Endpoint               | Type | Parameters    | Required | Default | Response |
-| ---------------------- | ---- | ------------- | -------- | ------- | -------- |
-| `/api/get-github-repo` | POST | owner: string | true     | n/a     | JSON     |
-|                        |      | repo: string  | true     | n/a     |          |
+| Type  | Endpoint              | Query              | Required | Default | Response |
+| ----- | --------------------- | ------------------ | -------- | ------- | -------- |
+| `GET` | `/api/v2/github/repo` | owner: string      | true     | n/a     | JSON     |
+|       |                       | repository: string | true     | n/a     | -        |
 
 <RunInBrowser>
-  <GetGitHubRepo />
+  <GitHubRepo />
 </RunInBrowser>
 
 <RequestResponseExpand type='request'>
 
 ```javascript
 // axios
-await axios('https://paulieapi.gatsbyjs.io/api/get-github-repo', {
-  method: 'POST',
-  data: {
-    owner: 'PaulieScanlon',
-    repo: 'mdx-embed'
-  }
-});
+const response = await axios(
+  `https://paulieapi.gatsbyjs.io/api/v2/github/repo?owner=PaulieScanlon&repository=mdx-embed`
+);
 
 // fetch
-await fetch('https://paulieapi.gatsbyjs.io/api/get-github-repo', {
-  method: 'POST',
-  body: JSON.stringify({
-    owner: 'PaulieScanlon',
-    repo: 'mdx-embed'
-  })
-});
+const response = await (
+  await fetch(`https://paulieapi.gatsbyjs.io/api/v2/github/repo?owner=PaulieScanlon&repository=mdx-embed`)
+).json();
 ```
 
 </RequestResponseExpand>
@@ -327,35 +298,27 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-repo', {
 This endpoint uses the Octokit `octokit.request('GET /users/${username}/events')` under the hood to return events for a
 GitHub username.
 
-| Endpoint                      | Type | Parameters       | Required | Default | Response |
-| ----------------------------- | ---- | ---------------- | -------- | ------- | -------- |
-| `/api/get-github-user-events` | POST | username: string | true     | n/a     | JSON     |
-| -                             | -    | results: number  | false    | 5       | -        |
+| Type  | Endpoint                   | Query            | Required | Default | Response |
+| ----- | -------------------------- | ---------------- | -------- | ------- | -------- |
+| `GET` | /api/v2/github/user/events | username: string | true     | n/a     | JSON     |
+|       | -                          | results: number  | false    | 5       | -        |
 
 <RunInBrowser>
-  <GetGitHubUserEvents />
+  <GitHubUserEvents />
 </RunInBrowser>
 
 <RequestResponseExpand type='request'>
 
 ```javascript
 // axios
-await axios('https://paulieapi.gatsbyjs.io/api/get-github-user-events', {
-  method: 'POST',
-  data: {
-    username: 'PaulieScanlon',
-    results: 5
-  }
-});
+const response = await axios(
+  `https://paulieapi.gatsbyjs.io/api/v2/github/user/events?username=PaulieScanlon&results=5`
+);
 
 // fetch
-await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user-events', {
-  method: 'POST',
-  body: JSON.stringify({
-    username: 'PaulieScanlon',
-    results: 5
-  })
-});
+const response = await (
+  await fetch(`https://paulieapi.gatsbyjs.io/api/v2/github/user/events?username=PaulieScanlon&results=5`)
+).json();
 ```
 
 </RequestResponseExpand>
@@ -393,38 +356,30 @@ await fetch('https://paulieapi.gatsbyjs.io/api/get-github-user-events', {
 This endpoint uses the Octokit `octokit.request('GET /repos/{owner}/{repo}/events')` under the hood to return events for
 a GitHub repository.
 
-| Endpoint                      | Type | Parameters      | Required | Default | Response |
-| ----------------------------- | ---- | --------------- | -------- | ------- | -------- |
-| `/api/get-github-repo-events` | POST | owner: string   | true     | n/a     | JSON     |
-| -                             | -    | repo: string    | true     | n/a     | -        |
-| -                             | -    | results: number | false    | 5       | -        |
+| Type  | Endpoint                   | Parameters         | Required | Default | Response |
+| ----- | -------------------------- | ------------------ | -------- | ------- | -------- |
+| `GET` | /api/v2/github/repo/events | owner: string      | true     | n/a     | JSON     |
+|       | -                          | repository: string | true     | n/a     | -        |
+|       | -                          | results: number    | false    | 5       | -        |
 
 <RunInBrowser>
-  <GetGitHubRepoEvents />
+  <GitHubRepoEvents />
 </RunInBrowser>
 
 <RequestResponseExpand type='request'>
 
 ```javascript
 // axios
-await axios('https://paulieapi.gatsbyjs.io/api/get-github-repo-events', {
-  method: 'POST',
-  data: {
-    owner: 'PaulieScanlon',
-    repo: 'mdx-embed',
-    results: 5
-  }
-});
+const response = await axios(
+  `https://paulieapi.gatsbyjs.io/api/v2/github/repo/events?owner=PaulieScanlon&repository=mdx-embed&results=5`
+);
 
 // fetch
-await fetch('https://paulieapi.gatsbyjs.io/api/get-github-repo-events', {
-  method: 'POST',
-  body: JSON.stringify({
-    owner: 'PaulieScanlon',
-    repo: 'mdx-embed',
-    results: 5
-  })
-});
+const response = await (
+  await fetch(
+    `https://paulieapi.gatsbyjs.io/api/v2/github/repo/events?owner=PaulieScanlon&repository=mdx-embed&results=5`
+  )
+).json();
 ```
 
 </RequestResponseExpand>

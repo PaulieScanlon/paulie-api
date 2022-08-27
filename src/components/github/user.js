@@ -1,27 +1,21 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-import InputSearch from './input-search';
-import PrismSyntaxHighlight from './prism-syntax-highlight';
+import InputSearch from '../input-search';
+import PrismSyntaxHighlight from '../prism-syntax-highlight';
 
-const INITIAL_ID = 470012453;
+const INITIAL_USERNAME = 'PaulieScanlon';
 
-const GetLatestTweets = () => {
+const User = () => {
   const [response, setResponse] = useState(null);
-  const [id, setId] = useState(INITIAL_ID);
+  const [username, setUsername] = useState(INITIAL_USERNAME);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const getTweets = async () => {
+  const getGitHubUser = async () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios('/api/get-latest-tweets', {
-        method: 'POST',
-        data: {
-          id: id
-        }
-      });
-      setResponse(response.data);
+      const response = await (await fetch(`/api/v2/github/user?username=${username}`)).json();
+      setResponse(response);
       setIsSubmitting(false);
     } catch (error) {
       setResponse(error.response);
@@ -29,32 +23,33 @@ const GetLatestTweets = () => {
     }
   };
 
-  const handleIdChange = (event) => {
+  const handleUsernameChange = (event) => {
     setResponse('');
-    setId(event.target.value);
+    setUsername(event.target.value);
   };
 
-  const handleIdClear = () => {
+  const handleUsernameClear = () => {
     setResponse('');
-    setId('');
+    setUsername('');
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    getTweets();
+    getGitHubUser();
   };
   return (
     <div className="mb-6 px-4">
       <form onSubmit={handleSubmit} className="grid grid-cols-1fr-auto gap-4 items-end text-text text">
-        <InputSearch
-          label="Id"
-          searchPlaceholder={`${INITIAL_ID}`}
-          searchValue={id}
-          onChange={handleIdChange}
-          onClear={handleIdClear}
-        />
-
-        <button disabled={isSubmitting || !id} type="submit">
+        <div>
+          <InputSearch
+            label="Username"
+            searchPlaceholder={INITIAL_USERNAME}
+            searchValue={username}
+            onChange={handleUsernameChange}
+            onClear={handleUsernameClear}
+          />
+        </div>
+        <button disabled={isSubmitting || !username} type="submit">
           Submit
         </button>
       </form>
@@ -68,4 +63,4 @@ const GetLatestTweets = () => {
   );
 };
 
-export default GetLatestTweets;
+export default User;

@@ -25,7 +25,12 @@ const PageElement = ({ children, location: { pathname } }) => {
             <div className="relative flex items-center">
               <Link className="flex items-center" to="/">
                 <span className="sr-only">Paul Scanlon's Blog</span>
-                <Logo />
+                <div className="relative">
+                  <span className="absolute leading-none right-[-8px] top-0 bg-tertiary rounded px-1 pb-0.5 font-bold text-xs text-white">
+                    v2
+                  </span>
+                  <Logo />
+                </div>
               </Link>
               <div className="relative flex lg:hidden items-center ml-auto">
                 <button className="ml-auto flex items-center justify-center" onClick={handleNav}>
@@ -92,7 +97,7 @@ const PageElement = ({ children, location: { pathname } }) => {
                         key={index}
                         onClick={handleNav}
                         href={hash}
-                        className="sub-navigation text-lg font-bold text-secondary"
+                        className="sub-navigation text-lg font-bold text-tertiary"
                       >
                         <NavigationIcon icon={icon} />
                         {title}

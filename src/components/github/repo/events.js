@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-import InputSearch from './input-search';
-import InputNumber from './input-number';
-import PrismSyntaxHighlight from './prism-syntax-highlight';
+import InputSearch from '../../input-search';
+import InputNumber from '../../input-number';
+import PrismSyntaxHighlight from '../../prism-syntax-highlight';
 
 const INITIAL_OWNER = 'PaulieScanlon';
 const INITIAL_REPO = 'mdx-embed';
 const INITIAL_RESULTS = 5;
 
-const GetGitHubRepoEvents = () => {
+const RepoEvents = () => {
   const [response, setResponse] = useState(null);
   const [owner, setOwner] = useState(INITIAL_OWNER);
   const [repo, setRepo] = useState(INITIAL_REPO);
@@ -20,15 +19,10 @@ const GetGitHubRepoEvents = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios('/api/get-github-repo-events', {
-        method: 'POST',
-        data: {
-          owner: owner,
-          repo: repo,
-          results: results
-        }
-      });
-      setResponse(response.data);
+      const response = await (
+        await fetch(`/api/v2/github/repo/events?owner=${owner}&repository=${repo}&results=${results}`)
+      ).json();
+      setResponse(response);
       setIsSubmitting(false);
     } catch (error) {
       setResponse(error.response);
@@ -102,4 +96,4 @@ const GetGitHubRepoEvents = () => {
   );
 };
 
-export default GetGitHubRepoEvents;
+export default RepoEvents;

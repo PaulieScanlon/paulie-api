@@ -31,8 +31,6 @@
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "@octokit/rest": "^18.5.6",
-    "axios": "^0.21.1",
-    "cors": "^2.8.5",
     "gatsby": "^4.21.1",
     "gatsby-plugin-gatsby-cloud": "^4.21.0",
     "gatsby-plugin-google-analytics": "^4.21.0",
