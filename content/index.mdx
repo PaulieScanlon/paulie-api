@@ -133,12 +133,12 @@ const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitte
 This endpoint uses the Stripe `stripe.checkout.sessions.create` method under the hood to create a checkout url for a
 user provided payment amount.
 
-| Type   | Endpoint                | Parameters          | Required | Default | Response |
-| ------ | ----------------------- | ------------------- | -------- | ------- | -------- |
-| `POST` | `api/v2/stripe/payment` | product: string     | true     | n/a     | JSON     |
-|        | -                       | amount: number      | true     | n/a     | -        |
-|        | -                       | success_url: string | true     | n/a     | -        |
-|        | -                       | cancel_url: string  | true     | n/a     | -        |
+| Type   | Endpoint              | Parameters          | Required | Default | Response |
+| ------ | --------------------- | ------------------- | -------- | ------- | -------- |
+| `POST` | api/v2/stripe/payment | product: string     | true     | n/a     | JSON     |
+|        | -                     | amount: number      | true     | n/a     | -        |
+|        | -                     | success_url: string | true     | n/a     | -        |
+|        | -                     | cancel_url: string  | true     | n/a     | -        |
 
 <RunInBrowser>
   <StripePayment />
@@ -193,9 +193,9 @@ const response = await (
 This endpoint uses the Octokit `octokit.request('GET /users/${username}')` under the hood to return information about a
 GitHub username.
 
-| Type  | Endpoint             | Query            | Required | Default | Response |
-| ----- | -------------------- | ---------------- | -------- | ------- | -------- |
-| `GET` | `api/v2/github/user` | username: string | true     | n/a     | JSON     |
+| Type  | Endpoint           | Query            | Required | Default | Response |
+| ----- | ------------------ | ---------------- | -------- | ------- | -------- |
+| `GET` | api/v2/github/user | username: string | true     | n/a     | JSON     |
 
 <RunInBrowser>
   <GitHubUser />
@@ -243,10 +243,10 @@ const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/github
 This endpoint uses the Octokit `GET /repos/{owner}/{repo}` under the hood to return information about a GitHub
 repository.
 
-| Type  | Endpoint              | Query              | Required | Default | Response |
-| ----- | --------------------- | ------------------ | -------- | ------- | -------- |
-| `GET` | `/api/v2/github/repo` | owner: string      | true     | n/a     | JSON     |
-|       |                       | repository: string | true     | n/a     | -        |
+| Type  | Endpoint            | Query              | Required | Default | Response |
+| ----- | ------------------- | ------------------ | -------- | ------- | -------- |
+| `GET` | /api/v2/github/repo | owner: string      | true     | n/a     | JSON     |
+|       |                     | repository: string | true     | n/a     | -        |
 
 <RunInBrowser>
   <GitHubRepo />
