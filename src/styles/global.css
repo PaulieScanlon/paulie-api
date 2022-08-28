@@ -52,11 +52,11 @@
 }
 
 .prose :where(table):not(:where([class~='not-prose'] *)) {
-  @apply box-border border-collapse rounded border border-solid border-outline bg-surface overflow-hidden;
+  @apply bg-surface overflow-hidden m-0;
 }
 
 .prose :where(thead):not(:where([class~='not-prose'] *)) {
-  @apply bg-outline/40 border-b-0;
+  @apply bg-outline/80 border-b-0;
 }
 
 .prose :where(tbody tr):not(:where([class~='not-prose'] *)) {
@@ -73,6 +73,10 @@
 
 .prose :where(code):not(:where([class~='not-prose'] *)) {
   @apply !font-normal px-1 py-1 rounded border border-outline;
+}
+
+.prose :where(hr):not(:where([class~='not-prose'] *)) {
+  @apply border-background my-16;
 }
 
 pre {

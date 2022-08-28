@@ -12,7 +12,7 @@ module.exports = {
         secondary: '#00ccff',
         tertiary: '#ff1493',
         highlight: '#ffff00',
-        muted: '#ffceeb',
+        link: '#f7f7f7',
         background: '#000000',
         outline: '#202020',
         surface: '#111111'
@@ -36,20 +36,20 @@ module.exports = {
         DEFAULT: {
           css: {
             color: theme('colors.text'),
-            'h1, h2, h4, h5, h6': {
+            'h1, h3, h4, h5, h6': {
               color: theme('colors.text'),
               a: {
                 color: theme('colors.text')
               }
             },
-            h3: {
+            h2: {
               color: theme('colors.tertiary'),
               a: {
                 color: theme('colors.tertiary')
               }
             },
             a: {
-              color: theme('colors.tertiary')
+              color: theme('colors.link')
             },
             strong: {
               color: theme('colors.text')

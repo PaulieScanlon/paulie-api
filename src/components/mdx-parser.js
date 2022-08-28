@@ -10,6 +10,8 @@ import PrismSyntaxHighlight from './prism-syntax-highlight.js';
 import RunInBrowser from './run-in-browser';
 import RequestResponseExpand from './request-response-expand';
 
+import Endpoint from '../components/endpoint';
+
 import TwitterUser from '../components/twitter/user';
 import TwitterTweets from '../components/twitter/tweets';
 
@@ -46,7 +48,15 @@ const components = {
       <code>{children}</code>
     );
   },
+  table: ({ children }) => {
+    return (
+      <div className="overflow-auto">
+        <table>{children}</table>
+      </div>
+    );
+  },
   GatsbyImage: (props) => <GatsbyImage alt={props.alt} image={getImage(props.image)} />,
+  Endpoint,
   RunInBrowser,
   RequestResponseExpand,
   TwitterTweets,

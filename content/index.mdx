@@ -24,9 +24,13 @@ browser</span> button.
 This endpoint uses the Twitter `users/${id}/tweets` endpoint under the hood to return a users latest Tweets. Use
 [this link](https://tools.codeofaninja.com/find-twitter-id) to find your Twitter `id`.
 
-| Type  | Endpoint               | Query      | Required | Default | Response |
-| ----- | ---------------------- | ---------- | -------- | ------- | -------- |
-| `GET` | /api/v2/twitter/tweets | id: number | true     | n/a     | JSON     |
+<Endpoint type='GET' endpoint='/api/v2/twitter/tweets'>
+
+| Query      | Required | Default | Response |
+| ---------- | -------- | ------- | -------- |
+| id: number | true     | n/a     | JSON     |
+
+</Endpoint>
 
 <RunInBrowser>
   <TwitterTweets />
@@ -81,14 +85,20 @@ const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitte
 
 </RequestResponseExpand>
 
+<hr />
+
 ### Twitter User
 
 This endpoint uses the Twitter `users/by/username/${username}` endpoint under the hood to return information about a
 Twitter username.
 
-| Type  | Endpoint             | Query            | Required | Default | Response |
-| ----- | -------------------- | ---------------- | -------- | ------- | -------- |
-| `GET` | /api/v2/twitter/user | username: string | true     | n/a     | JSON     |
+<Endpoint type='GET' endpoint='/api/v2/twitter/user '>
+
+| Query            | Required | Default | Response |
+| ---------------- | -------- | ------- | -------- |
+| username: string | true     | n/a     | JSON     |
+
+</Endpoint>
 
 <RunInBrowser>
   <TwitterUser />
@@ -126,6 +136,8 @@ const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitte
 
 </RequestResponseExpand>
 
+<hr />
+
 ## Stripe
 
 ### Make Stripe Payment
@@ -133,12 +145,16 @@ const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitte
 This endpoint uses the Stripe `stripe.checkout.sessions.create` method under the hood to create a checkout url for a
 user provided payment amount.
 
-| Type   | Endpoint              | Parameters          | Required | Default | Response |
-| ------ | --------------------- | ------------------- | -------- | ------- | -------- |
-| `POST` | api/v2/stripe/payment | product: string     | true     | n/a     | JSON     |
-|        | -                     | amount: number      | true     | n/a     | -        |
-|        | -                     | success_url: string | true     | n/a     | -        |
-|        | -                     | cancel_url: string  | true     | n/a     | -        |
+<Endpoint type='POST' endpoint='/api/v2/stripe/payment'>
+
+| Parameters          | Required | Default | Response |
+| ------------------- | -------- | ------- | -------- |
+| true                | n/a      | JSON    |
+| amount: number      | true     | n/a     | -        |
+| success_url: string | true     | n/a     | -        |
+| cancel_url: string  | true     | n/a     | -        |
+
+</Endpoint>
 
 <RunInBrowser>
   <StripePayment />
@@ -186,6 +202,8 @@ const response = await (
 
 </RequestResponseExpand>
 
+<hr />
+
 ## GitHub
 
 ### GitHub User
@@ -193,9 +211,13 @@ const response = await (
 This endpoint uses the Octokit `octokit.request('GET /users/${username}')` under the hood to return information about a
 GitHub username.
 
-| Type  | Endpoint           | Query            | Required | Default | Response |
-| ----- | ------------------ | ---------------- | -------- | ------- | -------- |
-| `GET` | api/v2/github/user | username: string | true     | n/a     | JSON     |
+<Endpoint type='GET' endpoint='/api/v2/github/user'>
+
+| Query            | Required | Default | Response |
+| ---------------- | -------- | ------- | -------- |
+| username: string | true     | n/a     | JSON     |
+
+</Endpoint>
 
 <RunInBrowser>
   <GitHubUser />
@@ -238,15 +260,21 @@ const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/github
 
 </RequestResponseExpand>
 
+<hr />
+
 ### GitHub Repo
 
 This endpoint uses the Octokit `GET /repos/{owner}/{repo}` under the hood to return information about a GitHub
 repository.
 
-| Type  | Endpoint            | Query              | Required | Default | Response |
-| ----- | ------------------- | ------------------ | -------- | ------- | -------- |
-| `GET` | /api/v2/github/repo | owner: string      | true     | n/a     | JSON     |
-|       |                     | repository: string | true     | n/a     | -        |
+<Endpoint type='GET' endpoint='/api/v2/github/repo'>
+
+| Query              | Required | Default | Response |
+| ------------------ | -------- | ------- | -------- |
+| owner: string      | true     | n/a     | JSON     |
+| repository: string | true     | n/a     | -        |
+
+</Endpoint>
 
 <RunInBrowser>
   <GitHubRepo />
@@ -293,15 +321,21 @@ const response = await (
 
 </RequestResponseExpand>
 
+<hr />
+
 ### GitHub User Events
 
 This endpoint uses the Octokit `octokit.request('GET /users/${username}/events')` under the hood to return events for a
 GitHub username.
 
-| Type  | Endpoint                   | Query            | Required | Default | Response |
-| ----- | -------------------------- | ---------------- | -------- | ------- | -------- |
-| `GET` | /api/v2/github/user/events | username: string | true     | n/a     | JSON     |
-|       | -                          | results: number  | false    | 5       | -        |
+<Endpoint type='GET' endpoint='/api/v2/github/user/events'>
+
+| Query            | Required | Default | Response |
+| ---------------- | -------- | ------- | -------- |
+| username: string | true     | n/a     | JSON     |
+| results: number  | false    | 5       | -        |
+
+</Endpoint>
 
 <RunInBrowser>
   <GitHubUserEvents />
@@ -351,16 +385,22 @@ const response = await (
 
 </RequestResponseExpand>
 
+<hr />
+
 ### GitHub Repo Events
 
 This endpoint uses the Octokit `octokit.request('GET /repos/{owner}/{repo}/events')` under the hood to return events for
 a GitHub repository.
 
-| Type  | Endpoint                   | Parameters         | Required | Default | Response |
-| ----- | -------------------------- | ------------------ | -------- | ------- | -------- |
-| `GET` | /api/v2/github/repo/events | owner: string      | true     | n/a     | JSON     |
-|       | -                          | repository: string | true     | n/a     | -        |
-|       | -                          | results: number    | false    | 5       | -        |
+<Endpoint type='GET' endpoint='/api/v2/github/repo/events'>
+
+| Parameters         | Required | Default | Response |
+| ------------------ | -------- | ------- | -------- |
+| owner: string      | true     | n/a     | JSON     |
+| repository: string | true     | n/a     | -        |
+| results: number    | false    | 5       | -        |
+
+</Endpoint>
 
 <RunInBrowser>
   <GitHubRepoEvents />
