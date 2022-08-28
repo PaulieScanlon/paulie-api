@@ -51,8 +51,12 @@
   margin-top: 0.6%;
 }
 
+.endpoint > div > table {
+  @apply !my-0;
+}
+
 .prose :where(table):not(:where([class~='not-prose'] *)) {
-  @apply bg-surface overflow-hidden m-0;
+  @apply bg-surface overflow-hidden my-8;
 }
 
 .prose :where(thead):not(:where([class~='not-prose'] *)) {
@@ -73,6 +77,10 @@
 
 .prose :where(code):not(:where([class~='not-prose'] *)) {
   @apply !font-normal px-1 py-1 rounded border border-outline;
+}
+
+.prose-lg :where(ol > li):not(:where([class~='not-prose'] *)) {
+  @apply my-0;
 }
 
 .prose :where(hr):not(:where([class~='not-prose'] *)) {

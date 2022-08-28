@@ -55,7 +55,7 @@ const components = {
       </div>
     );
   },
-  GatsbyImage: (props) => <GatsbyImage alt={props.alt} image={getImage(props.image)} />,
+  GatsbyImage: (props) => <GatsbyImage alt={props.alt} image={getImage(props.image)} className="my-8" />,
   Endpoint,
   RunInBrowser,
   RequestResponseExpand,
