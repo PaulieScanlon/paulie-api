@@ -14,9 +14,14 @@ const User = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await (await fetch(`/api/v2/twitter/user?username=${username}`)).json();
+      const response = await (
+        await fetch(`/api/v2/twitter/user?username=${username}`, {
+          headers: {
+            Authorization: `Bearer ${process.env.GATSBY_PAULIE_API_TOKEN}`
+          }
+        })
+      ).json();
       setResponse(response);
-
       setIsSubmitting(false);
     } catch (error) {
       setResponse(error.response);

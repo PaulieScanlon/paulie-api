@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import InputSearch from '../input-search';
 import PrismSyntaxHighlight from '../prism-syntax-highlight';
 
@@ -20,8 +21,6 @@ const Tweets = () => {
           }
         })
       ).json();
-
-      // const response = await (await fetch(`/api/v2/twitter/tweets?id=${id}`)).json();
       setResponse(response);
       setIsSubmitting(false);
     } catch (error) {

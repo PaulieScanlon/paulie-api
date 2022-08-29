@@ -109,11 +109,13 @@ Twitter username.
 <RequestResponseExpand type='request'>
 
 ```javascript
-// axios
-const response = await axios(`https://paulieapi.gatsbyjs.io/api/v2/twitter/user?username=PaulieScanlon`);
-
-// fetch
-const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitter/user?username=PaulieScanlon`)).json();
+const response = await (
+  await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitter/user?username={username}`, {
+    headers: {
+      Authorization: `Bearer ${process.env.API_TOKEN}`
+    }
+  })
+).json();
 ```
 
 </RequestResponseExpand>
