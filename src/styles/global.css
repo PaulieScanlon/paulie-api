@@ -79,7 +79,11 @@
   @apply !font-normal px-1 py-1 rounded border border-outline;
 }
 
-.prose-lg :where(ol > li):not(:where([class~='not-prose'] *)) {
+.prose :where(pre):not(:where([class~='not-prose'] *)) {
+  @apply px-2 py-2;
+}
+
+.prose :where(ol > li):not(:where([class~='not-prose'] *)) {
   @apply my-0;
 }
 

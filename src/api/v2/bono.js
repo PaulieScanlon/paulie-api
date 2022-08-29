@@ -7,15 +7,28 @@
 // }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-
   const {
+    headers: { authorization },
     query: { q }
   } = req;
 
-  console.log(req.query.q);
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
-  res.status(200).json({
-    message: `${q} shirts ok!`
-  });
+  try {
+    if (
+      !authorization ||
+      authorization.split(' ')[1] + process.env.PAULIE_API_SECRET !== process.env.PAULIE_API_VALIDATOR
+    ) {
+      throw new Error('Request failed authorization');
+    }
+
+    if (!q) {
+      res.status(400).json({ error: 'Bad Request', status: 400, message: '⚠️ Missing q' });
+    }
+    res.status(200).json({
+      message: `${q} shirts ok!`
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message ? error.message : error, message: '🚫 Bono error' });
+  }
 }

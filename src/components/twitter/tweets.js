@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import InputSearch from '../input-search';
 import PrismSyntaxHighlight from '../prism-syntax-highlight';
 
@@ -14,7 +13,15 @@ const Tweets = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await (await fetch(`/api/v2/twitter/tweets?id=${id}`)).json();
+      const response = await (
+        await fetch(`/api/v2/twitter/tweets?id=${id}`, {
+          headers: {
+            Authorization: `Bearer ${process.env.GATSBY_PAULIE_API_TOKEN}`
+          }
+        })
+      ).json();
+
+      // const response = await (await fetch(`/api/v2/twitter/tweets?id=${id}`)).json();
       setResponse(response);
       setIsSubmitting(false);
     } catch (error) {

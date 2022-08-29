@@ -2,12 +2,20 @@ const { twitter } = require('../../../clients');
 
 export default async function handler(req, res) {
   const {
+    headers: { authorization },
     query: { id }
   } = req;
 
   res.setHeader('Access-Control-Allow-Origin', '*');
 
   try {
+    if (
+      !authorization ||
+      authorization.split(' ')[1] + process.env.PAULIE_API_SECRET !== process.env.PAULIE_API_VALIDATOR
+    ) {
+      throw new Error('Request failed authorization');
+    }
+
     if (!id) {
       res.status(400).json({ error: 'Bad Request', status: 400, message: '⚠️ Missing id' });
     }
@@ -23,6 +31,6 @@ export default async function handler(req, res) {
       tweets: data ? data : '🦜 Id not found'
     });
   } catch (error) {
-    res.status(500).json({ error: error, message: '🚫 Twitter error' });
+    res.status(500).json({ error: error.message ? error.message : error, message: '🚫 Twitter error' });
   }
 }

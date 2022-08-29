@@ -39,11 +39,13 @@ This endpoint uses the Twitter `users/${id}/tweets` endpoint under the hood to r
 <RequestResponseExpand type='request'>
 
 ```javascript
-// axios
-const response = await axios(`https://paulieapi.gatsbyjs.io/api/v2/twitter/tweets?id=470012453`);
-
-// fetch
-const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitter/tweets?id=470012453`)).json();
+const response = await (
+  await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitter/tweets?id=${id}`, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`
+    }
+  })
+).json();
 ```
 
 </RequestResponseExpand>

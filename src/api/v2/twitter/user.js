@@ -2,6 +2,7 @@ const { twitter } = require('../../../clients');
 
 export default async function handler(req, res) {
   const {
+    headers: { authorization },
     query: { username }
   } = req;
 
