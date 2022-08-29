@@ -26,9 +26,9 @@ This endpoint uses the Twitter `users/${id}/tweets` endpoint under the hood to r
 
 <Endpoint type='GET' endpoint='/api/v2/twitter/tweets'>
 
-| Query      | Required | Default | Response |
-| ---------- | -------- | ------- | -------- |
-| id: number | true     | n/a     | JSON     |
+| Query | Type   | Required | Default |
+| ----- | ------ | -------- | ------- |
+| id    | number | true     | n/a     |
 
 </Endpoint>
 
@@ -96,9 +96,9 @@ Twitter username.
 
 <Endpoint type='GET' endpoint='/api/v2/twitter/user '>
 
-| Query            | Required | Default | Response |
-| ---------------- | -------- | ------- | -------- |
-| username: string | true     | n/a     | JSON     |
+| Query    | Type   | Required | Default |
+| -------- | ------ | -------- | ------- |
+| username | string | true     | n/a     |
 
 </Endpoint>
 
@@ -110,7 +110,7 @@ Twitter username.
 
 ```javascript
 const response = await (
-  await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitter/user?username={username}`, {
+  await fetch(`https://paulieapi.gatsbyjs.io/api/v2/twitter/user?username=${username}`, {
     headers: {
       Authorization: `Bearer ${process.env.API_TOKEN}`
     }
@@ -151,12 +151,12 @@ user provided payment amount.
 
 <Endpoint type='POST' endpoint='/api/v2/stripe/payment'>
 
-| Parameters          | Required | Default | Response |
-| ------------------- | -------- | ------- | -------- |
-| true                | n/a      | JSON    |
-| amount: number      | true     | n/a     | -        |
-| success_url: string | true     | n/a     | -        |
-| cancel_url: string  | true     | n/a     | -        |
+| Parameters  | Type   | Required | Default |
+| ----------- | ------ | -------- | ------- |
+| product     | string | true     | n/a     |
+| amount      | number | true     | n/a     |
+| success_url | string | true     | n/a     |
+| cancel_url  | string | true     | n/a     |
 
 </Endpoint>
 
@@ -167,19 +167,6 @@ user provided payment amount.
 <RequestResponseExpand type='request'>
 
 ```javascript
-// axios
-await axios('https://paulieapi.gatsbyjs.io/api/v2/stripe/payment', {
-  method: 'POST',
-  data: {
-    product: 'prod_KAgqqzBEBmuYkT',
-    amount: 5,
-    success_url: 'https://www.mdx-embed.com',
-    cancel_url: 'https://www.mdx-embed.com'
-  }
-});
-
-// fetch
-
 const response = await (
   await fetch('https://paulieapi.gatsbyjs.io/api/v2/stripe/payment', {
     method: 'POST',
@@ -217,9 +204,9 @@ GitHub username.
 
 <Endpoint type='GET' endpoint='/api/v2/github/user'>
 
-| Query            | Required | Default | Response |
-| ---------------- | -------- | ------- | -------- |
-| username: string | true     | n/a     | JSON     |
+| Query    | Type   | Required | Default |
+| -------- | ------ | -------- | ------- |
+| username | string | true     | n/a     |
 
 </Endpoint>
 
@@ -230,11 +217,13 @@ GitHub username.
 <RequestResponseExpand type='request'>
 
 ```javascript
-// axios
-const response = await axios(`https://paulieapi.gatsbyjs.io/api/v2/github/user?username=PaulieScanlon`);
-
-// fetch
-const response = await (await fetch(`https://paulieapi.gatsbyjs.io/api/v2/github/user?username=PaulieScanlon`)).json();
+const response = await (
+  await fetch(`https://paulieapi.gatsbyjs.io/api/v2/github/user?username=${username}`, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`
+    }
+  })
+).json();
 ```
 
 </RequestResponseExpand>
@@ -273,10 +262,10 @@ repository.
 
 <Endpoint type='GET' endpoint='/api/v2/github/repo'>
 
-| Query              | Required | Default | Response |
-| ------------------ | -------- | ------- | -------- |
-| owner: string      | true     | n/a     | JSON     |
-| repository: string | true     | n/a     | -        |
+| Query      | Type   | Required | Default |
+| ---------- | ------ | -------- | ------- |
+| owner      | string | true     | n/a     |
+| repository | string | true     | n/a     |
 
 </Endpoint>
 
@@ -287,14 +276,12 @@ repository.
 <RequestResponseExpand type='request'>
 
 ```javascript
-// axios
-const response = await axios(
-  `https://paulieapi.gatsbyjs.io/api/v2/github/repo?owner=PaulieScanlon&repository=mdx-embed`
-);
-
-// fetch
 const response = await (
-  await fetch(`https://paulieapi.gatsbyjs.io/api/v2/github/repo?owner=PaulieScanlon&repository=mdx-embed`)
+  await fetch(`https://paulieapi.gatsbyjs.io/api/v2/github/repo?owner=${owner}&repository=${repository}`, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`
+    }
+  })
 ).json();
 ```
 
@@ -334,10 +321,10 @@ GitHub username.
 
 <Endpoint type='GET' endpoint='/api/v2/github/user/events'>
 
-| Query            | Required | Default | Response |
-| ---------------- | -------- | ------- | -------- |
-| username: string | true     | n/a     | JSON     |
-| results: number  | false    | 5       | -        |
+| Query    | Type   | Required | Default |
+| -------- | ------ | -------- | ------- |
+| username | string | true     | n/a     |
+| results  | number | false    | 5       |
 
 </Endpoint>
 
@@ -348,14 +335,12 @@ GitHub username.
 <RequestResponseExpand type='request'>
 
 ```javascript
-// axios
-const response = await axios(
-  `https://paulieapi.gatsbyjs.io/api/v2/github/user/events?username=PaulieScanlon&results=5`
-);
-
-// fetch
 const response = await (
-  await fetch(`https://paulieapi.gatsbyjs.io/api/v2/github/user/events?username=PaulieScanlon&results=5`)
+  await fetch(`https://paulieapi.gatsbyjs.io/api/v2/github/user/events?username=${username}&results=${results}`, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`
+    }
+  })
 ).json();
 ```
 
@@ -398,11 +383,11 @@ a GitHub repository.
 
 <Endpoint type='GET' endpoint='/api/v2/github/repo/events'>
 
-| Parameters         | Required | Default | Response |
-| ------------------ | -------- | ------- | -------- |
-| owner: string      | true     | n/a     | JSON     |
-| repository: string | true     | n/a     | -        |
-| results: number    | false    | 5       | -        |
+| Parameters | Type   | Required | Default |
+| ---------- | ------ | -------- | ------- |
+| owner      | string | true     | n/a     |
+| repository | string | true     | n/a     |
+| results    | number | false    | 5       |
 
 </Endpoint>
 
@@ -413,15 +398,14 @@ a GitHub repository.
 <RequestResponseExpand type='request'>
 
 ```javascript
-// axios
-const response = await axios(
-  `https://paulieapi.gatsbyjs.io/api/v2/github/repo/events?owner=PaulieScanlon&repository=mdx-embed&results=5`
-);
-
-// fetch
 const response = await (
   await fetch(
-    `https://paulieapi.gatsbyjs.io/api/v2/github/repo/events?owner=PaulieScanlon&repository=mdx-embed&results=5`
+    `https://paulieapi.gatsbyjs.io/api/v2/github/repo/events?owner=${username}&repository=${repository}&results=${results}`,
+    {
+      headers: {
+        Authorization: `Bearer ${API_TOKEN}`
+      }
+    }
   )
 ).json();
 ```

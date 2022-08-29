@@ -16,7 +16,13 @@ const Repo = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await (await fetch(`/api/v2/github/repo?owner=${owner}&repository=${repo}`)).json();
+      const response = await (
+        await fetch(`/api/v2/github/repo?owner=${owner}&repository=${repo}`, {
+          headers: {
+            Authorization: `Bearer ${process.env.GATSBY_PAULIE_API_TOKEN}`
+          }
+        })
+      ).json();
 
       setResponse(response);
       setIsSubmitting(false);

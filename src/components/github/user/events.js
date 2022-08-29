@@ -17,7 +17,13 @@ const Events = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await (await fetch(`/api/v2/github/user/events?username=${username}&results=${results}`)).json();
+      const response = await (
+        await fetch(`/api/v2/github/user/events?username=${username}&results=${results}`, {
+          headers: {
+            Authorization: `Bearer ${process.env.GATSBY_PAULIE_API_TOKEN}`
+          }
+        })
+      ).json();
       setResponse(response);
       setIsSubmitting(false);
     } catch (error) {
