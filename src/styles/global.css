@@ -128,7 +128,7 @@ details[open] > summary.request-response:after {
 }
 
 button[type='submit'] {
-  @apply text-background cursor-pointer p-2 rounded border-2 border-primary/20 !bg-primary;
+  @apply text-background cursor-pointer p-2 rounded border-2 border-primary/20 !bg-primary min-w-[80px] min-h-[40px];
 }
 
 a.link-button {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import InputSearch from '../input-search';
+import Loading from '../loading';
 import PrismSyntaxHighlight from '../prism-syntax-highlight';
 
 const INITIAL_USERNAME = 'PaulieScanlon';
@@ -57,10 +58,9 @@ const User = () => {
           />
         </div>
         <button disabled={isSubmitting || !username} type="submit">
-          Submit
+          {isSubmitting ? <Loading /> : 'Submit'}
         </button>
       </form>
-      {isSubmitting ? <div className="my-4">Loading</div> : null}
       {response ? (
         <div className="pt-6">
           <PrismSyntaxHighlight className="language-json">{JSON.stringify(response, null, 2)}</PrismSyntaxHighlight>

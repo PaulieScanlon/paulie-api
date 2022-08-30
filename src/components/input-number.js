@@ -8,7 +8,7 @@ const InputNumber = ({ label, numberValue, onChange }) => {
       <input
         id="number-value"
         type="number"
-        className="block w-full placeholder:text-primary/20 bg-transparent px-4 py-2 rounded border-2 border-primary/30"
+        className="block w-full placeholder:text-primary/20 bg-transparent px-2 py-2 rounded border-2 border-primary/30"
         min={1}
         max={30}
         value={numberValue}

@@ -6,11 +6,13 @@ const InputSearch = ({ label, searchValue, searchPlaceholder, onChange, onClear,
     <label htmlFor="input-value">
       {label}
       <div className="relative">
-        {showSymbol ? <small className="absolute top-2.5 left-4 ">@</small> : null}
+        {showSymbol ? <small className="absolute top-2.5 left-3">@</small> : null}
         <input
           id="input-value"
           type="text"
-          className="block w-full placeholder:text-primary/20 bg-transparent px-6 py-2 rounded border-2 border-primary/30"
+          className={`block w-full placeholder:text-primary/20 bg-transparent ${
+            showSymbol ? 'px-6' : 'px-2'
+          } py-2 rounded border-2 border-primary/30`}
           placeholder={searchPlaceholder}
           value={searchValue}
           onChange={onChange}

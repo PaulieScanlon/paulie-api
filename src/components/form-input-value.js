@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Loading from './loading';
+
 const FormInputValue = ({ productValue, numberValue, onSubmit, onSelectChange, onNumberChange, isSubmitting }) => {
   return (
     <form onSubmit={onSubmit} className="grid grid-cols-1fr-auto-auto gap-4 items-end text-text text">
@@ -29,7 +31,7 @@ const FormInputValue = ({ productValue, numberValue, onSubmit, onSelectChange, o
         />
       </label>
       <button disabled={isSubmitting} type="submit">
-        Submit
+        {isSubmitting ? <Loading /> : 'Submit'}
       </button>
     </form>
   );

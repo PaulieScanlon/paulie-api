@@ -71,9 +71,7 @@ const Payment = () => {
             </a>
           </div>
         </Fragment>
-      ) : (
-        <Fragment>{isSubmitting ? <div className="my-4">Loading</div> : null}</Fragment>
-      )}
+      ) : null}
     </div>
   );
 };
