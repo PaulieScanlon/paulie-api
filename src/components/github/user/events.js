@@ -63,8 +63,14 @@ const Events = () => {
             searchValue={username}
             onChange={handleUsernameChange}
             onClear={handleUsernameClear}
+            isSubmitting={isSubmitting}
           />
-          <InputNumber label="Results" numberValue={results} onChange={handleResultsChange} />
+          <InputNumber
+            label="Results"
+            numberValue={results}
+            onChange={handleResultsChange}
+            isSubmitting={isSubmitting}
+          />
         </div>
         <button disabled={isSubmitting || !username} type="submit">
           {isSubmitting ? <Loading /> : 'Submit'}

@@ -53,6 +53,7 @@ const Tweets = () => {
           searchValue={id}
           onChange={handleIdChange}
           onClear={handleIdClear}
+          isSubmitting={isSubmitting}
         />
 
         <button disabled={isSubmitting || !id} type="submit">

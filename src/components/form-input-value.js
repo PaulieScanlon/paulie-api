@@ -11,6 +11,7 @@ const FormInputValue = ({ productValue, numberValue, onSubmit, onSelectChange, o
         <select
           value={productValue}
           onChange={onSelectChange}
+          disabled={isSubmitting}
           className="min-h-[40px] placeholder:text-primary/20 cursor-pointer bg-transparent p-2 rounded border-2 border-primary/30"
         >
           <option value="prod_KAgqqzBEBmuYkT">mdx-embed</option>
@@ -27,6 +28,7 @@ const FormInputValue = ({ productValue, numberValue, onSubmit, onSelectChange, o
           max={100}
           value={numberValue}
           onChange={onNumberChange}
+          disabled={isSubmitting}
           className="placeholder:text-primary/20 bg-transparent p-2 rounded border-2 border-primary/30"
         />
       </label>
@@ -49,6 +51,8 @@ FormInputValue.propTypes = {
   /** The onNumberChange handler */
   onNumberChange: PropTypes.func,
   /** The status of the form */
+  isSubmitting: PropTypes.bool.isRequired,
+  /** Determins if form elements are disabled */
   isSubmitting: PropTypes.bool.isRequired
 };
 

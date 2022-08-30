@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const InputNumber = ({ label, numberValue, onChange }) => {
+const InputNumber = ({ label, numberValue, onChange, isSubmitting }) => {
   return (
     <label htmlFor="number-value">
       {label}
@@ -13,6 +13,7 @@ const InputNumber = ({ label, numberValue, onChange }) => {
         max={30}
         value={numberValue}
         onChange={onChange}
+        disabled={isSubmitting}
       />
     </label>
   );
@@ -24,7 +25,9 @@ InputNumber.propTypes = {
   /** The number value */
   numberValue: PropTypes.number.isRequired,
   /** The onChange handler */
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  /** Determins if form elements are disabled */
+  isSubmitting: PropTypes.bool.isRequired
 };
 
 export default InputNumber;

@@ -75,6 +75,7 @@ const RepoEvents = () => {
             searchValue={owner}
             onChange={handleOwnerChange}
             onClear={handleOwnerClear}
+            isSubmitting={isSubmitting}
           />
           <InputSearch
             label="Repository"
@@ -83,8 +84,14 @@ const RepoEvents = () => {
             onChange={handleRepoChange}
             onClear={handleRepoClear}
             showSymbol={false}
+            isSubmitting={isSubmitting}
           />
-          <InputNumber label="Results" numberValue={results} onChange={handleResultsChange} />
+          <InputNumber
+            label="Results"
+            numberValue={results}
+            onChange={handleResultsChange}
+            isSubmitting={isSubmitting}
+          />
         </div>
         <button disabled={isSubmitting || !owner || !repo} type="submit">
           {isSubmitting ? <Loading /> : 'Submit'}

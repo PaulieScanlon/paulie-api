@@ -55,6 +55,7 @@ const User = () => {
             searchValue={username}
             onChange={handleUsernameChange}
             onClear={handleUsernameClear}
+            isSubmitting={isSubmitting}
           />
         </div>
         <button disabled={isSubmitting || !username} type="submit">

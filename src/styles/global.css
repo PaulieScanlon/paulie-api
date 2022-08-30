@@ -142,3 +142,12 @@ a.link-button:hover {
 button[type='submit']:disabled {
   @apply text-primary/50 !bg-primary/20 cursor-not-allowed;
 }
+
+button[type='button']:disabled {
+  @apply text-primary/50 cursor-not-allowed;
+}
+
+input:disabled,
+select:disabled {
+  @apply text-primary/30 cursor-not-allowed;
+}

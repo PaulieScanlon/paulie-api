@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const InputSearch = ({ label, searchValue, searchPlaceholder, onChange, onClear, showSymbol = true }) => {
+const InputSearch = ({ label, searchValue, searchPlaceholder, onChange, onClear, showSymbol = true, isSubmitting }) => {
   return (
     <label htmlFor="input-value">
       {label}
@@ -16,8 +16,14 @@ const InputSearch = ({ label, searchValue, searchPlaceholder, onChange, onClear,
           placeholder={searchPlaceholder}
           value={searchValue}
           onChange={onChange}
+          disabled={isSubmitting}
         />
-        <button onClick={onClear} type="button" className="absolute top-2.5 right-4 cursor-pointer">
+        <button
+          disabled={isSubmitting}
+          onClick={onClear}
+          type="button"
+          className="absolute top-2.5 right-2 cursor-pointer px-2"
+        >
           x
         </button>
       </div>
@@ -37,7 +43,9 @@ InputSearch.propTypes = {
   /** The onClear handler */
   onClear: PropTypes.func.isRequired,
   /** Determins if the @ symbol is visible */
-  showSymbol: PropTypes.bool
+  showSymbol: PropTypes.bool,
+  /** Determins if form elements are disabled */
+  isSubmitting: PropTypes.bool.isRequired
 };
 
 export default InputSearch;
