@@ -58,7 +58,7 @@ const PageElement = ({ children, location: { pathname } }) => {
           <div
             className={`site-nav lg:block fixed z-30 inset-0 top-[3.8125rem] transition-all duration-300
           ${isNavOpen ? 'left-[max(0px,calc(50%-45rem))]' : 'left-[-240px] lg:left-[max(0px,calc(50%-45rem))]'} 
-          right-auto w-[14.5rem] pb-10 px-6 overflow-y-auto border-r border-r-outline bg-background`}
+          right-auto w-[15.5rem] pb-10 px-6 overflow-y-auto border-r border-r-outline bg-background`}
           >
             <nav className="relative pt-8">
               <ul>
@@ -128,7 +128,7 @@ const PageElement = ({ children, location: { pathname } }) => {
               </ul>
             </nav>
           </div>
-          <div className="site-body lg:pl-[14.5rem]">
+          <div className="site-body lg:pl-[15.5rem]">
             <div className="mx-auto pt-6 max-w-none xl:ml-0">
               <article className="prose prose-lg max-w-5xl min-h-[calc(100vh-19rem)]">{children}</article>
               <Footer />

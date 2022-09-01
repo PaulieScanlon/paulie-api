@@ -73,6 +73,11 @@ export const useNavigation = () => {
           title: 'GitHub Repo Events',
           hash: '/#github-repo-events',
           icon: ''
+        },
+        {
+          title: 'GitHub Commits (Year)',
+          hash: '/#github-commits-year',
+          icon: ''
         }
       ]
     }

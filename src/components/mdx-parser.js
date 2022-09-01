@@ -21,6 +21,7 @@ import GitHubUser from './github/user';
 import GitHubRepo from './github/repo';
 import GitHubUserEvents from './github/user/events';
 import GitHubRepoEvents from './github/repo/events';
+import GitHubRepoCommitsYear from './github/repo/commits/year';
 
 import { stripLeadingSlash } from '../utils/strip-leading-slash';
 
@@ -65,7 +66,8 @@ const components = {
   GitHubUser,
   GitHubRepo,
   GitHubUserEvents,
-  GitHubRepoEvents
+  GitHubRepoEvents,
+  GitHubRepoCommitsYear
 };
 
 const MdxParser = ({ children, images }) => {

@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
 
-import InputSearch from '../../input-search';
-import InputNumber from '../../input-number';
-import Loading from '../../loading';
-import PrismSyntaxHighlight from '../../prism-syntax-highlight';
+import InputSearch from '../../../input-search';
+import Loading from '../../../loading';
+import PrismSyntaxHighlight from '../../../prism-syntax-highlight';
 
 const INITIAL_OWNER = 'PaulieScanlon';
-const INITIAL_REPO = 'mdx-embed';
-const INITIAL_RESULTS = 5;
+const INITIAL_REPO = 'paulie-dev-2019';
 
-const RepoEvents = () => {
+const RepoCommitsYear = () => {
   const [response, setResponse] = useState(null);
   const [owner, setOwner] = useState(INITIAL_OWNER);
   const [repo, setRepo] = useState(INITIAL_REPO);
-  const [results, setResults] = useState(INITIAL_RESULTS);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const getGitHubEvents = async () => {
+  const getGitHubCommits = async () => {
     setIsSubmitting(true);
 
     try {
       const response = await (
-        await fetch(`/api/v2/github/repo/events?owner=${owner}&repository=${repo}&results=${results}`, {
+        await fetch(`/api/v2/github/repo/commits/year?owner=${owner}&repository=${repo}`, {
           headers: {
             Authorization: `Bearer ${process.env.GATSBY_PAULIE_API_TOKEN}`
           }
@@ -55,20 +52,15 @@ const RepoEvents = () => {
     setRepo('');
   };
 
-  const handleResultsChange = (event) => {
-    setResponse('');
-    setResults(parseInt(event.target.value));
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    getGitHubEvents();
+    getGitHubCommits();
   };
 
   return (
     <div className="mb-6 px-4">
       <form onSubmit={handleSubmit} className="grid grid-cols-1fr-auto gap-4 items-end text-text text">
-        <div className="grid grid-cols-1fr-1fr-auto gap-4">
+        <div className="grid grid-cols-auto-auto gap-4">
           <InputSearch
             label="Owner"
             searchPlaceholder={INITIAL_OWNER}
@@ -86,12 +78,6 @@ const RepoEvents = () => {
             showSymbol={false}
             isSubmitting={isSubmitting}
           />
-          <InputNumber
-            label="Results"
-            numberValue={results}
-            onChange={handleResultsChange}
-            isSubmitting={isSubmitting}
-          />
         </div>
         <button disabled={isSubmitting || !owner || !repo} type="submit">
           {isSubmitting ? <Loading /> : 'Submit'}
@@ -106,4 +92,4 @@ const RepoEvents = () => {
   );
 };
 
-export default RepoEvents;
+export default RepoCommitsYear;

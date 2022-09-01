@@ -50,8 +50,6 @@ FormInputValue.propTypes = {
   onSelectChange: PropTypes.func.isRequired,
   /** The onNumberChange handler */
   onNumberChange: PropTypes.func,
-  /** The status of the form */
-  isSubmitting: PropTypes.bool.isRequired,
   /** Determins if form elements are disabled */
   isSubmitting: PropTypes.bool.isRequired
 };

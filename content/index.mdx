@@ -440,3 +440,64 @@ const response = await (
 ```
 
 </RequestResponseExpand>
+
+<hr />
+
+### GitHub Commits (Year)
+
+This endpoint uses the Octokit `octokit.request('GET /repos/{owner}/{repo}/stats/commit_activity')` under the hood to
+return 12 months commit history from the current date, for a GitHub repository.
+
+<Endpoint type='GET' endpoint='/api/v2/github/repo/commits/year'>
+
+| Parameters | Type   | Required | Default |
+| ---------- | ------ | -------- | ------- |
+| owner      | string | true     | n/a     |
+| repository | string | true     | n/a     |
+
+</Endpoint>
+
+<RunInBrowser>
+  <GitHubRepoCommitsYear />
+</RunInBrowser>
+
+<RequestResponseExpand type='request'>
+
+```javascript
+const response = await (
+  await fetch(
+    `https://paulieapi.gatsbyjs.io/api/v2/github/repo/commits/year?owner=${username}&repository=${repository}`,
+    {
+      headers: {
+        Authorization: `Bearer ${API_TOKEN}`
+      }
+    }
+  )
+).json();
+```
+
+</RequestResponseExpand>
+
+<RequestResponseExpand type='response'>
+
+```json
+{
+  "message": "🕺 GitHub request ok",
+  "commits": [
+    {
+      "total": 5,
+      "week": 1630800000,
+      "date_string": "",
+      "days": [0, 0, 0, 4, 1, 0, 0]
+    },
+    {
+      "total": 1,
+      "week": 1631404800,
+      "date_string": "",
+      "days": [0, 0, 0, 0, 0, 1, 0]
+    }
+  ]
+}
+```
+
+</RequestResponseExpand>

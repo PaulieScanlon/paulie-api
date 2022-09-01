@@ -30,11 +30,11 @@
 }
 
 .prose-lg :where(p):not(:where([class~='not-prose'] *)) {
-  @apply m-0;
+  @apply m-0 text-sm sm:text-base;
 }
 
 .prose :where(h1):not(:where([class~='not-prose'] *)) {
-  @apply text-text;
+  @apply text-text text-3xl sm:text-5xl;
 }
 
 .prose :where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'] *)) a {
@@ -76,7 +76,7 @@
 }
 
 .prose :where(code):not(:where([class~='not-prose'] *)) {
-  @apply !font-normal px-1 py-1 rounded border border-outline;
+  @apply !font-normal px-1 py-1 rounded border border-outline break-words;
 }
 
 .prose :where(pre):not(:where([class~='not-prose'] *)) {
