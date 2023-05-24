@@ -6,7 +6,7 @@ const Page = () => {
 
   useEffect(() => {
     const getTestInfo = async () => {
-      setIsSubmitting(true);
+      // setIsSubmitting(true);
 
       try {
         const response = await (await fetch('/api/v2/test')).json();
